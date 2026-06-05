@@ -1,4 +1,17 @@
-# PLAN — views/dashboard/
+﻿# PLAN — views/dashboard/
+
+## Encargado
+
+| Integrante | Rol | Responsabilidad |
+|------------|-----|-----------------|
+| **Jessica** | Frontend y responsive | Diseño del panel admin, cards de métricas y navegación |
+
+## Participación GitHub y documentación
+
+| Integrante | Rol | Participación en esta carpeta |
+|------------|-----|-------------------------------|
+| **Adrian** | Revisión e integración de código | Revisar PR de vista del panel administrativo |
+| **Yadira** | Documentación y presentación | Captura del dashboard en slides de exposición |
 
 ## Rol
 

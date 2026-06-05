@@ -1,4 +1,17 @@
-# PLAN — views/
+﻿# PLAN — views/
+
+## Encargado
+
+| Integrante | Rol | Responsabilidad |
+|------------|-----|-----------------|
+| **Jessica** | Frontend y responsive | Diseño visual, responsive y coherencia UI en todas las vistas |
+
+## Participación GitHub y documentación
+
+| Integrante | Rol | Participación en esta carpeta |
+|------------|-----|-------------------------------|
+| **Adrian** | Revisión e integración de código | Revisar PRs que modifiquen plantillas HTML |
+| **Yadira** | Documentación y presentación | Coordinar capturas de todas las vistas para entrega académica |
 
 ## Rol
 

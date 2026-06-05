@@ -1,4 +1,17 @@
-# PLAN — controllers/products/
+﻿# PLAN — controllers/products/
+
+## Encargado
+
+| Integrante | Rol | Responsabilidad |
+|------------|-----|-----------------|
+| **Verenice** | Líder y desarrolladora principal | CRUD completo, validación servidor y toggle activo/inactivo |
+
+## Participación GitHub y documentación
+
+| Integrante | Rol | Participación en esta carpeta |
+|------------|-----|-------------------------------|
+| **Adrian** | Revisión e integración de código | Revisar PRs del CRUD en `/admin/products` |
+| **Yadira** | Documentación y presentación | Capturas de gestión de productos para manual administrador |
 
 ## Rol
 

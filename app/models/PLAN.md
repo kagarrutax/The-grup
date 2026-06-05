@@ -1,4 +1,17 @@
-# PLAN — models/
+﻿# PLAN — models/
+
+## Encargado
+
+| Integrante | Rol | Responsabilidad |
+|------------|-----|-----------------|
+| **Verenice** | Líder y desarrolladora principal | Modelos User y Product, hash de contraseñas y consultas a BD |
+
+## Participación GitHub y documentación
+
+| Integrante | Rol | Participación en esta carpeta |
+|------------|-----|-------------------------------|
+| **Adrian** | Revisión e integración de código | Verificar que archivos de BD local no se commiteen |
+| **Yadira** | Documentación y presentación | Diagrama de entidades User y Product en manual técnico |
 
 ## Rol
 

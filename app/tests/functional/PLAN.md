@@ -1,4 +1,17 @@
-# PLAN — tests/functional/
+﻿# PLAN — tests/functional/
+
+## Encargado
+
+| Integrante | Rol | Responsabilidad |
+|------------|-----|-----------------|
+| **Elda** | Validaciones | Ejecutar matriz E2E: auth, CRUD, catálogo y WhatsApp |
+
+## Participación GitHub y documentación
+
+| Integrante | Rol | Participación en esta carpeta |
+|------------|-----|-------------------------------|
+| **Adrian** | Revisión e integración de código | Bloquear merge a `main` si tests funcionales E2E fallan |
+| **Yadira** | Documentación y presentación | Incluir resultados E2E (PASS/FAIL) en checklist de entrega |
 
 ## Rol
 

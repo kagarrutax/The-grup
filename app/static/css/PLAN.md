@@ -1,4 +1,17 @@
-# PLAN — static/css/
+﻿# PLAN — static/css/
+
+## Encargado
+
+| Integrante | Rol | Responsabilidad |
+|------------|-----|-----------------|
+| **Jessica** | Frontend y responsive | Estilos globales, catálogo, admin y media queries responsive |
+
+## Participación GitHub y documentación
+
+| Integrante | Rol | Participación en esta carpeta |
+|------------|-----|-------------------------------|
+| **Adrian** | Revisión e integración de código | Revisar PRs de hojas de estilo y responsive |
+| **Yadira** | Documentación y presentación | Capturas con estilos finales para documentación |
 
 ## Rol
 

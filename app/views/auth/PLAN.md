@@ -1,4 +1,17 @@
-# PLAN — views/auth/
+﻿# PLAN — views/auth/
+
+## Encargado
+
+| Integrante | Rol | Responsabilidad |
+|------------|-----|-----------------|
+| **Jessica** | Frontend y responsive | Diseño de formularios login/registro, responsive y UX |
+
+## Participación GitHub y documentación
+
+| Integrante | Rol | Participación en esta carpeta |
+|------------|-----|-------------------------------|
+| **Adrian** | Revisión e integración de código | Revisar PR de formularios login y registro |
+| **Yadira** | Documentación y presentación | Capturas desktop y móvil de pantallas de auth |
 
 ## Rol
 

@@ -1,4 +1,17 @@
-# PLAN — tests/unit/
+﻿# PLAN — tests/unit/
+
+## Encargado
+
+| Integrante | Rol | Responsabilidad |
+|------------|-----|-----------------|
+| **Elda** | Validaciones | Definir y revisar casos unitarios (modelos, WhatsApp, validadores) |
+
+## Participación GitHub y documentación
+
+| Integrante | Rol | Participación en esta carpeta |
+|------------|-----|-------------------------------|
+| **Adrian** | Revisión e integración de código | Verificar que PRs incluyan o no rompan tests unitarios |
+| **Yadira** | Documentación y presentación | Resumen de cobertura unitaria en manual técnico |
 
 ## Rol
 

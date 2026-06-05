@@ -1,4 +1,17 @@
-# PLAN — controllers/dashboard/
+﻿# PLAN — controllers/dashboard/
+
+## Encargado
+
+| Integrante | Rol | Responsabilidad |
+|------------|-----|-----------------|
+| **Verenice** | Líder y desarrolladora principal | Ruta `/dashboard`, protección admin, métricas y redirects |
+
+## Participación GitHub y documentación
+
+| Integrante | Rol | Participación en esta carpeta |
+|------------|-----|-------------------------------|
+| **Adrian** | Revisión e integración de código | Revisar PRs de rutas protegidas `/dashboard` |
+| **Yadira** | Documentación y presentación | Captura del panel admin para slides y manual |
 
 ## Rol
 

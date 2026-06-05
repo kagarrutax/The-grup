@@ -1,4 +1,17 @@
-# PLAN — views/catalog/
+﻿# PLAN — views/catalog/
+
+## Encargado
+
+| Integrante | Rol | Responsabilidad |
+|------------|-----|-----------------|
+| **Jessica** | Frontend y responsive | Grid de tarjetas, diseño visual, botón Comprar y responsive |
+
+## Participación GitHub y documentación
+
+| Integrante | Rol | Participación en esta carpeta |
+|------------|-----|-------------------------------|
+| **Adrian** | Revisión e integración de código | Revisar PR del grid de catálogo y botón Comprar |
+| **Yadira** | Documentación y presentación | Capturas prioritarias del catálogo (desktop y móvil) para presentación |
 
 ## Rol
 

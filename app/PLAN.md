@@ -1,4 +1,17 @@
-# PLAN — Aplicación The-grup (raíz)
+﻿# PLAN — Aplicación The-grup (raíz)
+
+## Encargado
+
+| Integrante | Rol | Responsabilidad |
+|------------|-----|-----------------|
+| **Verenice** | Líder y desarrolladora principal | Coordinación general, punto de entrada e integración de módulos |
+
+## Participación GitHub y documentación
+
+| Integrante | Rol | Participación en esta carpeta |
+|------------|-----|-------------------------------|
+| **Adrian** | Revisión e integración de código | Revisar PRs generales, README, `requirements.txt` y tag de release |
+| **Yadira** | Documentación y presentación | Documentar arquitectura MVC y mapa de módulos en manual técnico |
 
 ## Rol de esta carpeta
 

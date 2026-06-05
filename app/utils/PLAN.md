@@ -1,4 +1,17 @@
-# PLAN — utils/
+﻿# PLAN — utils/
+
+## Encargado
+
+| Integrante | Rol | Responsabilidad |
+|------------|-----|-----------------|
+| **Verenice** | Líder y desarrolladora principal | Enlace WhatsApp, decoradores admin y validadores |
+
+## Participación GitHub y documentación
+
+| Integrante | Rol | Participación en esta carpeta |
+|------------|-----|-------------------------------|
+| **Adrian** | Revisión e integración de código | Revisar PR de `whatsapp.py` y validadores; sin secretos hardcodeados |
+| **Yadira** | Documentación y presentación | Documentar enlace `wa.me` con ejemplo real en manual de usuario |
 
 ## Rol
 

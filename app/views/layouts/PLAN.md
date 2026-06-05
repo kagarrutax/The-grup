@@ -1,4 +1,17 @@
-# PLAN — views/layouts/
+﻿# PLAN — views/layouts/
+
+## Encargado
+
+| Integrante | Rol | Responsabilidad |
+|------------|-----|-----------------|
+| **Jessica** | Frontend y responsive | Layout responsive, navbar colapsable, footer y estilos globales |
+
+## Participación GitHub y documentación
+
+| Integrante | Rol | Participación en esta carpeta |
+|------------|-----|-------------------------------|
+| **Adrian** | Revisión e integración de código | Revisar PR del layout base y partials compartidos |
+| **Yadira** | Documentación y presentación | Captura de navbar, footer y estructura común |
 
 ## Rol
 

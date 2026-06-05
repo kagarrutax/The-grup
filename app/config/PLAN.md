@@ -1,4 +1,17 @@
-# PLAN — config/
+﻿# PLAN — config/
+
+## Encargado
+
+| Integrante | Rol | Responsabilidad |
+|------------|-----|-----------------|
+| **Verenice** | Líder y desarrolladora principal | Configuración, variables de entorno e inicialización de BD |
+
+## Participación GitHub y documentación
+
+| Integrante | Rol | Participación en esta carpeta |
+|------------|-----|-------------------------------|
+| **Adrian** | Revisión e integración de código | Revisar `.env.example`, `.gitignore`; impedir commit de secretos |
+| **Yadira** | Documentación y presentación | Documentar variables de configuración en manual técnico |
 
 ## Rol
 

@@ -1,4 +1,17 @@
-# PLAN — controllers/catalog/
+﻿# PLAN — controllers/catalog/
+
+## Encargado
+
+| Integrante | Rol | Responsabilidad |
+|------------|-----|-----------------|
+| **Verenice** | Líder y desarrolladora principal | Ruta `/`, consulta de productos activos e inyección de URL WhatsApp |
+
+## Participación GitHub y documentación
+
+| Integrante | Rol | Participación en esta carpeta |
+|------------|-----|-------------------------------|
+| **Adrian** | Revisión e integración de código | Revisar PRs de la ruta `/` y catálogo público |
+| **Yadira** | Documentación y presentación | Capturas de página principal y flujo de compra por WhatsApp |
 
 ## Rol
 

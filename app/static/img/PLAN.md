@@ -1,4 +1,17 @@
-# PLAN — static/img/
+﻿# PLAN — static/img/
+
+## Encargado
+
+| Integrante | Rol | Responsabilidad |
+|------------|-----|-----------------|
+| **Jessica** | Frontend y responsive | Logo, placeholder de producto y favicon |
+
+## Participación GitHub y documentación
+
+| Integrante | Rol | Participación en esta carpeta |
+|------------|-----|-------------------------------|
+| **Adrian** | Revisión e integración de código | Verificar peso y ubicación de imágenes en GitHub |
+| **Yadira** | Documentación y presentación | Integrar logo y placeholders en capturas y slides |
 
 ## Rol
 

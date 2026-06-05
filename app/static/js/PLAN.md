@@ -1,4 +1,17 @@
-# PLAN — static/js/
+﻿# PLAN — static/js/
+
+## Encargado
+
+| Integrante | Rol | Responsabilidad |
+|------------|-----|-----------------|
+| **Jessica** | Frontend y responsive | Navbar móvil, preview de imagen y mejoras UX |
+
+## Participación GitHub y documentación
+
+| Integrante | Rol | Participación en esta carpeta |
+|------------|-----|-------------------------------|
+| **Adrian** | Revisión e integración de código | Revisar PRs de JS; confirmar que no hay lógica sensible |
+| **Yadira** | Documentación y presentación | Incluir en presentación mejoras UX si aplica |
 
 ## Rol
 

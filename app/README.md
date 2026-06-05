@@ -1,4 +1,4 @@
-# app/ — Catálogo de productos (MVC Python)
+﻿# app/ — Catálogo de productos (MVC Python)
 
 Aplicación monolítica MVC para gestión de productos, catálogo visual y compra vía WhatsApp.
 
@@ -34,7 +34,32 @@ app/
     └── functional/
 ```
 
-Cada carpeta contiene un **`PLAN.md`** con su rol y plan de trabajo detallado.
+Cada carpeta contiene un **`PLAN.md`** con su rol, **equipo encargado** y plan de trabajo detallado.
+
+## Equipo
+
+| Integrante | Rol |
+|------------|-----|
+| **Verenice** | Líder y desarrolladora principal |
+| **Jessica** | Frontend y responsive |
+| **Yadira** | Documentación y presentación |
+| **Elda** | Validaciones |
+| **Adrian** | GitHub y organización |
+
+Guía completa: [`spec/guia-roles-equipo.md`](../spec/guia-roles-equipo.md)  
+**PDF para compartir:** [`docs/guia-roles-equipo.pdf`](../docs/guia-roles-equipo.pdf)
+
+Cada `PLAN.md` indica el **encargado principal** y la **participación de Adrian y Yadira** en GitHub y documentación.
+
+| Integrante | Plan de su rol |
+|------------|----------------|
+| Verenice | `app/` (backend y coordinación) |
+| Jessica | `app/views/`, `app/static/` |
+| Elda | `app/tests/` |
+| Yadira | [`docs/PLAN.md`](../docs/PLAN.md) — Documentación y presentación · Coordinación de entregables |
+| Adrian | [`spec/PLAN.md`](../spec/PLAN.md) — GitHub y organización · Revisión e integración de código |
+
+Guía completa: [`spec/guia-roles-equipo.md`](../spec/guia-roles-equipo.md)
 
 ## Módulos vs carpetas
 

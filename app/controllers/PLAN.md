@@ -1,4 +1,17 @@
-# PLAN — controllers/
+﻿# PLAN — controllers/
+
+## Encargado
+
+| Integrante | Rol | Responsabilidad |
+|------------|-----|-----------------|
+| **Verenice** | Líder y desarrolladora principal | Factory de app, blueprints, rutas HTTP y lógica de controladores |
+
+## Participación GitHub y documentación
+
+| Integrante | Rol | Participación en esta carpeta |
+|------------|-----|-------------------------------|
+| **Adrian** | Revisión e integración de código | Revisar PRs de blueprints y convención de rutas antes de merge |
+| **Yadira** | Documentación y presentación | Incluir mapa de rutas HTTP en manual técnico |
 
 ## Rol
 

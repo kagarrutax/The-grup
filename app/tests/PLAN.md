@@ -1,4 +1,17 @@
-# PLAN — tests/
+﻿# PLAN — tests/
+
+## Encargado
+
+| Integrante | Rol | Responsabilidad |
+|------------|-----|-----------------|
+| **Elda** | Validaciones | Definir casos, ejecutar pruebas y reportar PASS/FAIL |
+
+## Participación GitHub y documentación
+
+| Integrante | Rol | Participación en esta carpeta |
+|------------|-----|-------------------------------|
+| **Adrian** | Revisión e integración de código | Exigir suite de tests en verde antes de merge a `main` |
+| **Yadira** | Documentación y presentación | Incluir matriz de pruebas y resultados en paquete de entrega |
 
 ## Rol
 

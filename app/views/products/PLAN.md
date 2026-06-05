@@ -1,4 +1,17 @@
-# PLAN — views/products/
+﻿# PLAN — views/products/
+
+## Encargado
+
+| Integrante | Rol | Responsabilidad |
+|------------|-----|-----------------|
+| **Jessica** | Frontend y responsive | Tabla de productos, formularios CRUD y diseño admin |
+
+## Participación GitHub y documentación
+
+| Integrante | Rol | Participación en esta carpeta |
+|------------|-----|-------------------------------|
+| **Adrian** | Revisión e integración de código | Revisar PR de tablas y formularios CRUD |
+| **Yadira** | Documentación y presentación | Capturas de listado y formulario de productos |
 
 ## Rol
 

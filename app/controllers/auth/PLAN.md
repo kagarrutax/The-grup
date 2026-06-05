@@ -1,4 +1,17 @@
-# PLAN — controllers/auth/
+﻿# PLAN — controllers/auth/
+
+## Encargado
+
+| Integrante | Rol | Responsabilidad |
+|------------|-----|-----------------|
+| **Verenice** | Líder y desarrolladora principal | Rutas `/login`, `/register`, `/logout`, sesiones y hash de contraseñas |
+
+## Participación GitHub y documentación
+
+| Integrante | Rol | Participación en esta carpeta |
+|------------|-----|-------------------------------|
+| **Adrian** | Revisión e integración de código | Revisar PRs del módulo auth en rama `feat/auth` o similar |
+| **Yadira** | Documentación y presentación | Capturas de login/registro y sección en manual de usuario |
 
 ## Rol
 

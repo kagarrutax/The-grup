@@ -1,4 +1,17 @@
-# PLAN — static/
+﻿# PLAN — static/
+
+## Encargado
+
+| Integrante | Rol | Responsabilidad |
+|------------|-----|-----------------|
+| **Jessica** | Frontend y responsive | Coordinación de CSS, JS e imágenes del frontend |
+
+## Participación GitHub y documentación
+
+| Integrante | Rol | Participación en esta carpeta |
+|------------|-----|-------------------------------|
+| **Adrian** | Revisión e integración de código | Verificar organización de `css/`, `js/` e `img/` en el repo |
+| **Yadira** | Documentación y presentación | Usar assets del proyecto en capturas y material visual |
 
 ## Rol
 
