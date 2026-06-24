@@ -16,7 +16,7 @@
 | **Elda** | Validaciones | Tests Feature/Unit, casos stock límite |
 | **Adrian** | GitHub y organización · Revisión e integración de código | Repo, PRs, merges, despliegue Railway |
 
-> **PDF:** [`docs/guia-roles-equipo.pdf`](../docs/guia-roles-equipo.pdf)
+> **PDF local:** generar con `python docs/generar_pdf_roles.py` (no se sube a GitHub)
 
 ---
 

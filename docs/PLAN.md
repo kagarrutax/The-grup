@@ -25,6 +25,7 @@
 | `checklist-entrega.md` | Estado por integrante |
 | `entrega/` | Paquete final |
 | `guia-despliegue-railway.md` | Pasos Railway (MySQL + PHP) |
+| `guia-roles-equipo.pdf` | Generar local: `python docs/generar_pdf_roles.py` (no va a GitHub) |
 
 ## Pantallas obligatorias
 

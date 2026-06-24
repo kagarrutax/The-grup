@@ -1,0 +1,27 @@
+# Laravel (cuando se instale)
+/vendor/
+/node_modules/
+/public/hot
+/public/storage
+/storage/*.key
+.env
+.env.backup
+.phpunit.result.cache
+Homestead.json
+Homestead.yaml
+npm-debug.log
+yarn-error.log
+
+# IDE y sistema
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db
+
+# PDF generado localmente (evita binarios ocultos en GitHub)
+docs/guia-roles-equipo.pdf
+
+# Python (script generador)
+__pycache__/
+*.pyc
