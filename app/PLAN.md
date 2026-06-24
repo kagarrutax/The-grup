@@ -1,62 +1,65 @@
-﻿# PLAN — Aplicación The-grup (raíz)
+﻿# PLAN — Inventario Supermercado (raíz Laravel)
 
 ## Encargado
 
 | Integrante | Rol | Responsabilidad |
 |------------|-----|-----------------|
-| **Verenice** | Líder y desarrolladora principal | Coordinación general, punto de entrada e integración de módulos |
+| **Verenice** | Líder y desarrolladora principal | Instalación Laravel 11, Breeze, `.env`, coordinación de fases |
 
 ## Participación GitHub y documentación
 
 | Integrante | Rol | Participación en esta carpeta |
 |------------|-----|-------------------------------|
-| **Adrian** | Revisión e integración de código | Revisar PRs generales, README, `requirements.txt` y tag de release |
-| **Yadira** | Documentación y presentación | Documentar arquitectura MVC y mapa de módulos en manual técnico |
+| **Adrian** | Revisión e integración de código | Estructura repo, `composer.json`, README instalación, despliegue Railway |
+| **Yadira** | Documentación y presentación | README final, capturas generales, slides de arquitectura |
 
 ## Rol de esta carpeta
 
-Contenedor de la aplicación monolítica **MVC en Python**. Aquí vive todo el código ejecutable. La raíz aloja el punto de entrada y coordina los módulos hijos.
+Raíz del proyecto **Laravel 11** — aquí se ejecuta `composer install`, `artisan migrate` y `php artisan serve`.
 
-## Arquitectura seleccionada
+## Stack
 
-**Monolítica MVC** — una sola aplicación con separación clara:
+| Tecnología | Uso |
+|------------|-----|
+| Laravel 11 | Framework MVC |
+| MySQL | Base de datos |
+| Laravel Breeze | Auth (Blade) |
+| Bootstrap 5 | UI responsive |
 
-| Capa MVC | Carpeta en `app/` |
-|----------|-------------------|
-| **Model** | `models/` |
-| **View** | `views/` + `static/` |
-| **Controller** | `controllers/` |
+## Estructura Laravel
 
-## Módulos mínimos requeridos
+```
+app/                          ← raíz del proyecto Laravel
+├── app/Http/Controllers/
+├── app/Models/
+├── database/migrations/
+├── database/seeders/
+├── resources/views/
+├── routes/web.php
+└── tests/
+```
 
-| Módulo | Carpetas involucradas | Etapa spec |
-|--------|----------------------|------------|
-| Página principal dinámica | `controllers/catalog/`, `views/catalog/` | 6 |
-| Sistema de login | `controllers/auth/`, `views/auth/` | 3 |
-| Registro de usuarios | `controllers/auth/`, `views/auth/` | 3 |
-| Dashboard administrativo | `controllers/dashboard/`, `views/dashboard/` | 4 |
-| Módulo de productos | `controllers/products/`, `views/products/`, `models/` | 5 |
-| Catálogo visual | `views/catalog/`, `static/css/` | 6 |
-| Botón compra → WhatsApp | `utils/`, `views/catalog/` | 6 |
+## Fases (6 días)
 
-## Plan de trabajo (orden de implementación)
+| Fase | Días | Módulo |
+|------|------|--------|
+| 1 | 1-2 | Instalación, Breeze, layout |
+| 2 | 2-3 | Categorías |
+| 3 | 3-4 | Productos |
+| 4 | 4-5 | Movimientos stock |
+| 5 | 5-6 | Dashboard |
+| 6 | 6 | Buscador |
 
-1. **Etapa 1** — `config/`, `controllers/` (factory), `views/layouts/`, `static/css/`
-2. **Etapa 2** — `models/`
-3. **Etapa 3** — `controllers/auth/`, `views/auth/`, `utils/`
-4. **Etapa 4** — `controllers/dashboard/`, `views/dashboard/`
-5. **Etapa 5** — `controllers/products/`, `views/products/`
-6. **Etapa 6** — `controllers/catalog/`, `views/catalog/`, `utils/` (WhatsApp)
-7. **Etapa 7** — `tests/`, pulido responsive, seguridad
+## Comandos iniciales (Fase 1)
 
-## Archivos previstos en raíz (sin crear aún)
+```bash
+composer create-project laravel/laravel .
+composer require laravel/breeze --dev
+php artisan breeze:install blade
+npm install && npm run build
+php artisan migrate
+```
 
-| Archivo | Rol |
-|---------|-----|
-| `run.py` o `app.py` | Punto de entrada del servidor |
-| `requirements.txt` | Dependencias Python |
-| `.env.example` | Plantilla de variables (SECRET_KEY, WHATSAPP_PHONE, DATABASE_URL) |
+## Spec
 
-## Spec de referencia
-
-[`spec/001-catalogo-productos-whatsapp.md`](../spec/001-catalogo-productos-whatsapp.md)
+[`spec/001-inventario-supermercado.md`](../spec/001-inventario-supermercado.md)

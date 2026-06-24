@@ -1,20 +1,26 @@
 # The-grup
 
-Proyecto de clase de desarrollo de software con enfoque **spec-as-source**: la IA planifica antes de programar y ejecuta por etapas controladas.
+Sistema de **inventario para supermercado** — Laravel 11, MySQL, MVC, Bootstrap 5.
+
+Enfoque **spec-as-source**: planificar → aprobar → implementar por fases.
+
+## Stack
+
+Laravel 11 · MySQL · Blade · Bootstrap 5 · Laravel Breeze
 
 ## Estructura
 
 | Carpeta | Rol |
 |---------|-----|
-| [`spec/`](spec/) | Planes detallados — fuente de verdad |
-| [`skill/`](skill/) | Instrucciones de ejecución para el agente IA |
-| [`app/`](app/) | Aplicación final |
+| [`spec/`](spec/) | Planes detallados |
+| [`skill/`](skill/) | Guías de ejecución IA |
+| [`app/`](app/) | Proyecto Laravel |
+| [`docs/`](docs/) | Documentación y entrega |
 
-## Flujo de trabajo
+## Equipo
 
-1. Solicitud del usuario → spec en `spec/`
-2. Skill específica en `skill/`
-3. Aprobación del plan
-4. Implementación progresiva en `app/` con testing y seguridad
+Verenice · Jessica · Yadira · Elda · Adrian
 
-Documentación del framework: [`spec/000-framework-spec-as-source.md`](spec/000-framework-spec-as-source.md)
+Guía de roles: [`spec/guia-roles-equipo.md`](spec/guia-roles-equipo.md)
+
+Spec activa: [`spec/001-inventario-supermercado.md`](spec/001-inventario-supermercado.md)

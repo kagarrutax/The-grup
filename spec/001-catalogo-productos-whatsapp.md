@@ -1,6 +1,6 @@
 # Spec 001 — Catálogo de productos con contacto WhatsApp
 
-> **Estado:** Aprobado  
+> **Estado:** Cancelado — reemplazado por [`001-inventario-supermercado.md`](001-inventario-supermercado.md)  
 > **Solicitud:** Aplicación Python MVC para gestión de productos, catálogo visual, auth y compra vía WhatsApp  
 > **Skill asociada:** `skill/catalogo-productos/SKILL.md`  
 > **Arquitectura seleccionada:** Monolítica MVC  

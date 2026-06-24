@@ -4,40 +4,42 @@
 
 | Integrante | Rol | Responsabilidad |
 |------------|-----|-----------------|
-| **Yadira** | Documentación y presentación | Manuales, capturas, diapositivas y material visual de entrega |
-| **Yadira** | Coordinación de entregables académicos | Checklist de entrega, índice de documentos y paquete final para exposición |
+| **Yadira** | Documentación y presentación | README, manuales, capturas, slides |
+| **Yadira** | Coordinación de entregables académicos | Checklist entrega, paquete final |
 
-## Roles
+## Participación GitHub y documentación
 
-### Documentación y presentación
+| Integrante | Rol | Participación en esta carpeta |
+|------------|-----|-------------------------------|
+| **Adrian** | Revisión e integración de código | Verificar README instalación y sección despliegue Railway |
+| **Verenice** | Líder y desarrolladora principal | Aportar descripción técnica de módulos Laravel |
 
-Manual de usuario, manual técnico, capturas de pantalla y presentación final (slides).
+## Entregables
 
-### Coordinación de entregables académicos
+| Archivo | Contenido |
+|---------|-----------|
+| `manual-usuario.md` | Uso del sistema: login, categorías, productos, stock |
+| `manual-tecnico.md` | Laravel MVC, migraciones, Eloquent |
+| `screenshots/` | Dashboard, CRUD, stock, buscador, móvil |
+| `presentacion.pptx` | Exposición del equipo |
+| `checklist-entrega.md` | Estado por integrante |
+| `entrega/` | Paquete final |
+| `guia-despliegue-railway.md` | Pasos Railway (MySQL + PHP) |
 
-Seguimiento de lo que cada integrante debe entregar, organización del material final y verificación de que la documentación esté completa antes de la fecha de entrega.
+## Pantallas obligatorias
 
-## Entregables previstos
+1. Dashboard con métricas
+2. Listado categorías
+3. CRUD productos
+4. Movimiento entrada/salida
+5. Buscador con filtros
+6. Vista móvil dashboard o productos
 
-| Archivo / carpeta | Descripción |
-|-------------------|-------------|
-| `manual-usuario.md` | Cómo usar catálogo, registro, login y compra por WhatsApp |
-| `manual-tecnico.md` | Arquitectura MVC, módulos y tecnologías |
-| `screenshots/` | Capturas desktop y móvil (mínimo 7 pantallas) |
-| `presentacion.pptx` | Slides para exposición del equipo |
-| `guia-roles-equipo.pdf` | Guía de roles (ya generada) |
-| `checklist-entrega.md` | Estado de entregables por integrante |
-| `entrega/` | Paquete final reunido para exposición |
+## Credenciales demo (documentar)
 
-## Pantallas obligatorias para capturas
+- Email: `admin@supermercado.com`
+- Contraseña: `password`
 
-1. Página principal (catálogo)
-2. Tarjeta con botón Comprar
-3. Login y registro
-4. Dashboard administrativo
-5. CRUD de productos
-6. Vista móvil del catálogo
+## Spec
 
-## Spec de referencia
-
-[`spec/001-catalogo-productos-whatsapp.md`](../spec/001-catalogo-productos-whatsapp.md)
+[`spec/001-inventario-supermercado.md`](../spec/001-inventario-supermercado.md)

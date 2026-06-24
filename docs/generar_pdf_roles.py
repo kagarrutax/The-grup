@@ -9,48 +9,39 @@ FONT = Path("C:/Windows/Fonts/arial.ttf")
 FONT_BOLD = Path("C:/Windows/Fonts/arialbd.ttf")
 
 TEAM = [
-    ("Verenice", "Líder y desarrolladora principal", "Backend MVC, lógica, coordinación"),
-    ("Jessica", "Frontend y responsive", "Diseño visual, UI/UX, móvil"),
+    ("Verenice", "Lider y desarrolladora principal", "Laravel MVC, modelos, controladores, stock"),
+    ("Jessica", "Frontend y responsive", "Blade, Bootstrap 5, vistas responsive"),
     ("Yadira", "Documentacion y presentacion", "Manuales, capturas, diapositivas"),
-    ("Yadira", "Coordinacion de entregables academicos", "Checklist entrega, indice docs, paquete final"),
-    ("Elda", "Validaciones", "Pruebas, formularios, checklist seguridad"),
-    ("Adrian", "GitHub y organizacion", "Repo, ramas, README, releases"),
-    ("Adrian", "Revision e integracion de codigo", "Revisar PRs, merges, arquitectura MVC"),
+    ("Yadira", "Coordinacion de entregables academicos", "Checklist entrega, paquete final"),
+    ("Elda", "Validaciones", "php artisan test, casos stock limite"),
+    ("Adrian", "GitHub y organizacion", "Repo, ramas, README, Railway"),
+    ("Adrian", "Revision e integracion de codigo", "Revisar PRs, merges, tests en verde"),
 ]
 
 FOLDERS = [
-    ("app/ (raíz)", "Verenice", "Jessica, Yadira, Elda, Adrian", "Coordinación e integración general"),
-    ("config/", "Verenice", "Adrian, Elda", "Configuración, .env, BD, WhatsApp"),
-    ("controllers/", "Verenice", "Adrian, Elda", "Factory, blueprints, rutas HTTP"),
-    ("controllers/auth/", "Verenice", "Jessica, Elda, Yadira, Adrian", "Login, registro, logout"),
-    ("controllers/catalog/", "Verenice", "Jessica, Elda, Yadira, Adrian", "Página principal, productos activos"),
-    ("controllers/dashboard/", "Verenice", "Jessica, Elda, Yadira, Adrian", "Panel admin protegido"),
-    ("controllers/products/", "Verenice", "Jessica, Elda, Yadira, Adrian", "CRUD productos admin"),
-    ("models/", "Verenice", "Elda, Yadira, Adrian", "User, Product, persistencia"),
-    ("views/", "Verenice + Jessica", "Yadira, Elda, Adrian", "Plantillas HTML Jinja2"),
-    ("views/layouts/", "Verenice + Jessica", "Yadira, Elda, Adrian", "Base responsive, navbar"),
-    ("views/auth/", "Jessica", "Verenice, Elda, Yadira, Adrian", "Formularios login/registro"),
-    ("views/catalog/", "Jessica", "Verenice, Elda, Yadira, Adrian", "Grid catálogo, botón Comprar"),
-    ("views/dashboard/", "Jessica", "Verenice, Yadira, Elda, Adrian", "Panel administrativo"),
-    ("views/products/", "Jessica", "Verenice, Elda, Yadira, Adrian", "Tablas y formularios CRUD"),
-    ("static/", "Jessica", "Verenice, Yadira, Elda, Adrian", "CSS, JS, imágenes"),
-    ("static/css/", "Jessica", "Verenice, Elda, Yadira, Adrian", "Estilos responsive"),
-    ("static/js/", "Jessica", "Verenice, Elda, Adrian", "UX frontend sin lógica de negocio"),
-    ("static/img/", "Jessica", "Yadira, Verenice, Adrian", "Logo, placeholders, favicon"),
-    ("utils/", "Verenice", "Elda, Jessica, Adrian", "WhatsApp, decoradores, validadores"),
-    ("tests/", "Elda", "Verenice, Adrian, Yadira", "Suite unitaria y funcional"),
-    ("tests/unit/", "Elda + Verenice", "Adrian, Yadira", "Modelos, utils, WhatsApp"),
-    ("tests/functional/", "Elda + Verenice", "Adrian, Yadira, Jessica", "Flujos E2E HTTP"),
+    ("app/ (raiz Laravel)", "Verenice", "Adrian, Yadira", "Instalacion, Breeze, .env MySQL"),
+    ("app/Http/Controllers/", "Verenice", "Adrian, Yadira", "Category, Product, Stock, Dashboard"),
+    ("app/Models/", "Verenice", "Adrian, Yadira", "User, Category, Product, StockMovement"),
+    ("database/migrations/", "Verenice", "Adrian, Yadira", "Esquema MySQL"),
+    ("database/seeders/", "Verenice", "Adrian, Yadira", "Admin demo, categorias, productos"),
+    ("routes/", "Verenice", "Adrian", "web.php resources + dashboard"),
+    ("resources/views/", "Jessica", "Adrian, Yadira", "Todas las vistas Blade"),
+    ("resources/views/layouts/", "Jessica", "Adrian, Yadira", "app.blade.php Bootstrap"),
+    ("resources/views/categories/", "Jessica", "Adrian, Yadira", "CRUD categorias"),
+    ("resources/views/products/", "Jessica", "Adrian, Yadira", "CRUD + buscador"),
+    ("resources/views/stock/", "Jessica", "Adrian, Yadira", "Movimientos entrada/salida"),
+    ("resources/views/dashboard/", "Jessica", "Adrian, Yadira", "Panel metricas"),
+    ("tests/", "Elda", "Adrian, Verenice", "Feature y Unit tests"),
+    ("docs/", "Yadira", "Adrian, Verenice", "Manuales, capturas, slides"),
 ]
 
 STAGES = [
-    ("1 — Esqueleto MVC", "Verenice", "Jessica, Adrian"),
-    ("2 — Modelos", "Verenice", "Elda, Adrian"),
-    ("3 — Auth", "Verenice", "Jessica, Elda, Yadira, Adrian"),
-    ("4 — Dashboard", "Verenice", "Jessica, Yadira, Elda"),
-    ("5 — CRUD productos", "Verenice", "Jessica, Elda, Yadira"),
-    ("6 — Catálogo + WhatsApp", "Verenice", "Jessica, Elda, Yadira"),
-    ("7 — Cierre", "Todos", "Elda valida, Yadira docs, Adrian release"),
+    ("1 Instalacion", "Verenice", "Jessica layout, Adrian repo"),
+    ("2 Categorias", "Verenice", "Jessica vistas, Elda tests"),
+    ("3 Productos", "Verenice", "Jessica vistas, Elda SKU"),
+    ("4 Stock", "Verenice", "Jessica vistas, Elda casos limite"),
+    ("5 Dashboard", "Verenice", "Jessica vistas, Yadira capturas"),
+    ("6 Buscador", "Verenice", "Jessica form, Elda filtros"),
 ]
 
 
@@ -65,7 +56,7 @@ class RolesPDF(FPDF):
         self.set_font("Arial", "B", 14)
         self.set_fill_color(41, 98, 255)
         self.set_text_color(255, 255, 255)
-        self.cell(0, 10, title, ln=True, fill=True)
+        self.cell(0, 10, title, new_x="LMARGIN", new_y="NEXT", fill=True)
         self.set_text_color(0, 0, 0)
         self.ln(4)
 
@@ -93,15 +84,15 @@ def build_pdf():
     pdf.add_page()
 
     pdf.set_font("Arial", "B", 22)
-    pdf.cell(0, 15, "The-grup", ln=True, align="C")
+    pdf.cell(0, 15, "The-grup", new_x="LMARGIN", new_y="NEXT", align="C")
     pdf.set_font("Arial", "B", 16)
-    pdf.cell(0, 10, "Guia de Roles del Equipo", ln=True, align="C")
+    pdf.cell(0, 10, "Guia de Roles del Equipo", new_x="LMARGIN", new_y="NEXT", align="C")
     pdf.set_font("Arial", "", 11)
-    pdf.cell(0, 8, "Catalogo de productos + WhatsApp | Python MVC", ln=True, align="C")
+    pdf.cell(0, 8, "Inventario Supermercado | Laravel 11 + MySQL", new_x="LMARGIN", new_y="NEXT", align="C")
     pdf.ln(10)
     pdf.body_text(
-        "Documento de distribucion interna. Define responsabilidades de los 5 integrantes "
-        "en cada carpeta del proyecto y el orden de trabajo por etapas."
+        "Sistema de inventario: categorias, productos, movimientos de stock, dashboard y buscador. "
+        "Mismos 5 integrantes, nueva arquitectura Laravel MVC."
     )
 
     pdf.section_title("1. Integrantes del equipo")
@@ -115,98 +106,69 @@ def build_pdf():
 
     details = {
         "Verenice - Lider y desarrolladora principal": [
-            "Arquitectura MVC: controllers/, models/, config/",
-            "Login, registro, dashboard, CRUD productos",
-            "Generacion enlace WhatsApp (utils/)",
-            "Coordinacion e integracion del equipo",
+            "Laravel 11, Breeze, migraciones MySQL",
+            "Controllers: Category, Product, Stock, Dashboard",
+            "Logica stock: validar no negativo en salidas",
+            "Seeder admin@supermercado.com",
         ],
         "Jessica - Frontend y responsive": [
-            "static/css/, static/js/, static/img/",
-            "views/: layouts, auth, catalog, dashboard, products",
-            "Diseno responsive mobile-first",
-            "Boton Comprar visible en cada tarjeta",
+            "resources/views/ Blade + Bootstrap 5 CDN",
+            "Layout app.blade.php responsive",
+            "Vistas CRUD y formulario buscador",
         ],
         "Yadira - Documentacion y presentacion": [
-            "Manual de usuario y manual tecnico (docs/)",
-            "Capturas desktop y movil de todas las pantallas",
-            "Diapositivas: objetivo, arquitectura, demo, equipo",
-            "Glosario MVC, blueprint, WhatsApp wa.me",
+            "README instalacion y credenciales demo",
+            "Capturas dashboard, stock, productos, movil",
+            "Slides exposicion clase",
         ],
         "Yadira - Coordinacion de entregables academicos": [
-            "Checklist de entregables por integrante",
-            "Indice de documentos en docs/",
-            "Paquete final en docs/entrega/ para exposicion",
-            "Verificar material completo antes de fecha de entrega",
+            "Checklist entregables por integrante",
+            "Paquete docs/entrega/",
         ],
         "Elda - Validaciones": [
-            "Matriz de 12 pruebas obligatorias",
-            "tests/unit/ y tests/functional/",
-            "Revision formularios auth y productos",
-            "Checklist de seguridad por etapa",
+            "php artisan test Feature y Unit",
+            "Caso critico: salida > stock disponible",
+            "SKU duplicado, buscador, auth",
         ],
         "Adrian - GitHub y organizacion": [
-            "Estructura spec/, skill/, app/",
-            "README, .gitignore, requirements.txt",
-            "Ramas, PRs y tag de entrega v1.0.0",
-            "Verificar que no se commiteen secretos",
+            "Ramas feat/categories, feat/stock, etc.",
+            "README, .gitignore, tag v1.0.0",
+            "Despliegue Railway documentado",
         ],
         "Adrian - Revision e integracion de codigo": [
-            "Revisar pull requests del equipo",
-            "Coordinar merges a main sin conflictos",
-            "Validar que cambios respeten arquitectura MVC",
-            "Coordinar con Elda que tests pasen antes de merge",
+            "Revisar PRs antes de merge",
+            "Tests en verde obligatorio",
         ],
     }
     for title, items in details.items():
         pdf.set_font("Arial", "B", 11)
-        pdf.cell(0, 7, title, ln=True)
+        pdf.cell(0, 7, title, new_x="LMARGIN", new_y="NEXT")
         pdf.set_font("Arial", "", 9)
         for item in items:
-            pdf.cell(0, 6, f"  - {item}", ln=True)
+            pdf.cell(0, 6, f"  - {item}", new_x="LMARGIN", new_y="NEXT")
         pdf.ln(2)
 
     pdf.add_page()
-    pdf.section_title("3. Asignacion por carpeta (app/)")
+    pdf.section_title("3. Asignacion por carpeta")
     w2 = [42, 28, 50, 70]
-    pdf.table_header(["Carpeta", "Principal", "Apoyo", "Tarea clave"], w2)
+    pdf.table_header(["Carpeta", "Encargado", "Apoyo", "Tarea clave"], w2)
     for row in FOLDERS:
         pdf.table_row(row, w2, bold_first=True)
 
     pdf.ln(6)
-    pdf.section_title("4. Cronograma por etapas")
+    pdf.section_title("4. Cronograma (6 fases)")
     w3 = [45, 40, 105]
-    pdf.table_header(["Etapa", "Responsable", "Apoyos"], w3)
+    pdf.table_header(["Fase", "Responsable", "Apoyos"], w3)
     for row in STAGES:
         pdf.table_row(row, w3, bold_first=True)
 
     pdf.ln(6)
-    pdf.section_title("5. Flujo de trabajo")
-    pdf.body_text(
-        "Verenice desarrolla logica -> Jessica estiliza vistas -> Elda valida build estable -> "
-        "Yadira documenta con capturas -> Adrian hace merge y release en GitHub."
-    )
-    pdf.body_text(
-        "Reglas: (1) Una persona, un dominio principal. (2) Avisar antes de mergear. "
-        "(3) No commitear .env. (4) Bugs con pasos y captura. (5) Respetar MVC."
-    )
+    pdf.section_title("5. Credenciales demo")
+    pdf.body_text("Email: admin@supermercado.com | Password: password")
 
-    pdf.section_title("6. Escalacion")
-    w4 = [70, 120]
-    pdf.table_header(["Situacion", "Contactar"], w4)
-    escalations = [
-        ("Error ruta, BD o login", "Verenice"),
-        ("Problemas visuales o movil", "Jessica"),
-        ("Manual, slides o capturas", "Yadira"),
-        ("Algo no funciona al probar", "Elda -> Verenice"),
-        ("Git, ramas o estructura", "Adrian"),
-        ("Bloqueo general", "Verenice (lider)"),
-    ]
-    for row in escalations:
-        pdf.table_row(row, w4)
-
-    pdf.ln(8)
+    pdf.ln(4)
     pdf.set_font("Arial", "I", 8)
-    pdf.cell(0, 6, "Generado para The-grup | spec/001-catalogo-productos-whatsapp.md", align="C")
+    pdf.cell(0, 6, "The-grup | spec/001-inventario-supermercado.md", align="C")
 
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     pdf.output(str(OUTPUT))

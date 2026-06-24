@@ -1,83 +1,57 @@
-﻿# app/ — Catálogo de productos (MVC Python)
+﻿# app/ — Sistema de inventario supermercado (Laravel 11)
 
-Aplicación monolítica MVC para gestión de productos, catálogo visual y compra vía WhatsApp.
+Aplicación MVC Laravel para gestión de inventario: categorías, productos, movimientos de stock y dashboard.
 
-## Arquitectura
+## Stack
 
-**Monolítica MVC** | **Lenguaje:** Python | **Estado:** Solo estructura y planes (sin código)
+**Laravel 11** · **MySQL** · **Blade** · **Bootstrap 5** · **Laravel Breeze**
 
 ## Mapa de carpetas
 
 ```
-app/
-├── PLAN.md                     → Visión general y orden de etapas
-├── config/                     → Configuración y variables de entorno
-├── controllers/                → Capa Controller (rutas HTTP)
-│   ├── auth/                   → Login y registro
-│   ├── catalog/                → Página principal / catálogo
-│   ├── dashboard/              → Panel administrativo
-│   └── products/               → CRUD productos (admin)
-├── models/                     → Capa Model (User, Product)
-├── views/                      → Capa View (plantillas HTML)
-│   ├── layouts/                → Base responsive
-│   ├── auth/                   → Login y registro
-│   ├── catalog/                → Catálogo visual
-│   ├── dashboard/              → Dashboard admin
-│   └── products/               → Gestión productos
-├── static/                     → CSS, JS, imágenes
-│   ├── css/
-│   ├── js/
-│   └── img/
-├── utils/                      → WhatsApp, decoradores, validadores
-└── tests/
-    ├── unit/
-    └── functional/
+app/                              ← raíz proyecto Laravel
+├── PLAN.md
+├── app/Http/Controllers/         → Verenice
+├── app/Models/                   → Verenice
+├── database/migrations/          → Verenice
+├── database/seeders/             → Verenice
+├── routes/                       → Verenice
+├── resources/views/              → Jessica
+│   ├── layouts/
+│   ├── dashboard/
+│   ├── categories/
+│   ├── products/
+│   └── stock/
+└── tests/                        → Elda
+    ├── Feature/
+    └── Unit/
 ```
 
-Cada carpeta contiene un **`PLAN.md`** con su rol, **equipo encargado** y plan de trabajo detallado.
+Cada carpeta tiene **`PLAN.md`** con encargado y participación de Adrian/Yadira.
+
+## Módulos
+
+| Módulo | Fase |
+|--------|------|
+| Auth (Breeze) | 1 |
+| Categorías | 2 |
+| Productos | 3 |
+| Movimientos stock | 4 |
+| Dashboard | 5 |
+| Buscador | 6 |
 
 ## Equipo
 
-| Integrante | Rol |
-|------------|-----|
-| **Verenice** | Líder y desarrolladora principal |
-| **Jessica** | Frontend y responsive |
-| **Yadira** | Documentación y presentación |
-| **Elda** | Validaciones |
-| **Adrian** | GitHub y organización |
+| Integrante | Rol principal |
+|------------|---------------|
+| Verenice | Backend Laravel, modelos, controladores |
+| Jessica | Vistas Blade + Bootstrap |
+| Elda | Tests y validaciones |
+| Yadira | [`docs/PLAN.md`](../docs/PLAN.md) |
+| Adrian | [`spec/PLAN.md`](../spec/PLAN.md) |
 
-Guía completa: [`spec/guia-roles-equipo.md`](../spec/guia-roles-equipo.md)  
-**PDF para compartir:** [`docs/guia-roles-equipo.pdf`](../docs/guia-roles-equipo.pdf)
+## Referencias
 
-Cada `PLAN.md` indica el **encargado principal** y la **participación de Adrian y Yadira** en GitHub y documentación.
-
-| Integrante | Plan de su rol |
-|------------|----------------|
-| Verenice | `app/` (backend y coordinación) |
-| Jessica | `app/views/`, `app/static/` |
-| Elda | `app/tests/` |
-| Yadira | [`docs/PLAN.md`](../docs/PLAN.md) — Documentación y presentación · Coordinación de entregables |
-| Adrian | [`spec/PLAN.md`](../spec/PLAN.md) — GitHub y organización · Revisión e integración de código |
-
-Guía completa: [`spec/guia-roles-equipo.md`](../spec/guia-roles-equipo.md)
-
-## Módulos vs carpetas
-
-| Requisito del proyecto | Ubicación |
-|------------------------|-----------|
-| Página principal dinámica | `controllers/catalog/` + `views/catalog/` |
-| Login | `controllers/auth/` + `views/auth/` |
-| Registro | `controllers/auth/` + `views/auth/` |
-| Dashboard admin | `controllers/dashboard/` + `views/dashboard/` |
-| Módulo productos | `controllers/products/` + `views/products/` + `models/` |
-| Catálogo visual | `views/catalog/` + `static/css/` |
-| Botón compra → WhatsApp | `utils/whatsapp.py` + `views/catalog/` |
-
-## Documentación de referencia
-
-- Spec: [`spec/001-catalogo-productos-whatsapp.md`](../spec/001-catalogo-productos-whatsapp.md)
-- Skill: [`skill/catalogo-productos/SKILL.md`](../skill/catalogo-productos/SKILL.md)
-
-## Próximo paso
-
-Aprobar inicio de **Etapa 1** (esqueleto MVC) — aún sin código hasta confirmación.
+- Spec: [`spec/001-inventario-supermercado.md`](../spec/001-inventario-supermercado.md)
+- Skill: [`skill/inventario-supermercado/SKILL.md`](../skill/inventario-supermercado/SKILL.md)
+- Guía roles: [`spec/guia-roles-equipo.md`](../spec/guia-roles-equipo.md)

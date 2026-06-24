@@ -4,51 +4,35 @@
 
 | Integrante | Rol | Responsabilidad |
 |------------|-----|-----------------|
-| **Elda** | Validaciones | Definir casos, ejecutar pruebas y reportar PASS/FAIL |
+| **Elda** | Validaciones | Feature/Unit tests, matriz PASS/FAIL, casos stock límite |
 
 ## Participación GitHub y documentación
 
 | Integrante | Rol | Participación en esta carpeta |
 |------------|-----|-------------------------------|
-| **Adrian** | Revisión e integración de código | Exigir suite de tests en verde antes de merge a `main` |
-| **Yadira** | Documentación y presentación | Incluir matriz de pruebas y resultados en paquete de entrega |
+| **Adrian** | Revisión e integración de código | Exigir `php artisan test` en verde antes de merge |
+| **Yadira** | Documentación y presentación | Resultados de pruebas en paquete de entrega |
 
 ## Rol
 
-Capa de **testing** de la aplicación. Valida modelos, utilidades y flujos funcionales antes de cerrar cada etapa de la spec 001.
+Pruebas Laravel con PHPUnit — `tests/Feature/` y `tests/Unit/`.
 
-## Subcarpetas
+## Casos críticos (obligatorios)
 
-| Carpeta | Tipo | Alcance |
-|---------|------|---------|
-| `unit/` | Unitario | Modelos, utils, validadores |
-| `functional/` | Funcional | Rutas HTTP, flujos E2E con test client |
+| # | Caso | Esperado |
+|---|------|----------|
+| 1 | Salida quantity > stock | Error, stock sin cambio |
+| 2 | Entrada válida | stock_quantity incrementa |
+| 3 | SKU duplicado | Validación falla |
+| 4 | Login válido | redirect dashboard |
+| 5 | Búsqueda por nombre | solo coincidencias |
 
-## Plan de trabajo por etapa
-
-| Etapa | Tests a crear |
-|-------|---------------|
-| 1 | App factory crea instancia sin error |
-| 2 | User password hash; Product CRUD en memoria/SQLite test |
-| 3 | Register, login, logout vía test client |
-| 4 | Dashboard 403 para user, 200 para admin |
-| 5 | CRUD productos solo como admin |
-| 6 | Catálogo público; URL WhatsApp correcta |
-| 7 | Suite completa + responsive smoke tests |
-
-## Archivos previstos en raíz
-
-| Archivo | Descripción |
-|---------|-------------|
-| `conftest.py` | Fixtures: app, client, db, admin_user |
-| `__init__.py` | Paquete tests |
-
-## Comando de ejecución previsto
+## Comando
 
 ```bash
-pytest app/tests/ -v
+php artisan test
 ```
 
-## Criterio de bloqueo
+## Spec
 
-No avanzar de etapa si los tests definidos para esa etapa fallan.
+[`spec/001-inventario-supermercado.md`](../../spec/001-inventario-supermercado.md)
