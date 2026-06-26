@@ -1,0 +1,43 @@
+@media (max-width: 991.98px) {
+  .app-sidebar {
+    transform: translateX(-100%);
+  }
+
+  .app-sidebar.show {
+    transform: translateX(0);
+    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.12);
+  }
+
+  .app-main {
+    margin-left: 0;
+    padding-bottom: var(--bottom-nav-height);
+  }
+
+  .sidebar-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.4);
+    z-index: 1035;
+  }
+
+  .sidebar-overlay.show { display: block; }
+
+  .app-content { padding: 20px 16px 24px; }
+  .app-navbar { padding: 10px 16px; }
+
+  .date-range-picker { display: none; }
+  .navbar-page-title h1 { font-size: 18px; }
+
+  .bottom-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .stat-card .stat-value { font-size: 22px; }
+  .filter-bar .form-select,
+  .filter-bar .form-control { min-width: 100%; flex: 1; }
+}
