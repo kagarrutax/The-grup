@@ -2,9 +2,13 @@
 
 Aplicación MVC Laravel para gestión de inventario: categorías, productos, movimientos de stock y dashboard.
 
-## Stack
+## Estado actual
 
-**Laravel 11** · **MySQL** · **Blade** · **Bootstrap 5** · **Laravel Breeze**
+**Frontend implementado** en `app/public/` (preview XAMPP). Backend Laravel pendiente.
+
+Preview: `http://localhost/The-grup/app/public/dashboard.php`
+
+Spec UI: [`spec/002-frontend-ui-ux.md`](../spec/002-frontend-ui-ux.md)
 
 ## Mapa de carpetas
 
