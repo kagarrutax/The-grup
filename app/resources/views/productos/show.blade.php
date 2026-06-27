@@ -39,8 +39,7 @@
                     {{-- Integrar con: src="{{ asset('storage/' . $producto->imagen) }}" --}}
                     <img src="https://placehold.co/400x400/e9ecef/6c757d?text=Arroz+Premium"
                          alt="Arroz Premium 1kg"
-                         class="img-fluid rounded-3 shadow-sm mb-3"
-                         style="max-height: 320px; object-fit: cover;">
+                         class="img-fluid rounded-3 shadow-sm mb-3 product-image-show">
 
                     <h2 class="h5 fw-bold mb-1">Arroz Premium 1kg</h2>
                     <p class="text-muted mb-3">

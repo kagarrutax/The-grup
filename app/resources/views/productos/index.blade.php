@@ -49,7 +49,7 @@
         <div class="card-body p-0">
             <div class="table-responsive">
                 {{-- Integrar con: @forelse($productos as $producto) --}}
-                <table class="table table-hover align-middle mb-0">
+                <table class="table table-striped table-hover table-bordered table-app align-middle mb-0">
                     <thead class="table-light">
                         <tr>
                             <th scope="col">Código</th>

@@ -109,9 +109,7 @@
                         <div class="mb-2">
                             <img src="https://placehold.co/120x120/e9ecef/6c757d?text=ARZ-001"
                                  alt="Imagen actual del producto"
-                                 class="img-thumbnail rounded-3 shadow-sm"
-                                 width="120"
-                                 height="120">
+                                 class="img-thumbnail rounded-3 shadow-sm product-image-thumb">
                             <div class="form-text mt-1">Imagen actual. Suba un archivo para reemplazarla.</div>
                         </div>
 
