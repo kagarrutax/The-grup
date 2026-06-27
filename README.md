@@ -24,3 +24,22 @@ Verenice · Jessica · Yadira · Elda · Adrian
 Guía de roles: [`spec/guia-roles-equipo.md`](spec/guia-roles-equipo.md)
 
 Spec activa: [`spec/001-inventario-supermercado.md`](spec/001-inventario-supermercado.md)
+
+## Preview frontend (Jessica)
+
+Interfaz mock lista en `app/public/` — **sin backend**, datos de demo.
+
+```bash
+git pull origin Adrian
+```
+
+Abrir en XAMPP:
+
+```
+http://localhost/The-grup/app/public/login.php
+http://localhost/The-grup/app/public/dashboard.php
+```
+
+Páginas: productos, categorías, movimientos, búsqueda, ventas, compras, usuarios, reportes.
+
+Guía completa: [`app/public/README.md`](app/public/README.md) · Spec UI: [`spec/002-frontend-ui-ux.md`](spec/002-frontend-ui-ux.md)
