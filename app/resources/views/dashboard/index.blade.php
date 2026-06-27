@@ -1,57 +1,78 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h1 class="h3 mb-0">Dashboard</h1>
-    </x-slot>
+@extends('layouts.app')
 
-    <div class="row g-3 mb-4">
-        <div class="col-md-4">
-            <div class="card shadow-sm border-0 h-100">
-                <div class="card-body">
-                    <div class="d-flex align-items-center">
-                        <div class="rounded-circle bg-primary bg-opacity-10 p-3 me-3">
-                            <i class="bi bi-box-seam text-primary fs-4"></i>
-                        </div>
-                        <div>
-                            <p class="text-muted small mb-0">Total productos</p>
-                            <p class="h3 mb-0">{{ $totalProducts }}</p>
-                        </div>
+@section('title', 'Dashboard')
+
+@section('content')
+
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 gap-2">
+        <div>
+            <h1 class="h3 fw-bold mb-1">Dashboard</h1>
+            <p class="text-muted mb-0">Resumen general del inventario</p>
+        </div>
+        <div class="text-muted small">
+            <i class="bi bi-calendar3 me-1"></i>{{ date('d/m/Y') }}
+        </div>
+    </div>
+
+    <div class="row g-3 g-md-4 mb-4">
+        <div class="col-12 col-sm-6 col-xl-3">
+            <div class="card border-0 shadow-sm rounded-3 h-100">
+                <div class="card-body d-flex align-items-center">
+                    <div class="rounded-3 bg-primary bg-opacity-10 p-3 me-3">
+                        <i class="bi bi-box-seam fs-3 text-primary"></i>
+                    </div>
+                    <div>
+                        <p class="text-muted small mb-1">Total Productos</p>
+                        <h2 class="h4 fw-bold mb-0">{{ $totalProducts ?? 0 }}</h2>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="card shadow-sm border-0 h-100">
-                <div class="card-body">
-                    <div class="d-flex align-items-center">
-                        <div class="rounded-circle bg-success bg-opacity-10 p-3 me-3">
-                            <i class="bi bi-tags text-success fs-4"></i>
-                        </div>
-                        <div>
-                            <p class="text-muted small mb-0">Total categorías</p>
-                            <p class="h3 mb-0">{{ $totalCategories }}</p>
-                        </div>
+
+        <div class="col-12 col-sm-6 col-xl-3">
+            <div class="card border-0 shadow-sm rounded-3 h-100">
+                <div class="card-body d-flex align-items-center">
+                    <div class="rounded-3 bg-success bg-opacity-10 p-3 me-3">
+                        <i class="bi bi-tags fs-3 text-success"></i>
+                    </div>
+                    <div>
+                        <p class="text-muted small mb-1">Total Categorías</p>
+                        <h2 class="h4 fw-bold mb-0">{{ $totalCategories ?? 0 }}</h2>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="card shadow-sm border-0 h-100 {{ $lowStockCount > 0 ? 'border-warning' : '' }}">
-                <div class="card-body">
-                    <div class="d-flex align-items-center">
-                        <div class="rounded-circle bg-warning bg-opacity-10 p-3 me-3">
-                            <i class="bi bi-exclamation-triangle text-warning fs-4"></i>
-                        </div>
-                        <div>
-                            <p class="text-muted small mb-0">Stock bajo</p>
-                            <p class="h3 mb-0 {{ $lowStockCount > 0 ? 'text-warning' : '' }}">{{ $lowStockCount }}</p>
-                        </div>
+
+        <div class="col-12 col-sm-6 col-xl-3">
+            <div class="card border-0 shadow-sm rounded-3 h-100">
+                <div class="card-body d-flex align-items-center">
+                    <div class="rounded-3 bg-warning bg-opacity-10 p-3 me-3">
+                        <i class="bi bi-exclamation-triangle fs-3 text-warning"></i>
+                    </div>
+                    <div>
+                        <p class="text-muted small mb-1">Stock Bajo</p>
+                        <h2 class="h4 fw-bold mb-0">{{ $lowStockCount ?? 0 }}</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-sm-6 col-xl-3">
+            <div class="card border-0 shadow-sm rounded-3 h-100">
+                <div class="card-body d-flex align-items-center">
+                    <div class="rounded-3 bg-danger bg-opacity-10 p-3 me-3">
+                        <i class="bi bi-x-circle fs-3 text-danger"></i>
+                    </div>
+                    <div>
+                        <p class="text-muted small mb-1">Productos Agotados</p>
+                        <h2 class="h4 fw-bold mb-0">{{ $outOfStockCount ?? 0 }}</h2>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    @if ($lowStockProducts->isNotEmpty())
+    @if (!empty($lowStockProducts) && $lowStockProducts->isNotEmpty())
         <div class="card shadow-sm mb-4">
             <div class="card-header bg-white">
                 <h2 class="h5 mb-0"><i class="bi bi-exclamation-circle text-warning me-1"></i> Productos con stock bajo</h2>
@@ -72,7 +93,7 @@
                             <tr>
                                 <td>{{ $product->name }}</td>
                                 <td><code>{{ $product->sku }}</code></td>
-                                <td>{{ $product->category->name }}</td>
+                                <td>{{ $product->category->name ?? '—' }}</td>
                                 <td class="text-end text-warning fw-semibold">{{ $product->stock_quantity }}</td>
                                 <td class="text-end">{{ $product->stock_minimum }}</td>
                             </tr>
@@ -88,7 +109,8 @@
             <h2 class="h5 mb-0"><i class="bi bi-arrow-left-right me-1"></i> Últimos movimientos</h2>
             <a href="{{ route('stock.create') }}" class="btn btn-sm btn-primary">Registrar movimiento</a>
         </div>
-        @if ($recentMovements->isEmpty())
+
+        @if (empty($recentMovements) || $recentMovements->isEmpty())
             <div class="card-body text-muted">
                 No hay movimientos registrados aún.
             </div>
@@ -110,7 +132,7 @@
                             <tr>
                                 <td class="text-nowrap">{{ $movement->created_at->format('d/m/Y H:i') }}</td>
                                 <td>{{ $movement->product->name }}</td>
-                                <td>{{ $movement->user->name }}</td>
+                                <td>{{ $movement->user->name ?? '—' }}</td>
                                 <td>
                                     @if ($movement->type === \App\Models\StockMovement::TYPE_ENTRADA)
                                         <span class="badge bg-success">Entrada</span>
@@ -127,4 +149,7 @@
             </div>
         @endif
     </div>
-</x-app-layout>
+
+@endsection
+@endsection
+>>>>>>> 867cecf1ab512df8272c1ff76e7bdabc536b0774

@@ -9,18 +9,28 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/inventario.css') }}">
     @stack('styles')
 </head>
-<body class="bg-light">
-    @auth
-        @include('layouts.navigation')
-    @endauth
+<body class="d-flex flex-column min-vh-100 bg-light">
 
-    <main class="@auth py-4 @else min-vh-100 d-flex align-items-center @endauth">
-        <div class="@auth container @else w-100 @endauth">
+    {{-- Barra de navegación --}}
+    @include('partials.navbar')
+
+    <main class="flex-grow-1 py-4">
+        <div class="container">
+
+            {{-- Mensajes flash --}}
             @if (session('success'))
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    {{ session('success') }}
+                <div class="alert alert-success alert-dismissible fade show shadow-sm rounded-3" role="alert">
+                    <i class="bi bi-check-circle-fill me-2"></i>{{ session('success') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+                </div>
+            @endif
+
+            @if (session('error'))
+                <div class="alert alert-danger alert-dismissible fade show shadow-sm rounded-3" role="alert">
+                    <i class="bi bi-exclamation-triangle-fill me-2"></i>{{ session('error') }}
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
                 </div>
             @endif
@@ -38,14 +48,15 @@
                 </div>
             @endisset
 
-            @hasSection('content')
-                @yield('content')
-            @else
-                {{ $slot ?? '' }}
-            @endif
+            @yield('content')
+
         </div>
     </main>
 
+    {{-- Pie de página --}}
+    @include('partials.footer')
+
+    {{-- Bootstrap JS --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     @stack('scripts')
     @yield('scripts')
