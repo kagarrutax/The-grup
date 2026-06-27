@@ -4,7 +4,7 @@
 
 | Integrante | Rol | Responsabilidad |
 |------------|-----|-----------------|
-| **Jessica** | Frontend y responsive | Todas las vistas Blade + Bootstrap 5 responsive |
+| **Jessica** | Frontend y responsive | Blade (`resources/views/`) + **vista cliente** (`app/public/`, spec 002) |
 
 ## Participación GitHub y documentación
 
@@ -15,7 +15,7 @@
 
 ## Rol
 
-Capa **View** — plantillas Blade. Sin lógica de negocio.
+Capa **View** — plantillas Blade para Laravel (spec 001). La **UI preview XAMPP** vive en [`app/public/`](../public/PLAN.md) (spec 002).
 
 ## Subcarpetas
 

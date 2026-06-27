@@ -164,7 +164,7 @@
 
             {{-- Enlace opcional a la vista completa de inventario --}}
             <div class="text-end mt-3">
-                <a href="{{ url('/inventario') }}" class="btn btn-sm btn-outline-primary rounded-pill">
+                <a href="{{ url('/stock') }}" class="btn btn-sm btn-outline-primary rounded-pill">
                     Ver todos los movimientos <i class="bi bi-arrow-right ms-1"></i>
                 </a>
             </div>
