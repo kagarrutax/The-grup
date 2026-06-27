@@ -40,6 +40,13 @@ http://localhost/The-grup/app/public/login.php
 http://localhost/The-grup/app/public/dashboard.php
 ```
 
+**Instalar dependencias** (una vez, requiere Node.js):
+
+```bash
+cd app/public
+npm install
+```
+
 Páginas: productos, categorías, movimientos, búsqueda, ventas, compras, usuarios, reportes.
 
 Guía completa: [`app/public/README.md`](app/public/README.md) · Spec UI: [`spec/002-frontend-ui-ux.md`](spec/002-frontend-ui-ux.md)

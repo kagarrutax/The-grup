@@ -1,6 +1,6 @@
 # Laravel (cuando se instale)
 /vendor/
-/node_modules/
+node_modules/
 /public/hot
 /public/storage
 /storage/*.key
