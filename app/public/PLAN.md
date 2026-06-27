@@ -53,6 +53,7 @@ public/
 | Archivo | Módulo |
 |---------|--------|
 | `login.php` | Auth demo |
+| `auth/login.blade.php` | Login Blade (Breeze, spec 001) |
 | `dashboard.php` | Métricas + gráfico |
 | `productos.php` | Listado CRUD |
 | `producto-editar.php` | Formulario tabs |

@@ -24,9 +24,9 @@
                 <div class="row g-3 g-md-4">
 
                     <div class="col-12 col-md-6">
-                        <label for="sku" class="form-label fw-medium">SKU <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" id="sku" name="sku" placeholder="Ej: ARZ-001" required>
-                        <div class="invalid-feedback">El SKU es obligatorio y debe ser único.</div>
+                        <label for="id" class="form-label fw-medium">ID <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="id" name="id" placeholder="Ej: ARZ-001" required>
+                        <div class="invalid-feedback">El ID es obligatorio y debe ser único.</div>
                     </div>
 
                     <div class="col-12 col-md-6">

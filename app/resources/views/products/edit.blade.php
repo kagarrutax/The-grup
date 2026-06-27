@@ -23,8 +23,8 @@
                 <div class="row g-3 g-md-4">
 
                     <div class="col-12 col-md-6">
-                        <label for="sku" class="form-label fw-medium">SKU <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" id="sku" name="sku" value="ARZ-001" required>
+                        <label for="ID" class="form-label fw-medium">ID <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="id" name="id" value="ARZ-001" required>
                     </div>
 
                     <div class="col-12 col-md-6">

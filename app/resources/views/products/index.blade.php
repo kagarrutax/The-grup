@@ -15,7 +15,7 @@
         </a>
     </div>
 
-    {{-- Buscador: nombre, SKU y categoría (Fase 6) --}}
+    {{-- Buscador: nombre, ID y categoría (Fase 6) --}}
     <div class="card card-app mb-4">
         <div class="card-header pt-4 px-4">
             <h2 class="h6 fw-bold mb-0"><i class="bi bi-search me-2 text-primary"></i>Buscador</h2>
@@ -29,8 +29,8 @@
                            placeholder="Buscar por nombre" value="">
                 </div>
                 <div class="col-12 col-md-4">
-                    <label for="sku" class="form-label fw-medium">SKU</label>
-                    <input type="text" class="form-control" id="sku" name="sku"
+                    <label for="id" class="form-label fw-medium">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
                            placeholder="Ej: ARZ-001" value="">
                 </div>
                 <div class="col-12 col-md-4">
@@ -56,7 +56,7 @@
                 <table class="table table-striped table-hover table-bordered table-app align-middle mb-0">
                     <thead class="table-light">
                         <tr>
-                            <th>SKU</th>
+                            <th>ID</th>
                             <th>Nombre</th>
                             <th>Categoría</th>
                             <th class="text-end">Precio</th>

@@ -13,7 +13,7 @@
                 </ol>
             </nav>
             <h1 class="h3 fw-bold mb-1">Arroz Premium 1kg</h1>
-            <p class="page-subtitle mb-0">SKU: ARZ-001</p>
+            <p class="page-subtitle mb-0">ID: ARZ-001</p>
         </div>
         <div class="d-flex gap-2">
             <a href="{{ url('/products/1/edit') }}" class="btn btn-warning rounded-pill"><i class="bi bi-pencil me-1"></i>Editar</a>
