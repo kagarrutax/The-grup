@@ -101,6 +101,14 @@
                     </tbody>
                 </table>
             </div>
+
+            {{-- Enlace opcional a la vista completa de inventario --}}
+            <div class="text-end mt-3">
+                <a href="{{ url('/stock') }}" class="btn btn-sm btn-outline-primary rounded-pill">
+                    Ver todos los movimientos <i class="bi bi-arrow-right ms-1"></i>
+                </a>
+            </div>
+
         </div>
     @endif
 
@@ -151,5 +159,3 @@
     </div>
 
 @endsection
-@endsection
->>>>>>> 867cecf1ab512df8272c1ff76e7bdabc536b0774

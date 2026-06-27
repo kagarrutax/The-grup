@@ -19,8 +19,8 @@ $assetBase = 'assets';
     <div class="card login-card">
         <div class="text-center mb-4">
             <div class="login-brand mx-auto"><i class="bi bi-box-seam"></i></div>
-            <h1 class="h3 mb-1">Inventario Supermercado</h1>
-            <p class="text-desc">Ingresa tus credenciales para continuar</p>
+            <h1 class="h3 mb-1">SuperMercado</h1>
+            <p class="text-desc">Sistema de inventario — ingresa tus credenciales</p>
         </div>
         <form action="dashboard.php" method="get">
             <div class="mb-3">
