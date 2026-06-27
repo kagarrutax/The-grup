@@ -12,6 +12,12 @@
 <?php if (!empty($loadDashboardJs)): ?>
 <script src="<?= $assetBase ?? 'assets' ?>/js/dashboard.js"></script>
 <?php endif; ?>
+<?php if (!empty($loadBusquedaJs)): ?>
+<script src="<?= $assetBase ?? 'assets' ?>/js/busqueda.js"></script>
+<?php endif; ?>
+<?php if (!empty($loadReportesJs)): ?>
+<script src="<?= $assetBase ?? 'assets' ?>/js/reportes.js"></script>
+<?php endif; ?>
 <?php if (!empty($extraScripts)): ?>
 <?= $extraScripts ?>
 <?php endif; ?>

@@ -1,6 +1,6 @@
 # Spec 002 — Frontend UI/UX (Bootstrap 5.3)
 
-> **Estado:** En progreso  
+> **Estado:** Completado (frontend mock)  
 > **Encargado:** Jessica  
 > **Skill:** `skill/frontend-ui/SKILL.md`  
 > **Última actualización:** 2026-06-05
@@ -37,6 +37,12 @@ Primary `#2563EB` · Background `#F8FAFC` · Sidebar `#0F172A`
 - [x] `productos.php`
 - [x] `categorias.php`
 - [x] `movimientos.php`
+- [x] `busqueda.php` — Fase 6 buscador avanzado
+- [x] `producto-editar.php` — formulario tabs
+- [x] `usuarios.php` — gestión de roles admin/operador
+- [x] `reportes.php` — informes, gráficos y exportación
+- [x] `ventas.php` — tickets de venta al mostrador
+- [x] `compras.php` — órdenes de compra a proveedores
 
 ## Librerías CDN
 
@@ -50,3 +56,5 @@ Bootstrap 5.3 · Bootstrap Icons · Inter · Chart.js · DataTables · SweetAler
 - [x] Tablas con DataTables
 - [x] Formularios dos columnas
 - [x] Badges estado (activo/pendiente/inactivo)
+- [x] Buscador avanzado con filtros, grid y modales
+- [x] Ventas y compras con modales y estados

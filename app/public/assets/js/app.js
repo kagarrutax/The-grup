@@ -155,6 +155,192 @@
     });
   }
 
+  /* Usuarios — crear / editar / detalle */
+  const userModal = document.getElementById('userModal');
+  let lastUserDetail = null;
+
+  if (userModal) {
+    const userTitle = userModal.querySelector('#userModalTitle');
+    const userSubtitle = userModal.querySelector('#userModalSubtitle');
+    const userName = userModal.querySelector('#userName');
+    const userEmail = userModal.querySelector('#userEmail');
+    const userRole = userModal.querySelector('#userRole');
+    const userStatus = userModal.querySelector('#userStatus');
+    const pwdWrap = document.getElementById('userPasswordWrap');
+    const pwdConfirmWrap = document.getElementById('userPasswordConfirmWrap');
+
+    document.querySelector('[data-user-new]')?.addEventListener('click', function () {
+      if (userTitle) userTitle.textContent = 'Nuevo usuario';
+      if (userSubtitle) userSubtitle.textContent = 'Registra un acceso al inventario';
+      if (userName) userName.value = '';
+      if (userEmail) { userEmail.value = ''; userEmail.removeAttribute('readonly'); }
+      if (userRole) userRole.value = 'operador';
+      if (userStatus) userStatus.value = 'activo';
+      pwdWrap?.classList.remove('d-none');
+      pwdConfirmWrap?.classList.remove('d-none');
+    });
+
+    document.querySelectorAll('[data-edit-user]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        if (userTitle) userTitle.textContent = 'Editar usuario';
+        if (userSubtitle) userSubtitle.textContent = 'Modifica los datos del usuario';
+        if (userName) userName.value = btn.dataset.name || '';
+        if (userEmail) { userEmail.value = btn.dataset.email || ''; userEmail.setAttribute('readonly', 'readonly'); }
+        if (userRole) userRole.value = btn.dataset.role || 'operador';
+        if (userStatus) userStatus.value = btn.dataset.status || 'activo';
+        pwdWrap?.classList.add('d-none');
+        pwdConfirmWrap?.classList.add('d-none');
+        if (typeof bootstrap !== 'undefined') {
+          bootstrap.Modal.getOrCreateInstance(userModal).show();
+        }
+      });
+    });
+  }
+
+  const userDetailModal = document.getElementById('userDetailModal');
+  if (userDetailModal) {
+    userDetailModal.addEventListener('show.bs.modal', function (event) {
+      const btn = event.relatedTarget;
+      if (!btn) return;
+      lastUserDetail = btn;
+      const avatar = document.getElementById('userDetailAvatar');
+      if (avatar) avatar.textContent = btn.dataset.initials || '??';
+      const set = function (id, val) {
+        const el = document.getElementById(id);
+        if (el) el.textContent = val || '—';
+      };
+      set('userDetailName', btn.dataset.name);
+      set('userDetailEmail', btn.dataset.email);
+      const roleEl = document.getElementById('userDetailRole');
+      if (roleEl) {
+        roleEl.innerHTML = '<span class="badge-pill ' + (btn.dataset.roleBadge || 'badge-operator') + '">' +
+          (btn.dataset.role || '—') + '</span>';
+      }
+      const statusEl = document.getElementById('userDetailStatus');
+      if (statusEl) {
+        statusEl.innerHTML = '<span class="badge-pill ' + (btn.dataset.statusBadge || 'badge-active') + '">' +
+          (btn.dataset.status || '—') + '</span>';
+      }
+      set('userDetailLast', btn.dataset.last);
+    });
+  }
+
+  document.getElementById('userDetailEditBtn')?.addEventListener('click', function () {
+    if (!lastUserDetail || typeof bootstrap === 'undefined' || !userModal) return;
+    bootstrap.Modal.getInstance(userDetailModal)?.hide();
+    const roleMap = { Administrador: 'admin', Operador: 'operador' };
+    const statusMap = { Activo: 'activo', Inactivo: 'inactivo' };
+    const userTitle = userModal.querySelector('#userModalTitle');
+    const userSubtitle = userModal.querySelector('#userModalSubtitle');
+    const userName = userModal.querySelector('#userName');
+    const userEmail = userModal.querySelector('#userEmail');
+    const userRole = userModal.querySelector('#userRole');
+    const userStatus = userModal.querySelector('#userStatus');
+    if (userTitle) userTitle.textContent = 'Editar usuario';
+    if (userSubtitle) userSubtitle.textContent = 'Modifica los datos del usuario';
+    if (userName) userName.value = lastUserDetail.dataset.name || '';
+    if (userEmail) {
+      userEmail.value = lastUserDetail.dataset.email || '';
+      userEmail.setAttribute('readonly', 'readonly');
+    }
+    if (userRole) userRole.value = roleMap[lastUserDetail.dataset.role] || 'operador';
+    if (userStatus) userStatus.value = statusMap[lastUserDetail.dataset.status] || 'activo';
+    document.getElementById('userPasswordWrap')?.classList.add('d-none');
+    document.getElementById('userPasswordConfirmWrap')?.classList.add('d-none');
+    bootstrap.Modal.getOrCreateInstance(userModal).show();
+  });
+
+  /* Ventas — crear / editar / detalle */
+  const saleModal = document.getElementById('saleModal');
+  if (saleModal) {
+    const saleTitle = saleModal.querySelector('#saleModalTitle');
+    const saleSubtitle = saleModal.querySelector('#saleModalSubtitle');
+
+    document.querySelector('[data-sale-new]')?.addEventListener('click', function () {
+      if (saleTitle) saleTitle.textContent = 'Nueva venta';
+      if (saleSubtitle) saleSubtitle.textContent = 'Registra una venta al mostrador';
+    });
+
+    document.querySelectorAll('[data-edit-sale]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        if (saleTitle) saleTitle.textContent = 'Editar venta ' + (btn.dataset.id || '');
+        if (saleSubtitle) saleSubtitle.textContent = 'Modifica los datos del ticket';
+        if (typeof bootstrap !== 'undefined') {
+          bootstrap.Modal.getOrCreateInstance(saleModal).show();
+        }
+      });
+    });
+  }
+
+  const saleDetailModal = document.getElementById('saleDetailModal');
+  if (saleDetailModal) {
+    saleDetailModal.addEventListener('show.bs.modal', function (event) {
+      const btn = event.relatedTarget;
+      if (!btn) return;
+      const set = function (id, val) {
+        const el = document.getElementById(id);
+        if (el) el.textContent = val || '—';
+      };
+      set('saleDetailId', btn.dataset.id);
+      set('saleDetailDate', btn.dataset.date);
+      set('saleDetailCashier', btn.dataset.cashier);
+      set('saleDetailTotal', btn.dataset.total);
+      set('saleDetailItems', btn.dataset.items);
+      const statusEl = document.getElementById('saleDetailStatus');
+      if (statusEl) {
+        statusEl.innerHTML = '<span class="badge-pill ' + (btn.dataset.badge || 'badge-active') + '">' +
+          (btn.dataset.status || '—') + '</span>';
+      }
+    });
+  }
+
+  /* Compras — crear / editar / detalle */
+  const purchaseModal = document.getElementById('purchaseModal');
+  if (purchaseModal) {
+    const purchaseTitle = purchaseModal.querySelector('#purchaseModalTitle');
+    const purchaseSubtitle = purchaseModal.querySelector('#purchaseModalSubtitle');
+    const purchaseSupplier = purchaseModal.querySelector('#purchaseSupplier');
+
+    document.querySelector('[data-purchase-new]')?.addEventListener('click', function () {
+      if (purchaseTitle) purchaseTitle.textContent = 'Nueva orden de compra';
+      if (purchaseSubtitle) purchaseSubtitle.textContent = 'Registra un pedido a proveedor';
+    });
+
+    document.querySelectorAll('[data-edit-purchase]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        if (purchaseTitle) purchaseTitle.textContent = 'Editar ' + (btn.dataset.id || '');
+        if (purchaseSubtitle) purchaseSubtitle.textContent = 'Modifica la orden de compra';
+        if (purchaseSupplier && btn.dataset.supplier) purchaseSupplier.value = btn.dataset.supplier;
+        if (typeof bootstrap !== 'undefined') {
+          bootstrap.Modal.getOrCreateInstance(purchaseModal).show();
+        }
+      });
+    });
+  }
+
+  const purchaseDetailModal = document.getElementById('purchaseDetailModal');
+  if (purchaseDetailModal) {
+    purchaseDetailModal.addEventListener('show.bs.modal', function (event) {
+      const btn = event.relatedTarget;
+      if (!btn) return;
+      const set = function (id, val) {
+        const el = document.getElementById(id);
+        if (el) el.textContent = val || '—';
+      };
+      set('purchaseDetailId', btn.dataset.id);
+      set('purchaseDetailDate', btn.dataset.date);
+      set('purchaseDetailSupplier', btn.dataset.supplier);
+      set('purchaseDetailTotal', btn.dataset.total);
+      set('purchaseDetailItems', btn.dataset.items);
+      set('purchaseDetailDelivery', btn.dataset.delivery);
+      const statusEl = document.getElementById('purchaseDetailStatus');
+      if (statusEl) {
+        statusEl.innerHTML = '<span class="badge-pill ' + (btn.dataset.badge || 'badge-active') + '">' +
+          (btn.dataset.status || '—') + '</span>';
+      }
+    });
+  }
+
   document.querySelectorAll('[data-table]').forEach(function (el) {
     if (typeof $ !== 'undefined' && $.fn.DataTable) {
       $(el).DataTable({

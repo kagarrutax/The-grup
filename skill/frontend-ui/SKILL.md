@@ -23,4 +23,7 @@ description: >-
 3. login.php
 4. dashboard.php
 5. productos, categorias, movimientos
-6. responsive.css + pruebas móvil
+6. busqueda.php (Fase 6)
+7. ventas.php, compras.php
+8. usuarios.php, reportes.php
+9. responsive.css + pruebas móvil

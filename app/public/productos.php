@@ -14,7 +14,7 @@ require __DIR__ . '/components/layout-start.php';
     </div>
     <div class="d-flex gap-2">
         <a href="busqueda.php" class="btn btn-outline-secondary">
-            <i class="bi bi-grid me-1"></i> Vista grid
+            <i class="bi bi-search me-1"></i> Búsqueda avanzada
         </a>
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#productModal" data-product-new>
             <i class="bi bi-plus-lg me-1"></i> Nuevo producto
