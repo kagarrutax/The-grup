@@ -1,0 +1,248 @@
+/* ============================================ */
+/* Estilos para Tabla de Productos */
+/* ============================================ */
+
+/* Tabla mejorada */
+.table-app {
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.table-app tbody tr {
+    transition: all 0.3s ease;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.table-app tbody tr:hover {
+    background-color: #f8f9fa;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.03);
+}
+
+.table-app tbody tr:last-child {
+    border-bottom: none;
+}
+
+.table-app td {
+    vertical-align: middle;
+    padding: 1rem;
+}
+
+.table-app code {
+    background-color: #f1f3f5;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.35rem;
+    color: #e83e8c;
+    font-size: 0.875rem;
+}
+
+/* ============================================ */
+/* Grupo de Botones en Tabla */
+/* ============================================ */
+
+.btn-group-sm .btn {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    border-radius: 0.5rem;
+    transition: all 0.2s ease;
+    border: 2px solid;
+}
+
+.btn-group-sm .btn:not(:last-child) {
+    border-right: none;
+    border-radius: 0.5rem 0 0 0.5rem;
+}
+
+.btn-group-sm .btn:last-child {
+    border-left: none;
+    border-radius: 0 0.5rem 0.5rem 0;
+}
+
+.btn-outline-info {
+    color: #0dcaf0;
+    border-color: #0dcaf0;
+}
+
+.btn-outline-info:hover {
+    background-color: #0dcaf0;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(13, 202, 240, 0.3);
+}
+
+.btn-outline-warning {
+    color: #ffc107;
+    border-color: #ffc107;
+}
+
+.btn-outline-warning:hover {
+    background-color: #ffc107;
+    color: #212529;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 193, 7, 0.3);
+}
+
+.btn-outline-danger {
+    color: #dc3545;
+    border-color: #dc3545;
+}
+
+.btn-outline-danger:hover {
+    background-color: #dc3545;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
+}
+
+.btn-outline-info i,
+.btn-outline-warning i,
+.btn-outline-danger i {
+    font-size: 1rem;
+}
+
+/* ============================================ */
+/* Card App Mejorada */
+/* ============================================ */
+
+.card-app {
+    border: none;
+    border-radius: 1.25rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.card-app:hover {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.card-app .card-body {
+    padding: 0;
+}
+
+.card-app .card-footer {
+    background: #f8f9fa;
+    border-top: 1px solid #e9ecef;
+    padding: 1.5rem;
+}
+
+/* ============================================ */
+/* Filtros Mejorados */
+/* ============================================ */
+
+.form-control,
+.form-select {
+    border-radius: 0.75rem;
+    border: 2px solid #e9ecef;
+    transition: all 0.2s ease;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.1);
+}
+
+.btn-outline-secondary {
+    border: 2px solid #e9ecef;
+    color: #6c757d;
+}
+
+.btn-outline-secondary:hover {
+    background-color: #e9ecef;
+    border-color: #dee2e6;
+    color: #495057;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    font-weight: 600;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #5568d3 0%, #6b428a 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+}
+
+/* ============================================ */
+/* Estado del Stock */
+/* ============================================ */
+
+.text-danger.fw-semibold {
+    background-color: rgba(220, 53, 69, 0.1);
+    padding: 0.35rem 0.65rem;
+    border-radius: 0.5rem;
+    display: inline-block;
+}
+
+/* ============================================ */
+/* Paginación Mejorada */
+/* ============================================ */
+
+.pagination {
+    gap: 0.5rem;
+}
+
+.pagination .page-link {
+    border: 2px solid #e9ecef;
+    border-radius: 0.5rem;
+    color: #667eea;
+    transition: all 0.2s ease;
+}
+
+.pagination .page-link:hover {
+    background-color: #f8f9fa;
+    border-color: #667eea;
+    color: #667eea;
+}
+
+.pagination .page-item.active .page-link {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-color: transparent;
+}
+
+/* ============================================ */
+/* Responsive */
+/* ============================================ */
+
+@media (max-width: 768px) {
+    .btn-group-sm .btn {
+        padding: 0.4rem 0.6rem;
+        font-size: 0.75rem;
+    }
+
+    .btn-group-sm .btn i {
+        font-size: 0.9rem;
+    }
+
+    .table-app td {
+        padding: 0.75rem 0.5rem;
+    }
+
+    .table-app code {
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .btn-group-sm {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .btn-group-sm .btn {
+        flex: 1;
+        min-width: 40px;
+        padding: 0.35rem 0.5rem;
+    }
+
+    .btn-group-sm .btn:not(:last-child) {
+        border-right: 1px solid;
+    }
+
+    .table-app td {
+        padding: 0.5rem;
+        font-size: 0.85rem;
+    }
+}

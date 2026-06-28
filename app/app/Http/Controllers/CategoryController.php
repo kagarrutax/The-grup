@@ -17,6 +17,15 @@ class CategoryController extends Controller
         return view('categories.index', compact('categories'));
     }
 
+    public function list()
+    {
+        $categories = Category::query()
+            ->orderBy('name')
+            ->get(['id', 'name']);
+
+        return response()->json($categories);
+    }
+
     public function create()
     {
         return view('categories.create');

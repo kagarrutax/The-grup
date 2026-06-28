@@ -54,12 +54,17 @@
                                 </td>
                                 <td>${{ number_format($product->price, 2) }}</td>
                                 <td class="text-end">
-                                    <a href="{{ route('products.edit', $product) }}" class="btn btn-sm btn-outline-secondary">Editar</a>
-                                    <form action="{{ route('products.destroy', $product) }}" method="POST" class="d-inline" onsubmit="return confirm('¿Eliminar producto?')">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-outline-danger">Eliminar</button>
-                                    </form>
+                                    <div class="btn-group btn-group-sm" role="group">
+                                        <button class="btn btn-outline-info" onclick="viewProduct({{ $product->id }})" title="Ver detalles">
+                                            <i class="bi bi-eye"></i>
+                                        </button>
+                                        <button class="btn btn-outline-warning" onclick="editProduct({{ $product->id }})" title="Editar producto">
+                                            <i class="bi bi-pencil"></i>
+                                        </button>
+                                        <button class="btn btn-outline-danger" onclick="showDeleteConfirmation('{{ $product->name }}', '{{ route('products.destroy', $product) }}', 'producto')" title="Eliminar">
+                                            <i class="bi bi-trash3"></i>
+                                        </button>
+                                    </div>
                                 </td>
                             </tr>
                         @empty
@@ -73,4 +78,9 @@
             <div class="card-footer">{{ $products->links() }}</div>
         @endif
     </div>
+
+    <!-- Modales -->
+    @include('components.modal-view-product')
+    @include('components.modal-edit-product')
+    @include('components.modal-delete-confirmation')
 @endsection

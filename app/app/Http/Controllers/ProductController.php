@@ -44,9 +44,18 @@ class ProductController extends Controller
 
     public function edit(Product $product)
     {
+        if (request()->wantsJson()) {
+            return response()->json($product);
+        }
+        
         $categories = Category::query()->orderBy('name')->get();
 
         return view('products.edit', compact('product', 'categories'));
+    }
+
+    public function show(Product $product)
+    {
+        return view('products.show', compact('product'));
     }
 
     public function update(Request $request, Product $product)
@@ -55,12 +64,27 @@ class ProductController extends Controller
 
         $product->update($validated);
 
+        if ($request->wantsJson()) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Producto actualizado correctamente.',
+                'product' => $product
+            ]);
+        }
+
         return redirect()->route('products.index')->with('success', 'Producto actualizado correctamente.');
     }
 
     public function destroy(Product $product)
     {
         $product->delete();
+
+        if (request()->wantsJson()) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Producto eliminado correctamente.'
+            ]);
+        }
 
         return redirect()->route('products.index')->with('success', 'Producto eliminado correctamente.');
     }

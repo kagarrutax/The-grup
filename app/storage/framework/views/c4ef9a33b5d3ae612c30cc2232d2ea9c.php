@@ -55,12 +55,15 @@
                                 </td>
                                 <td>$<?php echo e(number_format($product->price, 2)); ?></td>
                                 <td class="text-end">
-                                    <a href="<?php echo e(route('products.edit', $product)); ?>" class="btn btn-sm btn-outline-secondary">Editar</a>
-                                    <form action="<?php echo e(route('products.destroy', $product)); ?>" method="POST" class="d-inline" onsubmit="return confirm('¿Eliminar producto?')">
-                                        <?php echo csrf_field(); ?>
-                                        <?php echo method_field('DELETE'); ?>
-                                        <button type="submit" class="btn btn-sm btn-outline-danger">Eliminar</button>
-                                    </form>
+                                    <button class="btn btn-sm btn-outline-info" onclick="viewProduct(<?php echo e($product->id); ?>)">
+                                        <i class="bi bi-eye me-1"></i> Ver
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-secondary" onclick="editProduct(<?php echo e($product->id); ?>)">
+                                        <i class="bi bi-pencil me-1"></i> Editar
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-danger" onclick="showDeleteConfirmation('<?php echo e($product->name); ?>', '<?php echo e(route('products.destroy', $product)); ?>', 'producto')">
+                                        <i class="bi bi-trash me-1"></i> Eliminar
+                                    </button>
                                 </td>
                             </tr>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
@@ -74,6 +77,11 @@
             <div class="card-footer"><?php echo e($products->links()); ?></div>
         <?php endif; ?>
     </div>
+
+    <!-- Modales -->
+    <?php echo $__env->make('components.modal-view-product', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+    <?php echo $__env->make('components.modal-edit-product', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+    <?php echo $__env->make('components.modal-delete-confirmation', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('layouts.app', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\laragon\www\The-grup\app\resources\views/products/index.blade.php ENDPATH**/ ?>

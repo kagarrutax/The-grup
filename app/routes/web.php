@@ -40,7 +40,11 @@ Route::middleware('web')->group(function () {
             ->name('dashboard');
 
         Route::resource('categories', CategoryController::class)->except(['show']);
+        Route::get('/categories/list', [CategoryController::class, 'list'])->name('categories.list');
+        
         Route::resource('products', ProductController::class)->except(['show']);
+        Route::get('/products/{product}/show', [ProductController::class, 'show'])->name('products.show');
+        
         Route::resource('stock', StockController::class)->only(['index', 'create', 'store']);
 
         Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
