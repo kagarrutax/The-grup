@@ -85,3 +85,153 @@
 #11 C:/xampp/htdocs/The-grup/app/artisan(16): Illuminate/Foundation/Application->handleCommand(Object(Symfony/Component/Console/Input/ArgvInput))
 #12 {main}
 "} 
+[2026-06-29 00:16:31] laravel.EMERGENCY: Unable to create configured logger. Using emergency logger. {"exception":"[object] (InvalidArgumentException(code: 0): Log [] is not defined. at C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Log/LogManager.php:222)
+[stacktrace]
+#0 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Log/LogManager.php(138): Illuminate/Log/LogManager->resolve(NULL, NULL)
+#1 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Log/LogManager.php(125): Illuminate/Log/LogManager->get(NULL)
+#2 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Log/LogManager.php(703): Illuminate/Log/LogManager->driver()
+#3 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(402): Illuminate/Log/LogManager->error('syntax error, u...', Array)
+#4 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(365): Illuminate/Foundation/Exceptions/Handler->reportThrowable(Object(ParseError))
+#5 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(641): Illuminate/Foundation/Exceptions/Handler->report(Object(ParseError))
+#6 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(200): Illuminate/Foundation/Console/Kernel->reportException(Object(ParseError))
+#7 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1235): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 C:/laragon/www/The-grup/app/artisan(16): Illuminate/Foundation/Application->handleCommand(Object(Symfony/Component/Console/Input/ArgvInput))
+#9 {main}
+"} 
+[2026-06-29 00:16:31] laravel.ERROR: syntax error, unexpected token "<<" {"exception":"[object] (ParseError(code: 0): syntax error, unexpected token \"<<\" at C:/laragon/www/The-grup/app/config/app.php:104)
+[stacktrace]
+#0 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php(115): Illuminate/Foundation/Bootstrap/LoadConfiguration->Illuminate/Foundation/Bootstrap/{closure}()
+#1 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php(96): Illuminate/Foundation/Bootstrap/LoadConfiguration->loadConfigurationFile(Object(Illuminate/Config/Repository), 'app', 'C://laragon//www//...', Array)
+#2 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php(55): Illuminate/Foundation/Bootstrap/LoadConfiguration->loadConfigurationFiles(Object(Illuminate/Foundation/Application), Object(Illuminate/Config/Repository))
+#3 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/LoadConfiguration->bootstrap(Object(Illuminate/Foundation/Application))
+#4 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#5 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#6 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1235): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#7 C:/laragon/www/The-grup/app/artisan(16): Illuminate/Foundation/Application->handleCommand(Object(Symfony/Component/Console/Input/ArgvInput))
+#8 {main}
+"} 
+[2026-06-29 00:17:36] laravel.EMERGENCY: Unable to create configured logger. Using emergency logger. {"exception":"[object] (InvalidArgumentException(code: 0): Log [] is not defined. at C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Log/LogManager.php:222)
+[stacktrace]
+#0 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Log/LogManager.php(138): Illuminate/Log/LogManager->resolve(NULL, NULL)
+#1 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Log/LogManager.php(125): Illuminate/Log/LogManager->get(NULL)
+#2 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Log/LogManager.php(703): Illuminate/Log/LogManager->driver()
+#3 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(402): Illuminate/Log/LogManager->error('syntax error, u...', Array)
+#4 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(365): Illuminate/Foundation/Exceptions/Handler->reportThrowable(Object(ParseError))
+#5 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(641): Illuminate/Foundation/Exceptions/Handler->report(Object(ParseError))
+#6 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(200): Illuminate/Foundation/Console/Kernel->reportException(Object(ParseError))
+#7 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1235): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 C:/laragon/www/The-grup/app/artisan(16): Illuminate/Foundation/Application->handleCommand(Object(Symfony/Component/Console/Input/ArgvInput))
+#9 {main}
+"} 
+[2026-06-29 00:17:36] laravel.ERROR: syntax error, unexpected token "<<" {"exception":"[object] (ParseError(code: 0): syntax error, unexpected token \"<<\" at C:/laragon/www/The-grup/app/config/app.php:104)
+[stacktrace]
+#0 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php(115): Illuminate/Foundation/Bootstrap/LoadConfiguration->Illuminate/Foundation/Bootstrap/{closure}()
+#1 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php(96): Illuminate/Foundation/Bootstrap/LoadConfiguration->loadConfigurationFile(Object(Illuminate/Config/Repository), 'app', 'C://laragon//www//...', Array)
+#2 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php(55): Illuminate/Foundation/Bootstrap/LoadConfiguration->loadConfigurationFiles(Object(Illuminate/Foundation/Application), Object(Illuminate/Config/Repository))
+#3 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/LoadConfiguration->bootstrap(Object(Illuminate/Foundation/Application))
+#4 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#5 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#6 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1235): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#7 C:/laragon/www/The-grup/app/artisan(16): Illuminate/Foundation/Application->handleCommand(Object(Symfony/Component/Console/Input/ArgvInput))
+#8 {main}
+"} 
+[2026-06-29 00:19:02] laravel.EMERGENCY: Unable to create configured logger. Using emergency logger. {"exception":"[object] (InvalidArgumentException(code: 0): Log [] is not defined. at C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Log/LogManager.php:222)
+[stacktrace]
+#0 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Log/LogManager.php(138): Illuminate/Log/LogManager->resolve(NULL, NULL)
+#1 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Log/LogManager.php(125): Illuminate/Log/LogManager->get(NULL)
+#2 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Log/LogManager.php(703): Illuminate/Log/LogManager->driver()
+#3 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(402): Illuminate/Log/LogManager->error('syntax error, u...', Array)
+#4 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(365): Illuminate/Foundation/Exceptions/Handler->reportThrowable(Object(ParseError))
+#5 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(641): Illuminate/Foundation/Exceptions/Handler->report(Object(ParseError))
+#6 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(200): Illuminate/Foundation/Console/Kernel->reportException(Object(ParseError))
+#7 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1235): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 C:/laragon/www/The-grup/app/artisan(16): Illuminate/Foundation/Application->handleCommand(Object(Symfony/Component/Console/Input/ArgvInput))
+#9 {main}
+"} 
+[2026-06-29 00:19:02] laravel.ERROR: syntax error, unexpected token "<<", expecting end of file {"exception":"[object] (ParseError(code: 0): syntax error, unexpected token \"<<\", expecting end of file at C:/laragon/www/The-grup/app/config/auth.php:3)
+[stacktrace]
+#0 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php(115): Illuminate/Foundation/Bootstrap/LoadConfiguration->Illuminate/Foundation/Bootstrap/{closure}()
+#1 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php(96): Illuminate/Foundation/Bootstrap/LoadConfiguration->loadConfigurationFile(Object(Illuminate/Config/Repository), 'auth', 'C://laragon//www//...', Array)
+#2 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php(55): Illuminate/Foundation/Bootstrap/LoadConfiguration->loadConfigurationFiles(Object(Illuminate/Foundation/Application), Object(Illuminate/Config/Repository))
+#3 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/LoadConfiguration->bootstrap(Object(Illuminate/Foundation/Application))
+#4 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#5 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#6 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1235): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#7 C:/laragon/www/The-grup/app/artisan(16): Illuminate/Foundation/Application->handleCommand(Object(Symfony/Component/Console/Input/ArgvInput))
+#8 {main}
+"} 
+[2026-06-29 00:21:34] laravel.EMERGENCY: Unable to create configured logger. Using emergency logger. {"exception":"[object] (InvalidArgumentException(code: 0): Log [] is not defined. at C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Log/LogManager.php:222)
+[stacktrace]
+#0 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Log/LogManager.php(138): Illuminate/Log/LogManager->resolve(NULL, NULL)
+#1 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Log/LogManager.php(125): Illuminate/Log/LogManager->get(NULL)
+#2 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Log/LogManager.php(703): Illuminate/Log/LogManager->driver()
+#3 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(402): Illuminate/Log/LogManager->error('syntax error, u...', Array)
+#4 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(365): Illuminate/Foundation/Exceptions/Handler->reportThrowable(Object(ParseError))
+#5 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(641): Illuminate/Foundation/Exceptions/Handler->report(Object(ParseError))
+#6 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(200): Illuminate/Foundation/Console/Kernel->reportException(Object(ParseError))
+#7 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1235): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 C:/laragon/www/The-grup/app/artisan(16): Illuminate/Foundation/Application->handleCommand(Object(Symfony/Component/Console/Input/ArgvInput))
+#9 {main}
+"} 
+[2026-06-29 00:21:34] laravel.ERROR: syntax error, unexpected token "<<", expecting "]" {"exception":"[object] (ParseError(code: 0): syntax error, unexpected token \"<<\", expecting \"]\" at C:/laragon/www/The-grup/app/config/cache.php:98)
+[stacktrace]
+#0 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php(115): Illuminate/Foundation/Bootstrap/LoadConfiguration->Illuminate/Foundation/Bootstrap/{closure}()
+#1 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php(96): Illuminate/Foundation/Bootstrap/LoadConfiguration->loadConfigurationFile(Object(Illuminate/Config/Repository), 'cache', 'C://laragon//www//...', Array)
+#2 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php(55): Illuminate/Foundation/Bootstrap/LoadConfiguration->loadConfigurationFiles(Object(Illuminate/Foundation/Application), Object(Illuminate/Config/Repository))
+#3 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/LoadConfiguration->bootstrap(Object(Illuminate/Foundation/Application))
+#4 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#5 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#6 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1235): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#7 C:/laragon/www/The-grup/app/artisan(16): Illuminate/Foundation/Application->handleCommand(Object(Symfony/Component/Console/Input/ArgvInput))
+#8 {main}
+"} 
+[2026-06-29 00:32:26] laravel.EMERGENCY: Unable to create configured logger. Using emergency logger. {"exception":"[object] (InvalidArgumentException(code: 0): Log [] is not defined. at C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Log/LogManager.php:222)
+[stacktrace]
+#0 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Log/LogManager.php(138): Illuminate/Log/LogManager->resolve(NULL, NULL)
+#1 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Log/LogManager.php(125): Illuminate/Log/LogManager->get(NULL)
+#2 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Log/LogManager.php(703): Illuminate/Log/LogManager->driver()
+#3 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(402): Illuminate/Log/LogManager->error('syntax error, u...', Array)
+#4 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(365): Illuminate/Foundation/Exceptions/Handler->reportThrowable(Object(ParseError))
+#5 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(641): Illuminate/Foundation/Exceptions/Handler->report(Object(ParseError))
+#6 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(200): Illuminate/Foundation/Console/Kernel->reportException(Object(ParseError))
+#7 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1235): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 C:/laragon/www/The-grup/app/artisan(16): Illuminate/Foundation/Application->handleCommand(Object(Symfony/Component/Console/Input/ArgvInput))
+#9 {main}
+"} 
+[2026-06-29 00:32:26] laravel.ERROR: syntax error, unexpected identifier "n", expecting "]" {"exception":"[object] (ParseError(code: 0): syntax error, unexpected identifier \"n\", expecting \"]\" at C:/laragon/www/The-grup/app/config/cache.php:100)
+[stacktrace]
+#0 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php(115): Illuminate/Foundation/Bootstrap/LoadConfiguration->Illuminate/Foundation/Bootstrap/{closure}()
+#1 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php(96): Illuminate/Foundation/Bootstrap/LoadConfiguration->loadConfigurationFile(Object(Illuminate/Config/Repository), 'cache', 'C://laragon//www//...', Array)
+#2 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php(55): Illuminate/Foundation/Bootstrap/LoadConfiguration->loadConfigurationFiles(Object(Illuminate/Foundation/Application), Object(Illuminate/Config/Repository))
+#3 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/LoadConfiguration->bootstrap(Object(Illuminate/Foundation/Application))
+#4 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#5 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#6 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1235): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#7 C:/laragon/www/The-grup/app/artisan(16): Illuminate/Foundation/Application->handleCommand(Object(Symfony/Component/Console/Input/ArgvInput))
+#8 {main}
+"} 
+[2026-06-29 00:33:00] laravel.EMERGENCY: Unable to create configured logger. Using emergency logger. {"exception":"[object] (InvalidArgumentException(code: 0): Log [] is not defined. at C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Log/LogManager.php:222)
+[stacktrace]
+#0 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Log/LogManager.php(138): Illuminate/Log/LogManager->resolve(NULL, NULL)
+#1 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Log/LogManager.php(125): Illuminate/Log/LogManager->get(NULL)
+#2 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Log/LogManager.php(703): Illuminate/Log/LogManager->driver()
+#3 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(402): Illuminate/Log/LogManager->error('syntax error, u...', Array)
+#4 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(365): Illuminate/Foundation/Exceptions/Handler->reportThrowable(Object(ParseError))
+#5 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(641): Illuminate/Foundation/Exceptions/Handler->report(Object(ParseError))
+#6 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(200): Illuminate/Foundation/Console/Kernel->reportException(Object(ParseError))
+#7 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1235): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 C:/laragon/www/The-grup/app/artisan(16): Illuminate/Foundation/Application->handleCommand(Object(Symfony/Component/Console/Input/ArgvInput))
+#9 {main}
+"} 
+[2026-06-29 00:33:00] laravel.ERROR: syntax error, unexpected identifier "n", expecting "]" {"exception":"[object] (ParseError(code: 0): syntax error, unexpected identifier \"n\", expecting \"]\" at C:/laragon/www/The-grup/app/config/cache.php:100)
+[stacktrace]
+#0 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php(115): Illuminate/Foundation/Bootstrap/LoadConfiguration->Illuminate/Foundation/Bootstrap/{closure}()
+#1 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php(96): Illuminate/Foundation/Bootstrap/LoadConfiguration->loadConfigurationFile(Object(Illuminate/Config/Repository), 'cache', 'C://laragon//www//...', Array)
+#2 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php(55): Illuminate/Foundation/Bootstrap/LoadConfiguration->loadConfigurationFiles(Object(Illuminate/Foundation/Application), Object(Illuminate/Config/Repository))
+#3 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/LoadConfiguration->bootstrap(Object(Illuminate/Foundation/Application))
+#4 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#5 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#6 C:/laragon/www/The-grup/app/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1235): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#7 C:/laragon/www/The-grup/app/artisan(16): Illuminate/Foundation/Application->handleCommand(Object(Symfony/Component/Console/Input/ArgvInput))
+#8 {main}
+"} 

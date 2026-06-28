@@ -12,7 +12,6 @@ $loginError = isset($_GET['error']) && $_GET['error'] === '1';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<<<<<<< HEAD
     <title><?= htmlspecialchars($pageTitle) ?> — Inventario</title>
     <link href="node_modules/@fontsource/inter/400.css" rel="stylesheet">
     <link href="node_modules/@fontsource/inter/600.css" rel="stylesheet">
@@ -20,16 +19,7 @@ $loginError = isset($_GET['error']) && $_GET['error'] === '1';
     <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="node_modules/bootstrap-icons/font/bootstrap-icons.min.css" rel="stylesheet">
     <link href="assets/css/variables.css" rel="stylesheet">
-    <link href="assets/css/style.css" rel="stylesheet">
-=======
-    <title><?= htmlspecialchars($pageTitle) ?> — SuperMercado</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
-    <link href="<?= $assetBase ?>/css/variables.css" rel="stylesheet">
-    <link href="<?= $assetBase ?>/css/style.css" rel="stylesheet">
->>>>>>> d959ad24edda2faacd434ad042d52e081eb02510
-</head>
+    <link href="assets/css/style.css" rel="stylesheet">`r`n</head>
 <body>
 
 <div class="login-page">
@@ -92,42 +82,6 @@ $loginError = isset($_GET['error']) && $_GET['error'] === '1';
 
     </div>
 </div>
-<<<<<<< HEAD
-<script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-=======
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script>
-(function () {
-    'use strict';
-    var form = document.getElementById('loginForm');
-    form.addEventListener('submit', function (e) {
-        if (!form.checkValidity()) {
-            e.preventDefault();
-            e.stopPropagation();
-            form.classList.add('was-validated');
-            return;
-        }
-        form.classList.add('was-validated');
-        // Demo: simular error si el email no es el demo
-        var email = document.getElementById('email').value.trim();
-        if (email !== 'admin@supermercado.com') {
-            e.preventDefault();
-            window.location.href = 'login.php?error=1';
-        }
-    });
-
-    var toggle = document.getElementById('togglePassword');
-    var input = document.getElementById('password');
-    var icon = document.getElementById('togglePasswordIcon');
-    toggle.addEventListener('click', function () {
-        var show = input.type === 'password';
-        input.type = show ? 'text' : 'password';
-        icon.classList.toggle('bi-eye', !show);
-        icon.classList.toggle('bi-eye-slash', show);
-    });
-})();
-</script>
->>>>>>> d959ad24edda2faacd434ad042d52e081eb02510
-</body>
+<script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>`r`n</body>
 </html>
+

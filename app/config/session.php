@@ -13,14 +13,8 @@ return [
     | incoming requests. Laravel supports a variety of storage options to
     | persist session data. Database storage is a great default choice.
     |
-<<<<<<< HEAD
     | Supported: "file", "cookie", "database", "memcached",
-    |            "redis", "dynamodb", "array"
-=======
-    | Supported: "file", "cookie", "database", "apc",
-    |            "memcached", "redis", "dynamodb", "array"
->>>>>>> d959ad24edda2faacd434ad042d52e081eb02510
-    |
+    |            "redis", "dynamodb", "array"`r`n    |
     */
 
     'driver' => env('SESSION_DRIVER', 'database'),
@@ -102,12 +96,7 @@ return [
     | define the cache store which should be used to store the session data
     | between requests. This must match one of your defined cache stores.
     |
-<<<<<<< HEAD
-    | Affects: "dynamodb", "memcached", "redis"
-=======
-    | Affects: "apc", "dynamodb", "memcached", "redis"
->>>>>>> d959ad24edda2faacd434ad042d52e081eb02510
-    |
+    | Affects: "dynamodb", "memcached", "redis"`r`n    |
     */
 
     'store' => env('SESSION_STORE'),
@@ -138,12 +127,7 @@ return [
 
     'cookie' => env(
         'SESSION_COOKIE',
-<<<<<<< HEAD
-        Str::slug((string) env('APP_NAME', 'laravel')).'-session'
-=======
-        Str::slug(env('APP_NAME', 'laravel'), '_').'_session'
->>>>>>> d959ad24edda2faacd434ad042d52e081eb02510
-    ),
+        Str::slug((string) env('APP_NAME', 'laravel')).'-session'`r`n    ),
 
     /*
     |--------------------------------------------------------------------------
@@ -165,12 +149,7 @@ return [
     |
     | This value determines the domain and subdomains the session cookie is
     | available to. By default, the cookie will be available to the root
-<<<<<<< HEAD
-    | domain without subdomains. Typically, this shouldn't be changed.
-=======
-    | domain and all subdomains. Typically, this shouldn't be changed.
->>>>>>> d959ad24edda2faacd434ad042d52e081eb02510
-    |
+    | domain without subdomains. Typically, this shouldn't be changed.`r`n    |
     */
 
     'domain' => env('SESSION_DOMAIN'),
@@ -232,3 +211,4 @@ return [
     'partitioned' => env('SESSION_PARTITIONED_COOKIE', false),
 
 ];
+

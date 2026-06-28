@@ -2,21 +2,12 @@
 
 namespace Database\Factories;
 
-<<<<<<< HEAD
-use App\Models\User;
-=======
->>>>>>> d959ad24edda2faacd434ad042d52e081eb02510
-use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\User;`r`nuse Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 /**
-<<<<<<< HEAD
- * @extends Factory<User>
-=======
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
->>>>>>> d959ad24edda2faacd434ad042d52e081eb02510
- */
+ * @extends Factory<User>`r`n */
 class UserFactory extends Factory
 {
     /**
@@ -36,18 +27,11 @@ class UserFactory extends Factory
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
-<<<<<<< HEAD
             'remember_token' => Str::random(10),
-            'role' => 'operador',
-=======
-            'role' => \App\Models\User::ROLE_ADMIN,
-            'remember_token' => Str::random(10),
->>>>>>> d959ad24edda2faacd434ad042d52e081eb02510
-        ];
+            'role' => 'operador',`r`n        ];
     }
 
     /**
-<<<<<<< HEAD
      * Indicate that the user is an admin.
      */
     public function admin(): static
@@ -57,10 +41,7 @@ class UserFactory extends Factory
         ]);
     }
 
-    /**
-=======
->>>>>>> d959ad24edda2faacd434ad042d52e081eb02510
-     * Indicate that the model's email address should be unverified.
+    /**`r`n     * Indicate that the model's email address should be unverified.
      */
     public function unverified(): static
     {
@@ -69,3 +50,4 @@ class UserFactory extends Factory
         ]);
     }
 }
+

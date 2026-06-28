@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\User;
-<<<<<<< HEAD
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -108,19 +107,6 @@ class DatabaseSeeder extends Seeder
                     'status' => 'activo',
                 ]);
             }
-        }
-=======
-use Illuminate\Database\Seeder;
-
-class DatabaseSeeder extends Seeder
-{
-    public function run(): void
-    {
-        User::factory()->create([
-            'name' => 'Administrador',
-            'email' => 'admin@supermercado.com',
-            'role' => User::ROLE_ADMIN,
-        ]);
->>>>>>> d959ad24edda2faacd434ad042d52e081eb02510
-    }
+        }`r`n    }
 }
+

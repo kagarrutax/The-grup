@@ -18,11 +18,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
-<<<<<<< HEAD
-            $table->enum('role', ['admin', 'operador'])->default('operador');
-=======
->>>>>>> d959ad24edda2faacd434ad042d52e081eb02510
-            $table->timestamps();
+            $table->enum('role', ['admin', 'operador'])->default('operador');`r`n            $table->timestamps();
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
@@ -51,3 +47,4 @@ return new class extends Migration
         Schema::dropIfExists('sessions');
     }
 };
+
