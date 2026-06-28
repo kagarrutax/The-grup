@@ -28,7 +28,7 @@ Capa **Model** — entidades Eloquent y relaciones.
 
 ## Campos clave Product
 
-- `sku` — único
+- `ID` — único
 - `stock_quantity` — solo vía movimientos, no formulario producto
 - `stock_minimum` — alerta dashboard
 

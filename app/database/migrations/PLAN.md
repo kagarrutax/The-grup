@@ -22,7 +22,7 @@ Definición del esquema MySQL mediante migraciones Laravel.
 ```sql
 users          → role ENUM('admin','operador')
 categories     → name, description
-products       → category_id FK, sku UNIQUE, stock_quantity, stock_minimum
+products       → category_id FK, ID UNIQUE, stock_quantity, stock_minimum
 stock_movements → product_id FK, user_id FK, type ENUM('entrada','salida')
 ```
 
