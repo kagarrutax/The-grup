@@ -14,10 +14,6 @@
         </a>
     </div>
 
-<<<<<<< HEAD
-    {{-- Buscador: nombre, ID y categoría (Fase 6) --}}
-=======
->>>>>>> 574ccbe742075045b00299a188ad3088845aa24a
     <div class="card card-app mb-4">
         <div class="card-header pt-4 px-4">
             <h2 class="h6 fw-bold mb-0"><i class="bi bi-search me-2 text-primary"></i>Buscador</h2>
@@ -30,15 +26,9 @@
                            placeholder="Buscar por nombre" value="{{ request('name') }}">
                 </div>
                 <div class="col-12 col-md-4">
-<<<<<<< HEAD
-                    <label for="id" class="form-label fw-medium">ID</label>
-                    <input type="text" class="form-control" id="id" name="id"
-                           placeholder="Ej: ARZ-001" value="">
-=======
                     <label for="sku" class="form-label fw-medium">SKU</label>
                     <input type="text" class="form-control" id="sku" name="sku"
                            placeholder="Ej: ARZ-001" value="{{ request('sku') }}">
->>>>>>> 574ccbe742075045b00299a188ad3088845aa24a
                 </div>
                 <div class="col-12 col-md-4">
                     <label for="category_id" class="form-label fw-medium">Categoría</label>
