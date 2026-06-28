@@ -1,10 +1,10 @@
 # Spec 001 — Sistema de inventario para supermercado
 
-> **Estado:** Aprobado  
+> **Estado:** Completado (integración frontend ↔ backend pendiente de merge)  
 > **Solicitud:** Sistema de gestión de inventario con Laravel 11, MySQL y MVC  
 > **Skill asociada:** `skill/inventario-supermercado/SKILL.md`  
 > **Stack:** Laravel 11 · MySQL · Blade · Bootstrap 5 · Laravel Breeze  
-> **Última actualización:** 2026-06-05
+> **Última actualización:** 2026-06-27
 
 ---
 
@@ -16,7 +16,7 @@ Construir un sistema web MVC para gestionar el inventario de un supermercado: pr
 
 ### Incluido
 
-- Autenticación (login, registro, logout) con Laravel Breeze
+- Autenticación (login, logout) con Laravel Breeze — **solo administradores**
 - CRUD de categorías
 - CRUD de productos (SKU único, categoría, precio, stock mínimo)
 - Movimientos de stock (entrada/salida) con validación de stock no negativo
@@ -46,7 +46,7 @@ Construir un sistema web MVC para gestionar el inventario de un supermercado: pr
 
 ### Tablas
 
-- `users` — name, email, password, role (admin|operador)
+- `users` — name, email, password, role (`admin` únicamente)
 - `categories` — name, description
 - `products` — category_id, name, sku (unique), price, stock_quantity, stock_minimum, unit, status
 - `stock_movements` — product_id, user_id, type (entrada|salida), quantity, reason
@@ -62,48 +62,50 @@ categories (1) ──< products (N)
 
 ### Fase 1 — Instalación y base (Día 1-2)
 
-- [ ] `composer create-project`, Breeze blade, npm build
-- [ ] `.env` MySQL, `php artisan migrate`
-- [ ] Layout base `resources/views/layouts/app.blade.php`
+- [x] `composer create-project`, Breeze blade, npm build
+- [x] `.env` MySQL, `php artisan migrate`
+- [x] Layout base `resources/views/layouts/app.blade.php`
 
 **Criterio de done:** App arranca, auth Breeze funcional.
 
 ### Fase 2 — Categorías (Día 2-3)
 
-- [ ] Modelo, migración, CategoryController resource
-- [ ] Vistas CRUD categorías
-- [ ] Rutas en `web.php` con middleware auth
+- [x] Modelo, migración, CategoryController resource
+- [x] Vistas CRUD categorías *(Jessica — `categorias/` en `main`)*
+- [x] Rutas en `web.php` con middleware auth
 
 **Criterio de done:** CRUD categorías completo.
 
 ### Fase 3 — Productos (Día 3-4)
 
-- [ ] ProductController resource con validación SKU único
-- [ ] `stock_quantity` no editable desde formulario producto
-- [ ] Vistas CRUD productos
+- [x] ProductController resource con validación SKU único
+- [x] `stock_quantity` no editable desde formulario producto
+- [x] Vistas CRUD productos *(Jessica — `productos/` en `main`)*
 
 **Criterio de done:** Productos vinculados a categorías.
 
 ### Fase 4 — Movimientos de stock (Día 4-5)
 
-- [ ] StockController / MovementController
-- [ ] Validación salida > stock disponible
-- [ ] Actualización atómica de `stock_quantity`
+- [x] StockController / MovementController
+- [x] Validación salida > stock disponible
+- [x] Actualización atómica de `stock_quantity`
+- [x] Vistas stock *(Jessica — `inventario/index` en `main`)*
 
 **Criterio de done:** Entradas/salidas registradas sin stock negativo.
 
 ### Fase 5 — Dashboard (Día 5-6)
 
-- [ ] DashboardController con métricas
-- [ ] Vista con tarjetas Bootstrap
-- [ ] Últimos 10 movimientos
+- [x] DashboardController con métricas
+- [x] Vista con tarjetas Bootstrap *(Jessica — `dashboard/index`)*
+- [x] Últimos 10 movimientos
 
 **Criterio de done:** Panel con totales y alertas stock bajo.
 
 ### Fase 6 — Buscador (Día 6)
 
-- [ ] Scope/búsqueda en ProductController@index
-- [ ] Filtro por nombre, SKU y categoría (GET)
+- [x] Scope/búsqueda en ProductController@index
+- [x] Filtro por nombre, SKU y categoría (GET)
+- [x] Formulario buscador en vista *(Jessica — `productos/index` + `products/index`)*
 
 **Criterio de done:** Listado filtrable sin JS obligatorio.
 
@@ -123,7 +125,7 @@ categories (1) ──< products (N)
 - Middleware `auth` en rutas administrativas
 - Validación servidor en todos los store/update
 - `.env` fuera del repo
-- Roles admin/operador en users
+- Roles admin/operador en users → **solo cuentas admin; registro público deshabilitado**
 
 ## Riesgos
 
@@ -138,3 +140,11 @@ categories (1) ──< products (N)
 | Fecha | Fase | Acción | Resultado |
 |-------|------|--------|-----------|
 | 2026-06-05 | — | Spec y estructura Laravel creadas | Plan listo |
+| 2026-06-27 | 1 | Laravel 12 + Breeze, MySQL `the_grup`, layout Bootstrap | PASS — auth tests 4/4 |
+| 2026-06-27 | 2 | Backend categorías: model, migration, controller, routes | PASS — CategoryTest 6/6 |
+| 2026-06-27 | 3 | Backend productos: model, migration, controller, SKU único | PASS — ProductTest 2/2 |
+| 2026-06-27 | 4 | Backend stock: StockMovement, StockController, transacción | PASS — StockMovementTest 5/5 |
+| 2026-06-27 | 5 | Backend dashboard: DashboardController, métricas, scope lowStock | PASS — DashboardTest 4/4 |
+| 2026-06-27 | 6 | Backend buscador: scopeSearch, filtros GET en ProductController | PASS — ProductTest 6/6 |
+| 2026-06-27 | 2–6 | Frontend Jessica: categorías, productos, inventario, dashboard | PASS — vistas en `origin/main` |
+| 2026-06-27 | — | Auth admin-only: sin registro, home→login, middleware admin | PASS — AdminAccessTest |
