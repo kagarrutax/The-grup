@@ -7,7 +7,7 @@
     <div class="auth-card">
         <div class="text-center mb-4">
             <div class="auth-brand mx-auto mb-3">
-                <i class="bi bi-shop-window"></i>
+                <i class="bi bi-box"></i>
             </div>
             <h1 class="h4 fw-bold mb-1">The Grup</h1>
             <p class="text-muted small mb-0">Sistema de inventario — ingresa tus credenciales</p>
@@ -23,34 +23,37 @@
             @csrf
 
             <div class="mb-3">
-                <label for="email" class="form-label fw-medium">Correo electrónico</label>
-                <div class="input-group">
-                    <span class="input-group-text bg-white"><i class="bi bi-envelope text-muted"></i></span>
-                    <input type="email" class="form-control" id="email" name="email"
-                           value="{{ old('email') }}" placeholder="tu@correo.com" required autofocus>
-                </div>
+                <label for="email" class="auth-label">Correo electrónico</label>
+                <input type="email" class="auth-input" id="email" name="email"
+                       value="{{ old('email') }}" placeholder="tu@correo.com" required autofocus>
             </div>
 
-            <div class="mb-4">
-                <label for="password" class="form-label fw-medium">Contraseña</label>
-                <div class="input-group">
-                    <span class="input-group-text bg-white"><i class="bi bi-lock text-muted"></i></span>
-                    <input type="password" class="form-control" id="password" name="password"
+            <div class="mb-3">
+                <label for="password" class="auth-label">Contraseña</label>
+                <div class="position-relative">
+                    <input type="password" class="auth-input pe-5" id="password" name="password"
                            placeholder="••••••••" required>
-                    <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+                    <button class="btn-password-toggle" type="button" id="togglePassword">
                         <i class="bi bi-eye" id="togglePasswordIcon"></i>
                     </button>
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-primary w-100 py-2 rounded-3 fw-semibold">
+            <div class="d-flex align-items-center mb-4">
+                <input class="auth-checkbox me-2" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                <label class="form-check-label text-muted small mb-0" for="remember" style="cursor: pointer; user-select: none;">
+                    Recordarme
+                </label>
+            </div>
+
+            <button type="submit" class="btn btn-auth-gradient w-100 py-2">
                 <i class="bi bi-box-arrow-in-right me-1"></i> Iniciar sesión
             </button>
         </form>
 
-        <p class="text-muted small text-center mt-4 mb-0">
-            Demo: <strong>admin@supermercado.com</strong> / <strong>password</strong>
-        </p>
+        <div class="auth-demo-card mt-4">
+            <span class="text-muted small">Demo: <strong>admin@supermercado.com</strong> / <strong>password</strong></span>
+        </div>
     </div>
 </div>
 @endsection

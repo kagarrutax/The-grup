@@ -21,13 +21,47 @@
     </div>
 
     <div class="topbar-actions">
-        <div class="topbar-date">
+        <button class="topbar-date topbar-date-button" type="button">
             <i class="bi bi-calendar3"></i>
             <span>Oct 2023 – {{ now()->format('M Y') }}</span>
-        </div>
-        <button class="topbar-btn" type="button" aria-label="Notificaciones">
-            <i class="bi bi-bell"></i>
+            <i class="bi bi-chevron-down small"></i>
         </button>
-        <div class="user-avatar" title="{{ $user?->name ?? 'Usuario' }}">{{ $initials ?: 'AD' }}</div>
+        <button class="topbar-btn topbar-btn-notification" type="button" aria-label="Notificaciones">
+            <i class="bi bi-bell"></i>
+            <span class="topbar-dot">3</span>
+        </button>
+        
+        <div class="dropdown">
+            <button class="user-avatar dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" title="{{ $user?->name ?? 'Usuario' }}">
+                {{ $initials ?: 'AD' }}
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+                <li><span class="dropdown-header">{{ $user?->name ?? 'Usuario' }}</span></li>
+                <li><span class="dropdown-item-text small text-muted">{{ $user?->email ?? 'user@example.com' }}</span></li>
+                <li><hr class="dropdown-divider"></li>
+                <li>
+                    <a class="dropdown-item" href="{{ route('profile.edit') }}">
+                        <i class="bi bi-person-circle me-2"></i>Mi Perfil
+                    </a>
+                </li>
+                <li>
+                    <button type="button" class="dropdown-item text-danger" onclick="performLogout()">
+                        <i class="bi bi-box-arrow-right me-2"></i>Cerrar Sesión
+                    </button>
+                </li>
+            </ul>
+        </div>
     </div>
 </header>
+
+<form id="logoutForm" action="{{ route('logout') }}" method="POST" style="display: none;">
+    @csrf
+</form>
+
+<script>
+function performLogout() {
+    if (confirm('¿Deseas cerrar sesión?')) {
+        document.getElementById('logoutForm').submit();
+    }
+}
+</script>

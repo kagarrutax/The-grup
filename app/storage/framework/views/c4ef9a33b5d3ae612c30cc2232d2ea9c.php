@@ -55,15 +55,17 @@
                                 </td>
                                 <td>$<?php echo e(number_format($product->price, 2)); ?></td>
                                 <td class="text-end">
-                                    <button class="btn btn-sm btn-outline-info" onclick="viewProduct(<?php echo e($product->id); ?>)">
-                                        <i class="bi bi-eye me-1"></i> Ver
-                                    </button>
-                                    <button class="btn btn-sm btn-outline-secondary" onclick="editProduct(<?php echo e($product->id); ?>)">
-                                        <i class="bi bi-pencil me-1"></i> Editar
-                                    </button>
-                                    <button class="btn btn-sm btn-outline-danger" onclick="showDeleteConfirmation('<?php echo e($product->name); ?>', '<?php echo e(route('products.destroy', $product)); ?>', 'producto')">
-                                        <i class="bi bi-trash me-1"></i> Eliminar
-                                    </button>
+                                    <div class="btn-group btn-group-sm" role="group">
+                                        <button class="btn btn-outline-info" onclick="viewProduct(<?php echo e($product->id); ?>)" title="Ver detalles">
+                                            <i class="bi bi-eye"></i>
+                                        </button>
+                                        <button class="btn btn-outline-warning" onclick="editProduct(<?php echo e($product->id); ?>)" title="Editar producto">
+                                            <i class="bi bi-pencil"></i>
+                                        </button>
+                                        <button class="btn btn-outline-danger" onclick="showDeleteConfirmation('<?php echo e($product->name); ?>', '<?php echo e(route('products.destroy', $product)); ?>', 'producto')" title="Eliminar">
+                                            <i class="bi bi-trash3"></i>
+                                        </button>
+                                    </div>
                                 </td>
                             </tr>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>

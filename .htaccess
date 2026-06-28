@@ -4,8 +4,8 @@
     # Redirect build asset requests to the copied build directory.
     RewriteRule ^build/(.*)$ build/$1 [L]
 
-    # Static CSS at project root (Laragon document root).
-    RewriteRule ^css/(.*)$ css/$1 [L]
+    # Serve CSS assets from the Laravel public directory.
+    RewriteRule ^css/(.*)$ app/public/css/$1 [L]
 
     # Serve existing files directly.
     RewriteCond %{REQUEST_FILENAME} !-f
