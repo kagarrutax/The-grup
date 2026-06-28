@@ -3,39 +3,37 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><?php echo $__env->yieldContent('title', 'Inventario'); ?> — The Grup</title>
+    <title>@yield('title', 'Inventario') — The Grup</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="<?php echo e(asset('css/inventario.css')); ?>">
-    <?php echo $__env->yieldPushContent('styles'); ?>
+    <link rel="stylesheet" href="{{ asset('css/inventario.css') }}">
+    @stack('styles')
 </head>
 <body>
 <div class="app-shell">
-    <?php echo $__env->make('partials.sidebar', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+    @include('partials.sidebar')
 
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
     <div class="app-main">
-        <?php echo $__env->make('partials.topbar', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+        @include('partials.topbar')
 
         <main class="app-content">
-            <?php if(session('success')): ?>
+            @if(session('success'))
                 <div class="alert alert-success alert-dismissible fade show rounded-3 shadow-sm" role="alert">
-                    <i class="bi bi-check-circle-fill me-2"></i><?php echo e(session('success')); ?>
-
+                    <i class="bi bi-check-circle-fill me-2"></i>{{ session('success') }}
                     <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                 </div>
-            <?php endif; ?>
+            @endif
 
-            <?php if(session('error')): ?>
+            @if(session('error'))
                 <div class="alert alert-danger alert-dismissible fade show rounded-3 shadow-sm" role="alert">
-                    <i class="bi bi-exclamation-triangle-fill me-2"></i><?php echo e(session('error')); ?>
-
+                    <i class="bi bi-exclamation-triangle-fill me-2"></i>{{ session('error') }}
                     <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                 </div>
-            <?php endif; ?>
+            @endif
 
-            <?php echo $__env->yieldContent('content'); ?>
+            @yield('content')
         </main>
     </div>
 </div>
@@ -57,7 +55,6 @@
         });
     })();
 </script>
-<?php echo $__env->yieldPushContent('scripts'); ?>
+@stack('scripts')
 </body>
 </html>
-<?php /**PATH C:\laragon\www\The-grup\app\resources\views/layouts/app.blade.php ENDPATH**/ ?>

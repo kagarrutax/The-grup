@@ -1,10 +1,10 @@
+@extends('layouts.app')
 
+@section('title', 'Dashboard')
+@section('page-title', 'Dashboard')
+@section('page-subtitle', 'Resumen del inventario en tiempo real')
 
-<?php $__env->startSection('title', 'Dashboard'); ?>
-<?php $__env->startSection('page-title', 'Dashboard'); ?>
-<?php $__env->startSection('page-subtitle', 'Resumen del inventario en tiempo real'); ?>
-
-<?php $__env->startSection('content'); ?>
+@section('content')
 <div class="row g-4 mb-4">
     <div class="col-lg-8">
         <div class="card-app h-100">
@@ -21,21 +21,20 @@
         <div class="card-app h-100">
             <div class="card-header bg-transparent">Actividad reciente</div>
             <div class="card-body pt-0">
-                <?php $__currentLoopData = $recentActivity; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                @foreach($recentActivity as $item)
                     <div class="activity-item">
                         <div>
-                            <div class="fw-medium"><?php echo e($item['product']); ?></div>
-                            <div class="activity-meta"><?php echo e($item['detail']); ?> · <?php echo e($item['time']); ?></div>
+                            <div class="fw-medium">{{ $item['product'] }}</div>
+                            <div class="activity-meta">{{ $item['detail'] }} · {{ $item['time'] }}</div>
                         </div>
                         <div class="text-end">
-                            <div class="activity-meta mb-1"><?php echo e($item['sku']); ?></div>
-                            <span class="activity-badge <?php echo e($item['type'] === 'entrada' ? 'badge-entrada' : 'badge-salida'); ?>">
-                                <?php echo e(strtoupper($item['type'])); ?> <?php echo e($item['qty']); ?>
-
+                            <div class="activity-meta mb-1">{{ $item['sku'] }}</div>
+                            <span class="activity-badge {{ $item['type'] === 'entrada' ? 'badge-entrada' : 'badge-salida' }}">
+                                {{ strtoupper($item['type']) }} {{ $item['qty'] }}
                             </span>
                         </div>
                     </div>
-                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                @endforeach
             </div>
         </div>
     </div>
@@ -46,17 +45,17 @@
         <div class="card-app h-100">
             <div class="card-header bg-transparent">Productos con poco stock</div>
             <div class="card-body">
-                <?php $__currentLoopData = $lowStock; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                @foreach($lowStock as $item)
                     <div class="stock-bar-wrap">
                         <div class="stock-bar-label">
-                            <span><?php echo e($item['name']); ?></span>
-                            <span class="text-muted"><?php echo e($item['current']); ?> / <?php echo e($item['max']); ?></span>
+                            <span>{{ $item['name'] }}</span>
+                            <span class="text-muted">{{ $item['current'] }} / {{ $item['max'] }}</span>
                         </div>
                         <div class="stock-bar">
-                            <div class="stock-bar-fill <?php echo e($item['level']); ?>" style="width: <?php echo e($item['percent']); ?>%"></div>
+                            <div class="stock-bar-fill {{ $item['level'] }}" style="width: {{ $item['percent'] }}%"></div>
                         </div>
                     </div>
-                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                @endforeach
             </div>
         </div>
     </div>
@@ -64,29 +63,29 @@
         <div class="card-app h-100">
             <div class="card-header bg-transparent">Top categorías</div>
             <div class="card-body pt-2">
-                <?php $__currentLoopData = $topCategories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $cat): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                @foreach($topCategories as $cat)
                     <div class="category-row">
-                        <span><?php echo e($cat['name']); ?></span>
-                        <span class="category-count"><?php echo e($cat['count']); ?></span>
+                        <span>{{ $cat['name'] }}</span>
+                        <span class="category-count">{{ $cat['count'] }}</span>
                     </div>
-                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                @endforeach
             </div>
         </div>
     </div>
 </div>
-<?php $__env->stopSection(); ?>
+@endsection
 
-<?php $__env->startPush('scripts'); ?>
+@push('scripts')
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <script>
     new Chart(document.getElementById('movementsChart'), {
         type: 'line',
         data: {
-            labels: <?php echo json_encode($chartLabels, 15, 512) ?>,
+            labels: @json($chartLabels),
             datasets: [
                 {
                     label: 'Entradas',
-                    data: <?php echo json_encode($chartEntradas, 15, 512) ?>,
+                    data: @json($chartEntradas),
                     borderColor: '#2563eb',
                     backgroundColor: 'rgba(37, 99, 235, 0.08)',
                     fill: true,
@@ -94,7 +93,7 @@
                 },
                 {
                     label: 'Salidas',
-                    data: <?php echo json_encode($chartSalidas, 15, 512) ?>,
+                    data: @json($chartSalidas),
                     borderColor: '#94a3b8',
                     backgroundColor: 'transparent',
                     tension: 0.4,
@@ -111,6 +110,4 @@
         }
     });
 </script>
-<?php $__env->stopPush(); ?>
-
-<?php echo $__env->make('layouts.app', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\laragon\www\The-grup\app\resources\views/dashboard/index.blade.php ENDPATH**/ ?>
+@endpush

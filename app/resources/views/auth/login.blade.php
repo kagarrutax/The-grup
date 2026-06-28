@@ -1,8 +1,8 @@
+@extends('layouts.guest')
 
+@section('title', 'Iniciar sesión')
 
-<?php $__env->startSection('title', 'Iniciar sesión'); ?>
-
-<?php $__env->startSection('content'); ?>
+@section('content')
 <div class="auth-page">
     <div class="auth-card">
         <div class="text-center mb-4">
@@ -13,22 +13,21 @@
             <p class="text-muted small mb-0">Sistema de inventario — ingresa tus credenciales</p>
         </div>
 
-        <?php if(session('error')): ?>
+        @if(session('error'))
             <div class="alert alert-danger rounded-3 py-2 mb-4">
-                <i class="bi bi-exclamation-triangle-fill me-2"></i><?php echo e(session('error')); ?>
-
+                <i class="bi bi-exclamation-triangle-fill me-2"></i>{{ session('error') }}
             </div>
-        <?php endif; ?>
+        @endif
 
-        <form action="<?php echo e(route('login.post')); ?>" method="POST">
-            <?php echo csrf_field(); ?>
+        <form action="{{ route('login.post') }}" method="POST">
+            @csrf
 
             <div class="mb-3">
                 <label for="email" class="form-label fw-medium">Correo electrónico</label>
                 <div class="input-group">
                     <span class="input-group-text bg-white"><i class="bi bi-envelope text-muted"></i></span>
                     <input type="email" class="form-control" id="email" name="email"
-                           value="<?php echo e(old('email')); ?>" placeholder="tu@correo.com" required autofocus>
+                           value="{{ old('email') }}" placeholder="tu@correo.com" required autofocus>
                 </div>
             </div>
 
@@ -54,9 +53,9 @@
         </p>
     </div>
 </div>
-<?php $__env->stopSection(); ?>
+@endsection
 
-<?php $__env->startSection('scripts'); ?>
+@section('scripts')
 <script>
     document.getElementById('togglePassword')?.addEventListener('click', function () {
         var input = document.getElementById('password');
@@ -67,6 +66,4 @@
         icon.classList.toggle('bi-eye-slash', show);
     });
 </script>
-<?php $__env->stopSection(); ?>
-
-<?php echo $__env->make('layouts.guest', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\laragon\www\The-grup\app\resources\views/auth/login.blade.php ENDPATH**/ ?>
+@endsection

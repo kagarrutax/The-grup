@@ -1,8 +1,8 @@
+@extends('layouts.guest')
 
+@section('title', 'Inicio')
 
-<?php $__env->startSection('title', 'Inicio'); ?>
-
-<?php $__env->startSection('content'); ?>
+@section('content')
 <div class="welcome-hero">
     <div class="container">
         <div class="row align-items-center g-5">
@@ -15,7 +15,7 @@
                     Sistema de inventario para supermercado. Controla productos, categorías y movimientos de stock en un solo lugar.
                 </p>
                 <div class="d-flex flex-wrap gap-3">
-                    <a href="<?php echo e(route('login')); ?>" class="btn btn-primary btn-lg px-4 rounded-3">
+                    <a href="{{ route('login') }}" class="btn btn-primary btn-lg px-4 rounded-3">
                         <i class="bi bi-box-arrow-in-right me-2"></i>Iniciar sesión
                     </a>
                 </div>
@@ -24,15 +24,15 @@
                 <div class="welcome-card">
                     <div class="row g-3 text-center">
                         <div class="col-4">
-                            <div class="fs-2 fw-bold text-primary"><?php echo e($highlights['products']); ?></div>
+                            <div class="fs-2 fw-bold text-primary">{{ $highlights['products'] }}</div>
                             <div class="small text-muted">Productos</div>
                         </div>
                         <div class="col-4">
-                            <div class="fs-2 fw-bold text-success"><?php echo e($highlights['categories']); ?></div>
+                            <div class="fs-2 fw-bold text-success">{{ $highlights['categories'] }}</div>
                             <div class="small text-muted">Categorías</div>
                         </div>
                         <div class="col-4">
-                            <div class="fs-2 fw-bold text-warning"><?php echo e($highlights['movements']); ?></div>
+                            <div class="fs-2 fw-bold text-warning">{{ $highlights['movements'] }}</div>
                             <div class="small text-muted">Movimientos</div>
                         </div>
                     </div>
@@ -47,6 +47,4 @@
         </div>
     </div>
 </div>
-<?php $__env->stopSection(); ?>
-
-<?php echo $__env->make('layouts.guest', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\laragon\www\The-grup\app\resources\views/welcome.blade.php ENDPATH**/ ?>
+@endsection

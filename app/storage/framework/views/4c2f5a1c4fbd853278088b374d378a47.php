@@ -1,0 +1,45 @@
+
+
+<?php $__env->startSection('title', 'Editar categoría'); ?>
+<?php $__env->startSection('page-title', 'Editar categoría'); ?>
+<?php $__env->startSection('page-subtitle', $category->name); ?>
+
+<?php $__env->startSection('content'); ?>
+    <div class="card-app">
+        <div class="card-body">
+            <form action="<?php echo e(route('categories.update', $category)); ?>" method="POST">
+                <?php echo csrf_field(); ?>
+                <?php echo method_field('PATCH'); ?>
+                <div class="mb-3">
+                    <label class="form-label fw-medium">Nombre</label>
+                    <input type="text" name="name" value="<?php echo e(old('name', $category->name)); ?>" class="form-control <?php $__errorArgs = ['name'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" required>
+                    <?php $__errorArgs = ['name'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?><div class="invalid-feedback"><?php echo e($message); ?></div><?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-medium">Descripción</label>
+                    <textarea name="description" rows="3" class="form-control"><?php echo e(old('description', $category->description)); ?></textarea>
+                </div>
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn btn-primary">Actualizar</button>
+                    <a href="<?php echo e(route('categories.index')); ?>" class="btn btn-outline-secondary">Volver</a>
+                </div>
+            </form>
+        </div>
+    </div>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.app', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\laragon\www\The-grup\app\resources\views/categories/edit.blade.php ENDPATH**/ ?>

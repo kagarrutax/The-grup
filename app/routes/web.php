@@ -1,30 +1,50 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StockController;
+use App\Models\Category;
+use App\Models\Product;
+use App\Models\StockMovement;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return auth()->check()
-        ? redirect()->route('dashboard')
-        : redirect()->route('login');
-})->name('home');
+Route::middleware('web')->group(function () {
+    Route::get('/', function (Request $request) {
+        if (Auth::check()) {
+            return redirect()->route('dashboard');
+        }
 
-Route::get('/dashboard', [DashboardController::class, 'index'])
-    ->middleware(['auth', 'verified', 'admin'])
-    ->name('dashboard');
+        return view('welcome', [
+            'highlights' => [
+                'products' => Product::query()->count(),
+                'categories' => Category::query()->count(),
+                'movements' => StockMovement::query()->count(),
+            ],
+        ]);
+    })->name('home');
 
-Route::middleware(['auth', 'admin'])->group(function () {
-    Route::resource('categories', CategoryController::class)->except(['show']);
-    Route::resource('products', ProductController::class)->except(['show']);
-    Route::resource('stock', StockController::class)->only(['index', 'create', 'store']);
+    Route::get('/login', [AuthController::class, 'showLoginForm'])
+        ->name('login');
+    Route::post('/login', [AuthController::class, 'login'])
+        ->name('login.post');
+    Route::post('/logout', [AuthController::class, 'logout'])
+        ->name('logout');
 
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::middleware(['auth', 'admin'])->group(function () {
+        Route::get('/dashboard', [DashboardController::class, 'index'])
+            ->name('dashboard');
+
+        Route::resource('categories', CategoryController::class)->except(['show']);
+        Route::resource('products', ProductController::class)->except(['show']);
+        Route::resource('stock', StockController::class)->only(['index', 'create', 'store']);
+
+        Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+        Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+        Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    });
 });
-
-require __DIR__.'/auth.php';
