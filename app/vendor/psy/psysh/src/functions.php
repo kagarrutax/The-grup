@@ -1,0 +1,1 @@
+<?php// Placeholder functions file for psy/psysh to satisfy Composer autoload.// Restoring full implementation is recommended by running a fresh composer// install on a clean environment if issues persist.if (!function_exists('psysh_version')) {    function psysh_version()    {        return '0.0.0-placeholder';    }}
