@@ -12,12 +12,23 @@ $loginError = isset($_GET['error']) && $_GET['error'] === '1';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< HEAD
+    <title><?= htmlspecialchars($pageTitle) ?> — Inventario</title>
+    <link href="node_modules/@fontsource/inter/400.css" rel="stylesheet">
+    <link href="node_modules/@fontsource/inter/600.css" rel="stylesheet">
+    <link href="node_modules/@fontsource/inter/700.css" rel="stylesheet">
+    <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="node_modules/bootstrap-icons/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="assets/css/variables.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+=======
     <title><?= htmlspecialchars($pageTitle) ?> — SuperMercado</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
     <link href="<?= $assetBase ?>/css/variables.css" rel="stylesheet">
     <link href="<?= $assetBase ?>/css/style.css" rel="stylesheet">
+>>>>>>> d959ad24edda2faacd434ad042d52e081eb02510
 </head>
 <body>
 
@@ -81,6 +92,9 @@ $loginError = isset($_GET['error']) && $_GET['error'] === '1';
 
     </div>
 </div>
+<<<<<<< HEAD
+<script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+=======
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
@@ -114,5 +128,6 @@ $loginError = isset($_GET['error']) && $_GET['error'] === '1';
     });
 })();
 </script>
+>>>>>>> d959ad24edda2faacd434ad042d52e081eb02510
 </body>
 </html>

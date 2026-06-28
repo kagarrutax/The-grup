@@ -18,6 +18,10 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
+<<<<<<< HEAD
+            $table->enum('role', ['admin', 'operador'])->default('operador');
+=======
+>>>>>>> d959ad24edda2faacd434ad042d52e081eb02510
             $table->timestamps();
         });
 

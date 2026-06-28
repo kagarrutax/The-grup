@@ -2,6 +2,14 @@
 
 namespace App\Models;
 
+<<<<<<< HEAD
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Product extends Model
+{
+    use HasFactory;
+=======
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -13,16 +21,27 @@ class Product extends Model
     /** @use HasFactory<\Database\Factories\ProductFactory> */
     use HasFactory;
 
+>>>>>>> d959ad24edda2faacd434ad042d52e081eb02510
     protected $fillable = [
         'category_id',
         'name',
         'sku',
         'price',
+<<<<<<< HEAD
+        'stock_quantity',
+=======
+>>>>>>> d959ad24edda2faacd434ad042d52e081eb02510
         'stock_minimum',
         'unit',
         'status',
     ];
 
+<<<<<<< HEAD
+    /**
+     * Get the category that owns the product.
+     */
+    public function category()
+=======
     protected function casts(): array
     {
         return [
@@ -33,10 +52,20 @@ class Product extends Model
     }
 
     public function category(): BelongsTo
+>>>>>>> d959ad24edda2faacd434ad042d52e081eb02510
     {
         return $this->belongsTo(Category::class);
     }
 
+<<<<<<< HEAD
+    /**
+     * Get the stock movements for the product.
+     */
+    public function stockMovements()
+    {
+        return $this->hasMany(StockMovement::class);
+    }
+=======
     public function stockMovements(): HasMany
     {
         return $this->hasMany(StockMovement::class);
@@ -58,4 +87,5 @@ class Product extends Model
             })
             ->when($categoryId, fn (Builder $query) => $query->where('category_id', $categoryId));
     }
+>>>>>>> d959ad24edda2faacd434ad042d52e081eb02510
 }

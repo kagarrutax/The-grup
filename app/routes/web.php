@@ -1,5 +1,12 @@
 <?php
 
+<<<<<<< HEAD
+use Illuminate\Support\Facades\Route;
+
+Route::get('/', function () {
+    return view('welcome');
+});
+=======
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProductController;
@@ -28,3 +35,4 @@ Route::middleware(['auth', 'admin'])->group(function () {
 });
 
 require __DIR__.'/auth.php';
+>>>>>>> d959ad24edda2faacd434ad042d52e081eb02510
