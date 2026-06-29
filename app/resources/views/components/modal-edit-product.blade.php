@@ -1,14 +1,10 @@
-<!-- Modal para Editar Producto -->
 <div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="editProductModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content modal-content-modern">
             <div class="modal-header modal-header-gradient">
-                <div class="d-flex align-items-center gap-2">
-                    <i class="bi bi-pencil-square icon-header"></i>
-                    <div>
-                        <h5 class="modal-title mb-0" id="editProductModalLabel">Editar Producto</h5>
-                        <small class="text-muted">Actualiza la información</small>
-                    </div>
+                <div>
+                    <h5 class="modal-title mb-0" id="editProductModalLabel">Editar producto</h5>
+                    <small class="text-muted">Edición con ID automático y datos completos</small>
                 </div>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
@@ -16,61 +12,68 @@
                 <form id="editProductForm">
                     @csrf
                     @method('PATCH')
-                    
                     <div class="row g-4">
-                        <div class="col-md-6">
-                            <label class="form-label fw-medium">
-                                <i class="bi bi-type text-primary me-2"></i>Nombre
-                            </label>
-                            <input type="text" id="editName" name="name" class="form-control form-control-modern" placeholder="Nombre del producto" required>
-                            <div class="invalid-feedback" id="nameError"></div>
+                        <div class="col-md-2">
+                            <label class="form-label fw-medium">ID</label>
+                            <input type="text" id="editId" class="form-control form-control-modern" disabled>
                         </div>
-                        <div class="col-md-6">
-                            <label class="form-label fw-medium">
-                                <i class="bi bi-qr-code text-primary me-2"></i>SKU
-                            </label>
-                            <input type="text" id="editSku" name="sku" class="form-control form-control-modern" placeholder="Código SKU" required>
+                        <div class="col-md-4">
+                            <label class="form-label fw-medium">Código</label>
+                            <input type="text" id="editSku" name="sku" class="form-control form-control-modern" placeholder="Código interno" required>
                             <div class="invalid-feedback" id="skuError"></div>
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label fw-medium">
-                                <i class="bi bi-tag text-primary me-2"></i>Categoría
-                            </label>
-                            <select id="editCategory" name="category_id" class="form-select form-select-modern" required>
-                                <option value="">Seleccionar categoría</option>
-                            </select>
+                            <label class="form-label fw-medium">Nombre</label>
+                            <input type="text" id="editName" name="name" class="form-control form-control-modern" placeholder="Nombre del producto" required>
+                            <div class="invalid-feedback" id="nameError"></div>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label fw-medium">Imagen URL</label>
+                            <input type="url" id="editImageUrl" name="image_url" class="form-control form-control-modern" placeholder="https://...">
+                            <div class="invalid-feedback" id="imageUrlError"></div>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label fw-medium">Categoría</label>
+                            <select id="editCategory" name="category_id" class="form-select form-select-modern" required></select>
                             <div class="invalid-feedback" id="categoryError"></div>
                         </div>
-                        <div class="col-md-3">
-                            <label class="form-label fw-medium">
-                                <i class="bi bi-currency-dollar text-primary me-2"></i>Precio
-                            </label>
-                            <input type="number" id="editPrice" name="price" step="0.01" class="form-control form-control-modern" placeholder="0.00" required>
-                            <div class="invalid-feedback" id="priceError"></div>
+                        <div class="col-md-4">
+                            <label class="form-label fw-medium">Proveedor</label>
+                            <select id="editSupplier" name="supplier_id" class="form-select form-select-modern"></select>
+                            <div class="invalid-feedback" id="supplierError"></div>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label fw-medium">Unidad</label>
+                            <input type="text" id="editUnit" name="unit" class="form-control form-control-modern" placeholder="unidad, litro, caja" required>
+                            <div class="invalid-feedback" id="unitError"></div>
                         </div>
                         <div class="col-md-3">
-                            <label class="form-label fw-medium">
-                                <i class="bi bi-exclamation-circle text-primary me-2"></i>Stock mín.
-                            </label>
+                            <label class="form-label fw-medium">Precio compra</label>
+                            <input type="number" id="editPurchasePrice" name="purchase_price" step="0.01" class="form-control form-control-modern" placeholder="0.00" required>
+                            <div class="invalid-feedback" id="purchasePriceError"></div>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label fw-medium">Precio venta</label>
+                            <input type="number" id="editSalePrice" name="sale_price" step="0.01" class="form-control form-control-modern" placeholder="0.00" required>
+                            <div class="invalid-feedback" id="salePriceError"></div>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label fw-medium">Stock mín.</label>
                             <input type="number" id="editStockMinimum" name="stock_minimum" class="form-control form-control-modern" required>
                             <div class="invalid-feedback" id="stockMinError"></div>
                         </div>
-                        <div class="col-md-4">
-                            <label class="form-label fw-medium">
-                                <i class="bi bi-rulers text-primary me-2"></i>Unidad
-                            </label>
-                            <input type="text" id="editUnit" name="unit" class="form-control form-control-modern" placeholder="ej: kg, lt, un" required>
-                            <div class="invalid-feedback" id="unitError"></div>
-                        </div>
-                        <div class="col-md-4">
-                            <label class="form-label fw-medium">
-                                <i class="bi bi-toggle-on text-primary me-2"></i>Estado
-                            </label>
+                        <div class="col-md-3">
+                            <label class="form-label fw-medium">Estado</label>
                             <select id="editStatus" name="status" class="form-select form-select-modern">
                                 <option value="activo">Activo</option>
                                 <option value="inactivo">Inactivo</option>
                             </select>
                             <div class="invalid-feedback" id="statusError"></div>
+                        </div>
+                        <div class="col-12">
+                            <div class="alert alert-light border mb-0">
+                                El stock actual se ajusta desde <strong>Movimientos</strong>; aquí solo editas la ficha del producto.
+                            </div>
                         </div>
                     </div>
                 </form>
@@ -108,17 +111,20 @@
 
     function clearValidationErrors() {
         const fieldErrorMap = {
-            name: 'nameError',
-            sku: 'skuError',
-            category_id: 'categoryError',
-            price: 'priceError',
-            stock_minimum: 'stockMinError',
-            unit: 'unitError',
-            status: 'statusError',
+            name: ['editName', 'nameError'],
+            sku: ['editSku', 'skuError'],
+            image_url: ['editImageUrl', 'imageUrlError'],
+            category_id: ['editCategory', 'categoryError'],
+            supplier_id: ['editSupplier', 'supplierError'],
+            purchase_price: ['editPurchasePrice', 'purchasePriceError'],
+            sale_price: ['editSalePrice', 'salePriceError'],
+            stock_minimum: ['editStockMinimum', 'stockMinError'],
+            unit: ['editUnit', 'unitError'],
+            status: ['editStatus', 'statusError'],
         };
 
-        Object.entries(fieldErrorMap).forEach(([field, errorId]) => {
-            const input = document.getElementById(`edit${field.charAt(0).toUpperCase()}${field.slice(1)}`) ?? document.querySelector(`[name="${field}"]`);
+        Object.values(fieldErrorMap).forEach(([inputId, errorId]) => {
+            const input = document.getElementById(inputId);
             const errorElement = document.getElementById(errorId);
 
             if (input) {
@@ -135,8 +141,11 @@
         const fieldMap = {
             name: ['editName', 'nameError'],
             sku: ['editSku', 'skuError'],
+            image_url: ['editImageUrl', 'imageUrlError'],
             category_id: ['editCategory', 'categoryError'],
-            price: ['editPrice', 'priceError'],
+            supplier_id: ['editSupplier', 'supplierError'],
+            purchase_price: ['editPurchasePrice', 'purchasePriceError'],
+            sale_price: ['editSalePrice', 'salePriceError'],
             stock_minimum: ['editStockMinimum', 'stockMinError'],
             unit: ['editUnit', 'unitError'],
             status: ['editStatus', 'statusError'],
@@ -166,14 +175,20 @@
                 headers: jsonHeaders,
             }).then(parseJsonResponse);
 
+            document.getElementById('editId').value = `#${data.id}`;
             document.getElementById('editName').value = data.name;
             document.getElementById('editSku').value = data.sku;
-            document.getElementById('editPrice').value = data.price;
+            document.getElementById('editImageUrl').value = data.image_url ?? '';
+            document.getElementById('editPurchasePrice').value = data.purchase_price;
+            document.getElementById('editSalePrice').value = data.sale_price;
             document.getElementById('editStockMinimum').value = data.stock_minimum;
             document.getElementById('editUnit').value = data.unit;
             document.getElementById('editStatus').value = data.status;
 
-            await loadCategoriesForEdit(data.category_id);
+            await Promise.all([
+                loadCategoriesForEdit(data.category_id),
+                loadSuppliersForEdit(data.supplier_id),
+            ]);
 
             new bootstrap.Modal(document.getElementById('editProductModal')).show();
         } catch (error) {
@@ -202,6 +217,26 @@
             });
     }
 
+    function loadSuppliersForEdit(selectedSupplierId = null) {
+        return fetch('/suppliers/list', {
+            headers: jsonHeaders,
+        })
+            .then(parseJsonResponse)
+            .then(data => {
+                const select = document.getElementById('editSupplier');
+                select.innerHTML = '<option value="">Sin proveedor</option>';
+
+                data.forEach(supplier => {
+                    const option = document.createElement('option');
+                    option.value = supplier.id;
+                    option.textContent = supplier.name;
+                    select.appendChild(option);
+                });
+
+                select.value = selectedSupplierId ? String(selectedSupplierId) : '';
+            });
+    }
+
     document.getElementById('saveProductBtn').addEventListener('click', function() {
         const form = document.getElementById('editProductForm');
         const formData = new FormData(form);
@@ -217,10 +252,14 @@
             body: formData
         })
         .then(parseJsonResponse)
-        .then(data => {
+        .then(async data => {
             if (data.success) {
                 bootstrap.Modal.getInstance(document.getElementById('editProductModal')).hide();
-                location.reload();
+                if (typeof window.refreshProductsTable === 'function') {
+                    await window.refreshProductsTable();
+                } else {
+                    location.reload();
+                }
             } else {
                 alert('Error: ' + data.message);
             }

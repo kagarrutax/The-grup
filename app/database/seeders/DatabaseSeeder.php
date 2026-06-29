@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Category;
+use App\Models\Supplier;
 use App\Models\Product;
 use App\Models\StockMovement;
 use App\Models\User;
@@ -28,6 +29,7 @@ class DatabaseSeeder extends Seeder
         $categoriesData = [
             'Lácteos' => [
                 'description' => 'Leche, quesos, yogures y derivados lácteos.',
+                'supplier' => 'Distribuidora Láctea Central',
                 'products' => [
                     ['name' => 'Yogurt natural', 'sku' => 'SKU-008', 'unit' => 'unidad', 'price' => 18.50, 'stock' => 5, 'min' => 15],
                     ['name' => 'Leche entera 1L', 'sku' => 'SKU-012', 'unit' => 'litro', 'price' => 24.50, 'stock' => 42, 'min' => 10],
@@ -36,6 +38,7 @@ class DatabaseSeeder extends Seeder
             ],
             'Bebidas' => [
                 'description' => 'Aguas, jugos, refrescos y licores.',
+                'supplier' => 'Bebidas del Norte',
                 'products' => [
                     ['name' => 'Coca-Cola 2L', 'sku' => 'SKU-003', 'unit' => 'pieza', 'price' => 35.00, 'stock' => 60, 'min' => 12],
                     ['name' => 'Jugo de naranja 1L', 'sku' => 'SKU-004', 'unit' => 'litro', 'price' => 22.00, 'stock' => 30, 'min' => 10],
@@ -43,6 +46,7 @@ class DatabaseSeeder extends Seeder
             ],
             'Abarrotes' => [
                 'description' => 'Arroz, frijol, aceites y granos.',
+                'supplier' => 'Abarrotes Nacionales',
                 'products' => [
                     ['name' => 'Arroz premium 500g', 'sku' => 'SKU-001', 'unit' => 'pieza', 'price' => 28.00, 'stock' => 35, 'min' => 10],
                     ['name' => 'Aceite girasol 1L', 'sku' => 'SKU-014', 'unit' => 'litro', 'price' => 45.00, 'stock' => 8, 'min' => 20],
@@ -50,6 +54,7 @@ class DatabaseSeeder extends Seeder
             ],
             'Limpieza' => [
                 'description' => 'Productos de aseo para el hogar.',
+                'supplier' => 'Limpieza Express',
                 'products' => [
                     ['name' => 'Detergente 2L', 'sku' => 'SKU-022', 'unit' => 'litro', 'price' => 42.00, 'stock' => 24, 'min' => 6],
                     ['name' => 'Limpiador multiusos 1L', 'sku' => 'SKU-025', 'unit' => 'litro', 'price' => 26.00, 'stock' => 18, 'min' => 5],
@@ -57,6 +62,7 @@ class DatabaseSeeder extends Seeder
             ],
             'Panadería' => [
                 'description' => 'Pan, galletas y repostería.',
+                'supplier' => 'Panificadora Aurora',
                 'products' => [
                     ['name' => 'Pan integral', 'sku' => 'SKU-023', 'unit' => 'pieza', 'price' => 32.00, 'stock' => 12, 'min' => 30],
                 ],
@@ -71,12 +77,25 @@ class DatabaseSeeder extends Seeder
                 'description' => $data['description'],
             ]);
 
+            $supplier = Supplier::create([
+                'company_name' => $data['supplier'],
+                'contact_name' => 'Equipo de compras',
+                'phone' => '555-010-'.str_pad((string) $category->id, 2, '0', STR_PAD_LEFT),
+                'email' => 'contacto'.$category->id.'@thegrup.test',
+                'address' => 'Zona comercial '.$categoryName,
+                'status' => 'activo',
+            ]);
+
             foreach ($data['products'] as $prod) {
                 $products->push(Product::create([
                     'category_id' => $category->id,
+                    'supplier_id' => $supplier->id,
                     'name' => $prod['name'],
                     'sku' => $prod['sku'],
+                    'image_url' => null,
                     'price' => $prod['price'],
+                    'purchase_price' => $prod['price'],
+                    'sale_price' => $prod['price'] * 1.2,
                     'stock_quantity' => $prod['stock'],
                     'stock_minimum' => $prod['min'],
                     'unit' => $prod['unit'],

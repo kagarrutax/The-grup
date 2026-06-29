@@ -2,10 +2,28 @@
 
 @section('title', 'Dashboard')
 @section('page-title', 'Dashboard')
-@section('page-subtitle', 'Resumen general de tu inventario en tiempo real')
+@section('page-subtitle', 'Visión operativa del inventario con métricas, alertas y actividad reciente')
 
 @section('content')
 <div class="dashboard-page">
+    <section class="dashboard-hero card-app">
+        <div>
+            <span class="dashboard-pill">SaaS Inventory Hub</span>
+            <h2>Controla compras, stock y movimientos desde una sola vista.</h2>
+            <p>Supervisa productos, alertas y valor del inventario con un diseño más limpio y orientado a operación diaria.</p>
+        </div>
+        <div class="dashboard-hero-metrics">
+            <div>
+                <strong>{{ $summaryCards[0]['value'] }}</strong>
+                <span>Productos activos</span>
+            </div>
+            <div>
+                <strong>{{ $summaryCards[4]['value'] }}</strong>
+                <span>Inventario valorizado</span>
+            </div>
+        </div>
+    </section>
+
     <div class="dashboard-summary-grid">
         @foreach($summaryCards as $card)
             <article class="summary-card summary-card-{{ $card['tone'] }}">
@@ -28,12 +46,10 @@
         <section class="card-app dashboard-card dashboard-chart-card">
             <div class="card-header dashboard-card-header">
                 <div>
-                    <h2 class="dashboard-card-title">Movimientos mensuales</h2>
+                    <h2 class="dashboard-card-title">Entradas y salidas</h2>
+                    <p class="dashboard-card-text">Comportamiento de los últimos 7 días</p>
                 </div>
-                <button type="button" class="dashboard-filter-button">
-                    Entradas vs Salidas
-                    <i class="bi bi-chevron-down"></i>
-                </button>
+                <span class="dashboard-filter-badge">Actualización diaria</span>
             </div>
             <div class="card-body chart-card-body">
                 <canvas id="movementsChart" height="120"></canvas>
@@ -43,10 +59,10 @@
         <aside class="card-app dashboard-card activity-card">
             <div class="card-header dashboard-card-header">
                 <h2 class="dashboard-card-title">Actividad reciente</h2>
-                <a href="#" class="dashboard-card-link" onclick="return false;">Ver todas</a>
+                <a href="{{ route('stock.index') }}" class="dashboard-card-link">Ver todas</a>
             </div>
             <div class="card-body activity-card-body">
-                @foreach($recentActivity as $item)
+                @forelse($recentActivity as $item)
                     <div class="activity-item">
                         <div class="activity-icon activity-icon-{{ $item['type'] }}">
                             <i class="bi {{ $item['icon'] }}"></i>
@@ -64,7 +80,9 @@
                             </span>
                         </div>
                     </div>
-                @endforeach
+                @empty
+                    <div class="empty-state-card">No hay actividad reciente registrada.</div>
+                @endforelse
             </div>
         </aside>
     </div>
@@ -73,35 +91,38 @@
         <section class="card-app dashboard-card">
             <div class="card-header dashboard-card-header">
                 <h2 class="dashboard-card-title">Productos con poco stock</h2>
-                <a href="#" class="dashboard-card-link" onclick="return false;">Ver todas</a>
+                <a href="{{ route('products.index', ['search' => '']) }}" class="dashboard-card-link">Ver productos</a>
             </div>
             <div class="card-body stock-card-body">
-                @foreach($lowStock as $item)
+                @forelse($lowStock as $item)
                     <div class="stock-row">
                         <div class="stock-row-icon stock-row-icon-{{ $item['level'] }}">
                             <i class="bi {{ $item['icon'] }}"></i>
                         </div>
                         <div class="stock-row-content">
                             <div class="stock-bar-label">
-                                <span>{{ $item['name'] }}</span>
+                                <span>#{{ $item['id'] }} · {{ $item['name'] }}</span>
                                 <span class="text-muted">{{ $item['current'] }} / {{ $item['max'] }} uds</span>
                             </div>
+                            <div class="activity-meta mb-2">Código {{ $item['code'] }}</div>
                             <div class="stock-bar">
                                 <div class="stock-bar-fill {{ $item['level'] }}" style="width: {{ $item['percent'] }}%"></div>
                             </div>
                         </div>
                     </div>
-                @endforeach
+                @empty
+                    <div class="empty-state-card">No hay productos con stock comprometido.</div>
+                @endforelse
             </div>
         </section>
 
         <section class="card-app dashboard-card">
             <div class="card-header dashboard-card-header">
                 <h2 class="dashboard-card-title">Top categorías</h2>
-                <a href="#" class="dashboard-card-link" onclick="return false;">Ver todas</a>
+                <a href="{{ route('categories.index') }}" class="dashboard-card-link">Ver categorías</a>
             </div>
             <div class="card-body category-card-body">
-                @foreach($topCategories as $cat)
+                @forelse($topCategories as $cat)
                     <div class="category-row">
                         <div class="category-info">
                             <div class="category-icon">
@@ -114,7 +135,9 @@
                         </div>
                         <span class="category-count">{{ number_format($cat['stock_total']) }} uds</span>
                     </div>
-                @endforeach
+                @empty
+                    <div class="empty-state-card">Aún no hay categorías con datos suficientes.</div>
+                @endforelse
             </div>
         </section>
     </div>

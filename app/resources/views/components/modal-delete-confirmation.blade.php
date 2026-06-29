@@ -59,10 +59,12 @@
             method: 'DELETE',
             headers: {
                 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                'Accept': 'application/json',
+                'X-Requested-With': 'XMLHttpRequest',
             }
         })
         .then(response => response.json())
-        .then(data => {
+        .then(async data => {
             if (data.success) {
                 bootstrap.Modal.getInstance(document.getElementById('deleteConfirmationModal')).hide();
                 // Mostrar feedback de éxito
@@ -75,7 +77,15 @@
                     <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                 `;
                 document.body.appendChild(alert);
-                setTimeout(() => location.reload(), 1500);
+
+                setTimeout(async () => {
+                    if (typeof window.refreshCurrentTable === 'function') {
+                        await window.refreshCurrentTable();
+                        alert.remove();
+                    } else {
+                        location.reload();
+                    }
+                }, 900);
             } else {
                 btn.disabled = false;
                 btn.innerHTML = '<i class="bi bi-trash3 me-2"></i>Eliminar';

@@ -3,16 +3,32 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Support\SqlSearch;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $search = $request->string('search')->trim()->toString();
+        $searchPattern = SqlSearch::like($search);
+
         $categories = Category::query()
             ->withCount('products')
+            ->when($search !== '', function ($query) use ($searchPattern): void {
+                $query->where(function ($query) use ($searchPattern): void {
+                    $query->whereRaw(SqlSearch::expression('CAST(categories.id AS CHAR)').' LIKE ?', [$searchPattern])
+                        ->orWhereRaw(SqlSearch::expression('categories.name').' LIKE ?', [$searchPattern])
+                        ->orWhereRaw(SqlSearch::expression('categories.description').' LIKE ?', [$searchPattern]);
+                });
+            })
             ->orderBy('name')
-            ->paginate(15);
+            ->paginate(15)
+            ->withQueryString();
+
+        if ($request->ajax()) {
+            return view('categories.partials.table', compact('categories'));
+        }
 
         return view('categories.index', compact('categories'));
     }
@@ -26,6 +42,17 @@ class CategoryController extends Controller
         return response()->json($categories);
     }
 
+    public function show(Category $category)
+    {
+        $category->loadCount('products');
+
+        if (request()->wantsJson()) {
+            return response()->json($category);
+        }
+
+        return view('categories.show', compact('category'));
+    }
+
     public function create()
     {
         return view('categories.create');
@@ -37,11 +64,22 @@ class CategoryController extends Controller
 
         Category::create($validated);
 
+        if ($request->wantsJson()) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Categoría creada correctamente.',
+            ]);
+        }
+
         return redirect()->route('categories.index')->with('success', 'Categoría creada correctamente.');
     }
 
     public function edit(Category $category)
     {
+        if (request()->wantsJson()) {
+            return response()->json($category);
+        }
+
         return view('categories.edit', compact('category'));
     }
 
@@ -51,12 +89,26 @@ class CategoryController extends Controller
 
         $category->update($validated);
 
+        if ($request->wantsJson()) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Categoría actualizada correctamente.',
+            ]);
+        }
+
         return redirect()->route('categories.index')->with('success', 'Categoría actualizada correctamente.');
     }
 
     public function destroy(Category $category)
     {
         $category->delete();
+
+        if (request()->wantsJson()) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Categoría eliminada correctamente.',
+            ]);
+        }
 
         return redirect()->route('categories.index')->with('success', 'Categoría eliminada correctamente.');
     }

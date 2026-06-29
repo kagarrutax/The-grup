@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Support\InventorySchema;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -15,9 +16,13 @@ class Product extends Model
 
     protected $fillable = [
         'category_id',
+        'supplier_id',
         'name',
         'sku',
+        'image_url',
         'price',
+        'purchase_price',
+        'sale_price',
         'stock_quantity',
         'stock_minimum',
         'unit',
@@ -28,6 +33,8 @@ class Product extends Model
     {
         return [
             'price' => 'decimal:2',
+            'purchase_price' => 'decimal:2',
+            'sale_price' => 'decimal:2',
             'stock_quantity' => 'integer',
             'stock_minimum' => 'integer',
         ];
@@ -36,6 +43,11 @@ class Product extends Model
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function supplier(): BelongsTo
+    {
+        return $this->belongsTo(Supplier::class);
     }
 
     public function stockMovements(): HasMany
@@ -48,15 +60,25 @@ class Product extends Model
         return $query->whereColumn('stock_quantity', '<=', 'stock_minimum');
     }
 
-    public function scopeSearch(Builder $query, ?string $search = null, ?int $categoryId = null): Builder
+    public function getPurchasePriceAttribute($value): float
     {
-        return $query
-            ->when($search, function (Builder $query) use ($search): void {
-                $query->where(function (Builder $query) use ($search): void {
-                    $query->where('name', 'like', '%'.$search.'%')
-                        ->orWhere('sku', 'like', '%'.$search.'%');
-                });
-            })
-            ->when($categoryId, fn (Builder $query) => $query->where('category_id', $categoryId));
+        if ($value !== null) {
+            return (float) $value;
+        }
+
+        return InventorySchema::productHasPurchasePrice()
+            ? 0.0
+            : (float) ($this->attributes['price'] ?? 0);
+    }
+
+    public function getSalePriceAttribute($value): float
+    {
+        if ($value !== null) {
+            return (float) $value;
+        }
+
+        return InventorySchema::productHasSalePrice()
+            ? 0.0
+            : (float) ($this->attributes['price'] ?? 0);
     }
 }

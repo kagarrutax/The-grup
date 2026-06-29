@@ -5,23 +5,28 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\StockMovement;
+use App\Support\InventorySchema;
+use App\Support\InventoryNotificationService;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
     public function index(Request $request)
     {
-        $months = collect(range(5, 0))->map(fn ($i) => now()->subMonths($i));
-        $chartLabels = $months->map(fn ($d) => ucfirst($d->translatedFormat('M')))->all();
+        if (InventorySchema::hasNotificationsTable()) {
+            InventoryNotificationService::syncStockAlerts();
+        }
 
-        $currentMonth = now();
-        $previousMonth = now()->copy()->subMonth();
+        $days = collect(range(6, 0))->map(fn ($i) => now()->subDays($i));
+        $chartLabels = $days->map(fn ($d) => ucfirst($d->translatedFormat('d M')))->all();
 
-        $sumMovementsByMonth = function (string $type, $month): int {
+        $today = now();
+        $yesterday = now()->copy()->subDay();
+
+        $sumMovementsByDay = function (string $type, $date): int {
             return (int) StockMovement::query()
                 ->where('type', $type)
-                ->whereYear('created_at', $month->year)
-                ->whereMonth('created_at', $month->month)
+                ->whereDate('created_at', $date->toDateString())
                 ->sum('quantity');
         };
 
@@ -41,19 +46,17 @@ class DashboardController extends Controller
             ];
         };
 
-        $chartEntradas = $months->map(function ($month) {
+        $chartEntradas = $days->map(function ($day) {
             return StockMovement::query()
                 ->where('type', StockMovement::TYPE_ENTRADA)
-                ->whereYear('created_at', $month->year)
-                ->whereMonth('created_at', $month->month)
+                ->whereDate('created_at', $day->toDateString())
                 ->sum('quantity');
         })->all();
 
-        $chartSalidas = $months->map(function ($month) {
+        $chartSalidas = $days->map(function ($day) {
             return StockMovement::query()
                 ->where('type', StockMovement::TYPE_SALIDA)
-                ->whereYear('created_at', $month->year)
-                ->whereMonth('created_at', $month->month)
+                ->whereDate('created_at', $day->toDateString())
                 ->sum('quantity');
         })->all();
 
@@ -61,16 +64,22 @@ class DashboardController extends Controller
         $productsPrevious = max($productsCount - 3, 1);
         $productsTrend = $formatTrend($productsCount, $productsPrevious);
 
-        $entriesThisMonth = $sumMovementsByMonth(StockMovement::TYPE_ENTRADA, $currentMonth);
-        $entriesLastMonth = $sumMovementsByMonth(StockMovement::TYPE_ENTRADA, $previousMonth);
-        $entriesTrend = $formatTrend($entriesThisMonth, $entriesLastMonth);
+        $lowStockCount = (int) Product::query()->lowStock()->count();
+        $lowStockPrevious = max($lowStockCount - 1, 1);
+        $lowStockTrend = $formatTrend($lowStockCount, $lowStockPrevious);
 
-        $salidasThisMonth = $sumMovementsByMonth(StockMovement::TYPE_SALIDA, $currentMonth);
-        $salidasLastMonth = $sumMovementsByMonth(StockMovement::TYPE_SALIDA, $previousMonth);
-        $salidasTrend = $formatTrend($salidasThisMonth, $salidasLastMonth);
+        $entriesToday = $sumMovementsByDay(StockMovement::TYPE_ENTRADA, $today);
+        $entriesYesterday = $sumMovementsByDay(StockMovement::TYPE_ENTRADA, $yesterday);
+        $entriesTrend = $formatTrend($entriesToday, $entriesYesterday);
+
+        $salidasToday = $sumMovementsByDay(StockMovement::TYPE_SALIDA, $today);
+        $salidasYesterday = $sumMovementsByDay(StockMovement::TYPE_SALIDA, $yesterday);
+        $salidasTrend = $formatTrend($salidasToday, $salidasYesterday);
+
+        $priceColumn = InventorySchema::productHasPurchasePrice() ? 'purchase_price' : 'price';
 
         $totalInventoryValue = (float) Product::query()
-            ->selectRaw('COALESCE(SUM(price * stock_quantity), 0) as total')
+            ->selectRaw("COALESCE(SUM({$priceColumn} * stock_quantity), 0) as total")
             ->value('total');
         $inventoryPrevious = max($totalInventoryValue - 3200, 1);
         $inventoryTrend = $formatTrend($totalInventoryValue, $inventoryPrevious);
@@ -86,19 +95,28 @@ class DashboardController extends Controller
                 'trendDirection' => $productsTrend['direction'],
             ],
             [
-                'title' => 'Entradas',
-                'value' => number_format($entriesThisMonth),
-                'description' => 'Este mes',
-                'icon' => 'bi-arrow-down',
+                'title' => 'Stock bajo',
+                'value' => number_format($lowStockCount),
+                'description' => 'Productos por reabastecer',
+                'icon' => 'bi-exclamation-circle',
+                'tone' => 'warning',
+                'trend' => $lowStockTrend['value'],
+                'trendDirection' => $lowStockTrend['direction'],
+            ],
+            [
+                'title' => 'Entradas del día',
+                'value' => number_format($entriesToday),
+                'description' => 'Ingresos de hoy',
+                'icon' => 'bi-arrow-down-circle',
                 'tone' => 'success',
                 'trend' => $entriesTrend['value'],
                 'trendDirection' => $entriesTrend['direction'],
             ],
             [
-                'title' => 'Salidas',
-                'value' => number_format($salidasThisMonth),
-                'description' => 'Este mes',
-                'icon' => 'bi-arrow-up',
+                'title' => 'Salidas del día',
+                'value' => number_format($salidasToday),
+                'description' => 'Despachos de hoy',
+                'icon' => 'bi-arrow-up-circle',
                 'tone' => 'danger',
                 'trend' => $salidasTrend['value'],
                 'trendDirection' => $salidasTrend['direction'],
@@ -126,7 +144,7 @@ class DashboardController extends Controller
                     'product' => $movement->product->name,
                     'detail' => ($movement->type === StockMovement::TYPE_ENTRADA ? 'Entrada' : 'Salida').' · '.$movement->quantity.' uds',
                     'time' => $movement->created_at->diffForHumans(),
-                    'sku' => $movement->product->sku,
+                    'sku' => '#'.$movement->product->id.' · '.$movement->product->sku,
                     'type' => $movement->type,
                     'qty' => $sign.$movement->quantity,
                     'icon' => $movement->type === StockMovement::TYPE_ENTRADA ? 'bi-bag-check' : 'bi-bag-dash',
@@ -146,11 +164,13 @@ class DashboardController extends Controller
 
                 return [
                     'name' => $product->name,
+                    'id' => $product->id,
                     'current' => $product->stock_quantity,
                     'max' => $max,
                     'percent' => $percent,
                     'level' => $level,
                     'icon' => $level === 'danger' ? 'bi-bag-x' : 'bi-bag',
+                    'code' => $product->sku,
                 ];
             })
             ->all();

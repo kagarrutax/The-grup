@@ -21,6 +21,7 @@ class StockMovement extends Model
         'type',
         'quantity',
         'reason',
+        'observations',
     ];
 
     protected function casts(): array

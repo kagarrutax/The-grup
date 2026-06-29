@@ -2,85 +2,104 @@
 
 @section('title', 'Productos')
 @section('page-title', 'Productos')
-@section('page-subtitle', 'Catálogo de productos del inventario')
+@section('page-subtitle', 'Gestión visual del catálogo con búsqueda inteligente y modales')
 
 @section('content')
-    <div class="d-flex flex-wrap justify-content-between align-items-end gap-3 mb-3">
-        <form method="GET" class="d-flex flex-wrap gap-2 align-items-end">
-            <div>
-                <label class="form-label small mb-1">Buscar</label>
-                <input type="search" name="search" value="{{ $search }}" class="form-control form-control-sm" placeholder="Nombre o SKU">
+    <section class="module-toolbar mb-4">
+        <form method="GET" id="productsFilters" class="search-toolbar">
+            <div class="search-input-group">
+                <i class="bi bi-search"></i>
+                <input
+                    type="search"
+                    name="search"
+                    value="{{ $search }}"
+                    class="form-control form-control-search"
+                    placeholder="Buscar por ID, nombre, código, categoría o proveedor"
+                    autocomplete="off"
+                >
+                <button type="button" class="search-clear" data-clear-search>&times;</button>
             </div>
-            <div>
-                <label class="form-label small mb-1">Categoría</label>
-                <select name="category_id" class="form-select form-select-sm">
-                    <option value="">Todas</option>
-                    @foreach($categories as $cat)
-                        <option value="{{ $cat->id }}" @selected($categoryId == $cat->id)>{{ $cat->name }}</option>
-                    @endforeach
-                </select>
-            </div>
-            <button type="submit" class="btn btn-outline-secondary btn-sm">Filtrar</button>
+
+            <select name="category_id" class="form-select">
+                <option value="">Todas las categorías</option>
+                @foreach($categories as $cat)
+                    <option value="{{ $cat->id }}" @selected($categoryId == $cat->id)>{{ $cat->name }}</option>
+                @endforeach
+            </select>
+
+            <select name="supplier_id" class="form-select">
+                <option value="">Todos los proveedores</option>
+                @foreach($suppliers as $supplier)
+                    <option value="{{ $supplier->id }}" @selected($supplierId == $supplier->id)>{{ $supplier->company_name }}</option>
+                @endforeach
+            </select>
+
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createProductModal">
+                <i class="bi bi-plus-lg me-1"></i> Nuevo producto
+            </button>
         </form>
-        <a href="{{ route('products.create') }}" class="btn btn-primary btn-sm">
-            <i class="bi bi-plus-lg me-1"></i> Nuevo producto
-        </a>
+    </section>
+
+    <div id="productsTableWrapper">
+        @include('products.partials.table', ['products' => $products])
     </div>
 
-    <div class="card-app">
-        <div class="card-body p-0">
-            <div class="table-responsive">
-                <table class="table table-app mb-0">
-                    <thead>
-                        <tr>
-                            <th>SKU</th>
-                            <th>Producto</th>
-                            <th>Categoría</th>
-                            <th>Stock</th>
-                            <th>Precio</th>
-                            <th class="text-end">Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @forelse($products as $product)
-                            <tr>
-                                <td><code>{{ $product->sku }}</code></td>
-                                <td class="fw-medium">{{ $product->name }}</td>
-                                <td>{{ $product->category->name ?? '—' }}</td>
-                                <td>
-                                    <span class="{{ $product->stock_quantity <= $product->stock_minimum ? 'text-danger fw-semibold' : '' }}">
-                                        {{ $product->stock_quantity }}
-                                    </span>
-                                </td>
-                                <td>${{ number_format($product->price, 2) }}</td>
-                                <td class="text-end">
-                                    <div class="btn-group btn-group-sm" role="group">
-                                        <button class="btn btn-outline-info" onclick="viewProduct({{ $product->id }})" title="Ver detalles">
-                                            <i class="bi bi-eye"></i>
-                                        </button>
-                                        <button class="btn btn-outline-warning" onclick="editProduct({{ $product->id }})" title="Editar producto">
-                                            <i class="bi bi-pencil"></i>
-                                        </button>
-                                        <button class="btn btn-outline-danger" onclick="showDeleteConfirmation('{{ $product->name }}', '{{ route('products.destroy', $product) }}', 'producto')" title="Eliminar">
-                                            <i class="bi bi-trash3"></i>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                        @empty
-                            <tr><td colspan="6" class="text-center text-muted py-4">No hay productos.</td></tr>
-                        @endforelse
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        @if($products->hasPages())
-            <div class="card-footer">{{ $products->links() }}</div>
-        @endif
-    </div>
-
-    <!-- Modales -->
+    @include('components.modal-create-product')
     @include('components.modal-view-product')
     @include('components.modal-edit-product')
     @include('components.modal-delete-confirmation')
 @endsection
+
+@push('scripts')
+<script>
+    (() => {
+        const form = document.getElementById('productsFilters');
+        const wrapper = document.getElementById('productsTableWrapper');
+        const searchInput = form.querySelector('input[name="search"]');
+        const clearButton = form.querySelector('[data-clear-search]');
+        let timeoutId = null;
+
+        const toggleTypingState = () => {
+            searchInput.parentElement.classList.toggle('is-typing', searchInput.value.trim() !== '');
+        };
+
+        const loadTable = async () => {
+            const params = new URLSearchParams(new FormData(form));
+            const response = await fetch(`{{ route('products.index') }}?${params.toString()}`, {
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest',
+                },
+            });
+
+            wrapper.innerHTML = await response.text();
+        };
+
+        window.refreshProductsTable = loadTable;
+        window.refreshCurrentTable = loadTable;
+
+        form.addEventListener('input', (event) => {
+            if (event.target.matches('input[name="search"]')) {
+                toggleTypingState();
+            }
+
+            clearTimeout(timeoutId);
+            timeoutId = setTimeout(loadTable, 220);
+        });
+
+        form.addEventListener('change', () => {
+            clearTimeout(timeoutId);
+            loadTable();
+        });
+
+        clearButton.addEventListener('click', () => {
+            searchInput.value = '';
+            form.querySelector('select[name="category_id"]').value = '';
+            form.querySelector('select[name="supplier_id"]').value = '';
+            toggleTypingState();
+            loadTable();
+        });
+
+        toggleTypingState();
+    })();
+</script>
+@endpush
