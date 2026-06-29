@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class CategoryFactory extends Factory
 {
+<<<<<<< Updated upstream
 <<<<<<< HEAD
     /**
      * Define the model's default state.
@@ -30,6 +31,15 @@ class CategoryFactory extends Factory
             'name' => fake()->unique()->words(2, true),
             'description' => fake()->optional()->sentence(),
 >>>>>>> d959ad24edda2faacd434ad042d52e081eb02510
+=======
+    protected $model = Category::class;
+
+    public function definition(): array
+    {
+        return [
+            'name' => fake()->unique()->words(2, true),
+            'description' => fake()->optional()->sentence(),
+>>>>>>> Stashed changes
         ];
     }
 }

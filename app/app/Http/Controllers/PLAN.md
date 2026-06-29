@@ -30,7 +30,7 @@ Capa **Controller** del MVC Laravel. Recibe requests HTTP, valida, invoca modelo
 
 ## Validaciones críticas
 
-- Producto: ID único, `category_id` exists, precio ≥ 0
+- Producto: SKU único, `category_id` exists, precio ≥ 0
 - Stock salida: `quantity` ≤ `stock_quantity` disponible
 - Stock: `type` in (`entrada`, `salida`)
 

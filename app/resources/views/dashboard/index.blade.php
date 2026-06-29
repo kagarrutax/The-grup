@@ -22,7 +22,7 @@
                         <i class="bi bi-box-seam fs-3 text-primary"></i>
                     </div>
                     <div>
-                        <p class="text-muted small mb-1">Total Productos</p>
+                        <p class="text-muted small mb-1">Total productos</p>
                         <h2 class="h4 fw-bold mb-0">{{ $totalProducts ?? 0 }}</h2>
                     </div>
                 </div>
@@ -36,7 +36,7 @@
                         <i class="bi bi-tags fs-3 text-success"></i>
                     </div>
                     <div>
-                        <p class="text-muted small mb-1">Total Categorías</p>
+                        <p class="text-muted small mb-1">Total categorías</p>
                         <h2 class="h4 fw-bold mb-0">{{ $totalCategories ?? 0 }}</h2>
                     </div>
                 </div>
@@ -50,7 +50,7 @@
                         <i class="bi bi-exclamation-triangle fs-3 text-warning"></i>
                     </div>
                     <div>
-                        <p class="text-muted small mb-1">Stock Bajo</p>
+                        <p class="text-muted small mb-1">Stock bajo</p>
                         <h2 class="h4 fw-bold mb-0">{{ $lowStockCount ?? 0 }}</h2>
                     </div>
                 </div>

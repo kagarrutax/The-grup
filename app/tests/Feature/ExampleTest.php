@@ -14,10 +14,14 @@ class ExampleTest extends TestCase
     {
         $response = $this->get('/');
 
+<<<<<<< Updated upstream
 <<<<<<< HEAD
         $response->assertStatus(200);
 =======
         $response->assertRedirect(route('login'));
 >>>>>>> d959ad24edda2faacd434ad042d52e081eb02510
+=======
+        $response->assertRedirect(route('login'));
+>>>>>>> Stashed changes
     }
 }

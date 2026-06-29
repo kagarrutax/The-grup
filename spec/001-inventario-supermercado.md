@@ -148,3 +148,4 @@ categories (1) ──< products (N)
 | 2026-06-27 | 6 | Backend buscador: scopeSearch, filtros GET en ProductController | PASS — ProductTest 6/6 |
 | 2026-06-27 | 2–6 | Frontend Jessica: categorías, productos, inventario, dashboard | PASS — vistas en `origin/main` |
 | 2026-06-27 | — | Auth admin-only: sin registro, home→login, middleware admin | PASS — AdminAccessTest |
+| 2026-06-05 | — | Reparación backend corrupto + suite Feature | PASS — 49 tests, 149 assertions |

@@ -1,5 +1,6 @@
 <?php
 
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 use Illuminate\Support\Facades\Route;
 
@@ -15,6 +16,16 @@ use App\Http\Controllers\StockController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
+=======
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StockController;
+use Illuminate\Support\Facades\Route;
+
+Route::get('/', function () {
+>>>>>>> Stashed changes
     return auth()->check()
         ? redirect()->route('dashboard')
         : redirect()->route('login');
@@ -35,4 +46,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
 });
 
 require __DIR__.'/auth.php';
+<<<<<<< Updated upstream
 >>>>>>> d959ad24edda2faacd434ad042d52e081eb02510
+=======
+>>>>>>> Stashed changes

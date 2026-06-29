@@ -24,6 +24,7 @@
         </div>
         <div class="card-body p-4">
             <form action="{{ route('products.index') }}" method="GET" class="row g-3 align-items-end">
+<<<<<<< Updated upstream
                 <div class="col-12 col-md-4">
                     <label for="name" class="form-label fw-medium">Nombre</label>
                     <input type="text" class="form-control" id="name" name="name"
@@ -39,19 +40,27 @@
                     <input type="text" class="form-control" id="sku" name="sku"
                            placeholder="Ej: ARZ-001" value="{{ request('sku') }}">
 >>>>>>> 574ccbe742075045b00299a188ad3088845aa24a
+=======
+                <div class="col-12 col-md-5">
+                    <label for="search" class="form-label fw-medium">Buscar</label>
+                    <input type="text" class="form-control" id="search" name="search"
+                           placeholder="Nombre o SKU" value="{{ $search ?? '' }}">
+>>>>>>> Stashed changes
                 </div>
                 <div class="col-12 col-md-4">
                     <label for="category_id" class="form-label fw-medium">Categoría</label>
                     <select class="form-select" id="category_id" name="category_id">
-                        <option value="" {{ request('category_id') ? '' : 'selected' }}>Todas</option>
+                        <option value="">Todas las categorías</option>
                         @foreach($categories ?? [] as $category)
-                            <option value="{{ $category->id }}" @selected(request('category_id') == $category->id)>{{ $category->name }}</option>
+                            <option value="{{ $category->id }}" @selected(($categoryId ?? null) === $category->id)>{{ $category->name }}</option>
                         @endforeach
                     </select>
                 </div>
-                <div class="col-12 d-flex gap-2">
-                    <button type="submit" class="btn btn-primary rounded-pill px-4"><i class="bi bi-funnel me-1"></i>Filtrar</button>
-                    <a href="{{ route('products.index') }}" class="btn btn-outline-secondary rounded-pill px-4">Limpiar</a>
+                <div class="col-12 col-md-3 d-flex gap-2">
+                    <button type="submit" class="btn btn-primary rounded-pill px-4 flex-grow-1"><i class="bi bi-funnel me-1"></i>Filtrar</button>
+                    @if(($search ?? '') !== '' || ! empty($categoryId))
+                        <a href="{{ route('products.index') }}" class="btn btn-outline-secondary rounded-pill px-4">Limpiar</a>
+                    @endif
                 </div>
             </form>
         </div>
@@ -85,7 +94,6 @@
                                 <td class="text-center"><span class="badge rounded-pill {{ $product->status === 'activo' ? 'text-bg-success' : 'text-bg-secondary' }}">{{ ucfirst($product->status ?? '—') }}</span></td>
                                 <td class="text-center">
                                     <div class="btn-group btn-group-sm">
-                                        <a href="{{ route('products.show', $product) }}" class="btn btn-outline-info" title="Ver"><i class="bi bi-eye"></i></a>
                                         <a href="{{ route('products.edit', $product) }}" class="btn btn-outline-warning" title="Editar"><i class="bi bi-pencil"></i></a>
                                         <form action="{{ route('products.destroy', $product) }}" method="POST" onsubmit="return confirm('¿Eliminar este producto?')" style="display:inline">
                                             @csrf

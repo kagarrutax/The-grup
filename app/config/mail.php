@@ -46,11 +46,15 @@ return [
             'username' => env('MAIL_USERNAME'),
             'password' => env('MAIL_PASSWORD'),
             'timeout' => null,
+<<<<<<< Updated upstream
 <<<<<<< HEAD
             'local_domain' => env('MAIL_EHLO_DOMAIN', parse_url((string) env('APP_URL', 'http://localhost'), PHP_URL_HOST)),
 =======
             'local_domain' => env('MAIL_EHLO_DOMAIN', parse_url(env('APP_URL', 'http://localhost'), PHP_URL_HOST)),
 >>>>>>> d959ad24edda2faacd434ad042d52e081eb02510
+=======
+            'local_domain' => env('MAIL_EHLO_DOMAIN', parse_url(env('APP_URL', 'http://localhost'), PHP_URL_HOST)),
+>>>>>>> Stashed changes
         ],
 
         'ses' => [
@@ -89,10 +93,13 @@ return [
                 'smtp',
                 'log',
             ],
+<<<<<<< Updated upstream
 <<<<<<< HEAD
             'retry_after' => 60,
 =======
 >>>>>>> d959ad24edda2faacd434ad042d52e081eb02510
+=======
+>>>>>>> Stashed changes
         ],
 
         'roundrobin' => [
@@ -101,10 +108,13 @@ return [
                 'ses',
                 'postmark',
             ],
+<<<<<<< Updated upstream
 <<<<<<< HEAD
             'retry_after' => 60,
 =======
 >>>>>>> d959ad24edda2faacd434ad042d52e081eb02510
+=======
+>>>>>>> Stashed changes
         ],
 
     ],
@@ -122,11 +132,15 @@ return [
 
     'from' => [
         'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
+<<<<<<< Updated upstream
 <<<<<<< HEAD
         'name' => env('MAIL_FROM_NAME', env('APP_NAME', 'Laravel')),
 =======
         'name' => env('MAIL_FROM_NAME', 'Example'),
 >>>>>>> d959ad24edda2faacd434ad042d52e081eb02510
+=======
+        'name' => env('MAIL_FROM_NAME', 'Example'),
+>>>>>>> Stashed changes
     ],
 
 ];

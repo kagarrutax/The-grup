@@ -3,28 +3,25 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+=======
+>>>>>>> Stashed changes
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
-    use WithoutModelEvents;
-
-    /**
-     * Seed the application's database.
-     */
     public function run(): void
     {
-        // 1. Crear usuario administrador
-        User::factory()->admin()->create([
+        User::factory()->create([
             'name' => 'Administrador',
             'email' => 'admin@supermercado.com',
-            'password' => Hash::make('password'),
+            'role' => User::ROLE_ADMIN,
         ]);
+<<<<<<< Updated upstream
 
         // 2. Definir categorías y sus productos asociados
         $categoriesData = [
@@ -122,5 +119,7 @@ class DatabaseSeeder extends Seeder
             'role' => User::ROLE_ADMIN,
         ]);
 >>>>>>> d959ad24edda2faacd434ad042d52e081eb02510
+=======
+>>>>>>> Stashed changes
     }
 }

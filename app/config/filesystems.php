@@ -41,11 +41,15 @@ return [
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
+<<<<<<< Updated upstream
 <<<<<<< HEAD
             'url' => rtrim(env('APP_URL', 'http://localhost'), '/').'/storage',
 =======
             'url' => env('APP_URL').'/storage',
 >>>>>>> d959ad24edda2faacd434ad042d52e081eb02510
+=======
+            'url' => env('APP_URL').'/storage',
+>>>>>>> Stashed changes
             'visibility' => 'public',
             'throw' => false,
             'report' => false,

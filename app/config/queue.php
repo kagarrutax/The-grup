@@ -24,12 +24,16 @@ return [
     | used by your application. An example configuration is provided for
     | each backend supported by Laravel. You're also free to add more.
     |
+<<<<<<< Updated upstream
 <<<<<<< HEAD
     | Drivers: "sync", "database", "beanstalkd", "sqs", "redis",
     |          "deferred", "background", "failover", "null"
 =======
     | Drivers: "sync", "database", "beanstalkd", "sqs", "redis", "null"
 >>>>>>> d959ad24edda2faacd434ad042d52e081eb02510
+=======
+    | Drivers: "sync", "database", "beanstalkd", "sqs", "redis", "null"
+>>>>>>> Stashed changes
     |
     */
 
@@ -77,6 +81,7 @@ return [
             'after_commit' => false,
         ],
 
+<<<<<<< Updated upstream
 <<<<<<< HEAD
         'deferred' => [
             'driver' => 'deferred',
@@ -96,6 +101,8 @@ return [
 
 =======
 >>>>>>> d959ad24edda2faacd434ad042d52e081eb02510
+=======
+>>>>>>> Stashed changes
     ],
 
     /*

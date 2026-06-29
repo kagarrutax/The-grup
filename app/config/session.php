@@ -13,6 +13,7 @@ return [
     | incoming requests. Laravel supports a variety of storage options to
     | persist session data. Database storage is a great default choice.
     |
+<<<<<<< Updated upstream
 <<<<<<< HEAD
     | Supported: "file", "cookie", "database", "memcached",
     |            "redis", "dynamodb", "array"
@@ -20,6 +21,10 @@ return [
     | Supported: "file", "cookie", "database", "apc",
     |            "memcached", "redis", "dynamodb", "array"
 >>>>>>> d959ad24edda2faacd434ad042d52e081eb02510
+=======
+    | Supported: "file", "cookie", "database", "apc",
+    |            "memcached", "redis", "dynamodb", "array"
+>>>>>>> Stashed changes
     |
     */
 
@@ -102,11 +107,15 @@ return [
     | define the cache store which should be used to store the session data
     | between requests. This must match one of your defined cache stores.
     |
+<<<<<<< Updated upstream
 <<<<<<< HEAD
     | Affects: "dynamodb", "memcached", "redis"
 =======
     | Affects: "apc", "dynamodb", "memcached", "redis"
 >>>>>>> d959ad24edda2faacd434ad042d52e081eb02510
+=======
+    | Affects: "apc", "dynamodb", "memcached", "redis"
+>>>>>>> Stashed changes
     |
     */
 
@@ -138,11 +147,15 @@ return [
 
     'cookie' => env(
         'SESSION_COOKIE',
+<<<<<<< Updated upstream
 <<<<<<< HEAD
         Str::slug((string) env('APP_NAME', 'laravel')).'-session'
 =======
         Str::slug(env('APP_NAME', 'laravel'), '_').'_session'
 >>>>>>> d959ad24edda2faacd434ad042d52e081eb02510
+=======
+        Str::slug(env('APP_NAME', 'laravel'), '_').'_session'
+>>>>>>> Stashed changes
     ),
 
     /*
@@ -165,11 +178,15 @@ return [
     |
     | This value determines the domain and subdomains the session cookie is
     | available to. By default, the cookie will be available to the root
+<<<<<<< Updated upstream
 <<<<<<< HEAD
     | domain without subdomains. Typically, this shouldn't be changed.
 =======
     | domain and all subdomains. Typically, this shouldn't be changed.
 >>>>>>> d959ad24edda2faacd434ad042d52e081eb02510
+=======
+    | domain and all subdomains. Typically, this shouldn't be changed.
+>>>>>>> Stashed changes
     |
     */
 

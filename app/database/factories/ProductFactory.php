@@ -2,10 +2,14 @@
 
 namespace Database\Factories;
 
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 =======
 use App\Models\Category;
 >>>>>>> d959ad24edda2faacd434ad042d52e081eb02510
+=======
+use App\Models\Category;
+>>>>>>> Stashed changes
 use App\Models\Product;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -14,6 +18,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class ProductFactory extends Factory
 {
+<<<<<<< Updated upstream
 <<<<<<< HEAD
     /**
      * Define the model's default state.
@@ -31,6 +36,8 @@ class ProductFactory extends Factory
             'stock_minimum' => fake()->numberBetween(5, 20),
             'unit' => fake()->randomElement(['pieza', 'kg', 'litro', 'paquete']),
 =======
+=======
+>>>>>>> Stashed changes
     protected $model = Product::class;
 
     public function definition(): array
@@ -43,7 +50,10 @@ class ProductFactory extends Factory
             'stock_quantity' => 0,
             'stock_minimum' => fake()->numberBetween(1, 10),
             'unit' => fake()->randomElement(['unidad', 'kg', 'litro', 'caja']),
+<<<<<<< Updated upstream
 >>>>>>> d959ad24edda2faacd434ad042d52e081eb02510
+=======
+>>>>>>> Stashed changes
             'status' => 'activo',
         ];
     }

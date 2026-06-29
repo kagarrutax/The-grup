@@ -15,6 +15,7 @@ return [
     */
 
     'postmark' => [
+<<<<<<< Updated upstream
 <<<<<<< HEAD
         'key' => env('POSTMARK_API_KEY'),
     ],
@@ -24,6 +25,9 @@ return [
 =======
         'token' => env('POSTMARK_TOKEN'),
 >>>>>>> d959ad24edda2faacd434ad042d52e081eb02510
+=======
+        'token' => env('POSTMARK_TOKEN'),
+>>>>>>> Stashed changes
     ],
 
     'ses' => [
@@ -32,13 +36,19 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 =======
+=======
+>>>>>>> Stashed changes
     'resend' => [
         'key' => env('RESEND_KEY'),
     ],
 
+<<<<<<< Updated upstream
 >>>>>>> d959ad24edda2faacd434ad042d52e081eb02510
+=======
+>>>>>>> Stashed changes
     'slack' => [
         'notifications' => [
             'bot_user_oauth_token' => env('SLACK_BOT_USER_OAUTH_TOKEN'),

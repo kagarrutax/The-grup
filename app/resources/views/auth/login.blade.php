@@ -101,6 +101,7 @@
             </p>
 
         </div>
+<<<<<<< Updated upstream
     </div>
 
 @endsection
@@ -142,6 +143,10 @@
     <div class="text-center mb-4">
         <h1 class="h4 mb-1">Panel de administración</h1>
         <p class="text-muted small mb-0">Acceso exclusivo para administradores del inventario</p>
+=======
+        <h1 class="h4 fw-bold mb-1">Panel de administración</h1>
+        <p class="login-footer-text mb-0">Acceso exclusivo para administradores del inventario</p>
+>>>>>>> Stashed changes
     </div>
 
     @if (session('status'))
