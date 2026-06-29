@@ -36,23 +36,23 @@
                         @csrf
                         <div class="col-12">
                             <label class="form-label">Empresa</label>
-                            <input type="text" name="company_name" class="form-control form-control-modern" required>
+                            <input type="text" name="company_name" class="form-control form-control-modern" required autocomplete="off">
                         </div>
                         <div class="col-12">
                             <label class="form-label">Responsable</label>
-                            <input type="text" name="contact_name" class="form-control form-control-modern" required>
+                            <input type="text" name="contact_name" class="form-control form-control-modern" required autocomplete="off">
                         </div>
                         <div class="col-md-6">
                             <label class="form-label">Teléfono</label>
-                            <input type="text" name="phone" class="form-control form-control-modern">
+                            <input type="text" name="phone" class="form-control form-control-modern" autocomplete="tel">
                         </div>
                         <div class="col-md-6">
                             <label class="form-label">Correo</label>
-                            <input type="email" name="email" class="form-control form-control-modern">
+                            <input type="email" name="email" class="form-control form-control-modern" autocomplete="email">
                         </div>
                         <div class="col-12">
                             <label class="form-label">Dirección</label>
-                            <textarea name="address" rows="3" class="form-control form-control-modern"></textarea>
+                            <textarea name="address" rows="3" class="form-control form-control-modern" autocomplete="street-address"></textarea>
                         </div>
                         <div class="col-12">
                             <label class="form-label">Estado</label>
@@ -99,23 +99,23 @@
                         @method('PATCH')
                         <div class="col-12">
                             <label class="form-label">Empresa</label>
-                            <input type="text" name="company_name" id="editSupplierCompanyName" class="form-control form-control-modern" required>
+                            <input type="text" name="company_name" id="editSupplierCompanyName" class="form-control form-control-modern" required autocomplete="off">
                         </div>
                         <div class="col-12">
                             <label class="form-label">Responsable</label>
-                            <input type="text" name="contact_name" id="editSupplierContactName" class="form-control form-control-modern" required>
+                            <input type="text" name="contact_name" id="editSupplierContactName" class="form-control form-control-modern" required autocomplete="off">
                         </div>
                         <div class="col-md-6">
                             <label class="form-label">Teléfono</label>
-                            <input type="text" name="phone" id="editSupplierPhone" class="form-control form-control-modern">
+                            <input type="text" name="phone" id="editSupplierPhone" class="form-control form-control-modern" autocomplete="tel">
                         </div>
                         <div class="col-md-6">
                             <label class="form-label">Correo</label>
-                            <input type="email" name="email" id="editSupplierEmail" class="form-control form-control-modern">
+                            <input type="email" name="email" id="editSupplierEmail" class="form-control form-control-modern" autocomplete="email">
                         </div>
                         <div class="col-12">
                             <label class="form-label">Dirección</label>
-                            <textarea name="address" rows="3" id="editSupplierAddress" class="form-control form-control-modern"></textarea>
+                            <textarea name="address" rows="3" id="editSupplierAddress" class="form-control form-control-modern" autocomplete="street-address"></textarea>
                         </div>
                         <div class="col-12">
                             <label class="form-label">Estado</label>

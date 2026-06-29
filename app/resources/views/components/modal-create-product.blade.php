@@ -12,16 +12,17 @@
                 <form id="createProductForm" class="row g-4">
                     @csrf
                     <div class="col-md-3">
-                        <label class="form-label">Imagen URL</label>
-                        <input type="url" name="image_url" class="form-control form-control-modern" placeholder="https://...">
+                        <label class="form-label">Imagen</label>
+                        <input type="file" name="image" class="form-control form-control-modern" accept="image/*">
+                        <small class="text-muted">Formatos: JPG, PNG, GIF, WebP</small>
                     </div>
                     <div class="col-md-3">
                         <label class="form-label">Código</label>
-                        <input type="text" name="sku" class="form-control form-control-modern" placeholder="COD-001" required>
+                        <input type="text" name="sku" class="form-control form-control-modern" placeholder="COD-001" required autocomplete="off">
                     </div>
                     <div class="col-md-6">
                         <label class="form-label">Nombre</label>
-                        <input type="text" name="name" class="form-control form-control-modern" placeholder="Nombre del producto" required>
+                        <input type="text" name="name" class="form-control form-control-modern" placeholder="Nombre del producto" required autocomplete="off">
                     </div>
                     <div class="col-md-4">
                         <label class="form-label">Categoría</label>
@@ -43,7 +44,7 @@
                     </div>
                     <div class="col-md-4">
                         <label class="form-label">Unidad</label>
-                        <input type="text" name="unit" class="form-control form-control-modern" placeholder="unidad, litro, caja" required>
+                        <input type="text" name="unit" class="form-control form-control-modern" placeholder="unidad, litro, caja" required autocomplete="off">
                     </div>
                     <div class="col-md-3">
                         <label class="form-label">Precio compra</label>

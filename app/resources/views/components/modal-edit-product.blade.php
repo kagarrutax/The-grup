@@ -19,18 +19,19 @@
                         </div>
                         <div class="col-md-4">
                             <label class="form-label fw-medium">Código</label>
-                            <input type="text" id="editSku" name="sku" class="form-control form-control-modern" placeholder="Código interno" required>
+                            <input type="text" id="editSku" name="sku" class="form-control form-control-modern" placeholder="Código interno" required autocomplete="off">
                             <div class="invalid-feedback" id="skuError"></div>
                         </div>
                         <div class="col-md-6">
                             <label class="form-label fw-medium">Nombre</label>
-                            <input type="text" id="editName" name="name" class="form-control form-control-modern" placeholder="Nombre del producto" required>
+                            <input type="text" id="editName" name="name" class="form-control form-control-modern" placeholder="Nombre del producto" required autocomplete="off">
                             <div class="invalid-feedback" id="nameError"></div>
                         </div>
                         <div class="col-md-3">
-                            <label class="form-label fw-medium">Imagen URL</label>
-                            <input type="url" id="editImageUrl" name="image_url" class="form-control form-control-modern" placeholder="https://...">
-                            <div class="invalid-feedback" id="imageUrlError"></div>
+                            <label class="form-label fw-medium">Imagen</label>
+                            <input type="file" id="editImage" name="image" class="form-control form-control-modern" accept="image/*">
+                            <small class="text-muted">Dejar vacío para mantener la imagen actual</small>
+                            <div class="invalid-feedback" id="imageError"></div>
                         </div>
                         <div class="col-md-4">
                             <label class="form-label fw-medium">Categoría</label>
@@ -44,7 +45,7 @@
                         </div>
                         <div class="col-md-4">
                             <label class="form-label fw-medium">Unidad</label>
-                            <input type="text" id="editUnit" name="unit" class="form-control form-control-modern" placeholder="unidad, litro, caja" required>
+                            <input type="text" id="editUnit" name="unit" class="form-control form-control-modern" placeholder="unidad, litro, caja" required autocomplete="off">
                             <div class="invalid-feedback" id="unitError"></div>
                         </div>
                         <div class="col-md-3">
@@ -113,7 +114,7 @@
         const fieldErrorMap = {
             name: ['editName', 'nameError'],
             sku: ['editSku', 'skuError'],
-            image_url: ['editImageUrl', 'imageUrlError'],
+            image: ['editImage', 'imageError'],
             category_id: ['editCategory', 'categoryError'],
             supplier_id: ['editSupplier', 'supplierError'],
             purchase_price: ['editPurchasePrice', 'purchasePriceError'],
@@ -141,7 +142,7 @@
         const fieldMap = {
             name: ['editName', 'nameError'],
             sku: ['editSku', 'skuError'],
-            image_url: ['editImageUrl', 'imageUrlError'],
+            image: ['editImage', 'imageError'],
             category_id: ['editCategory', 'categoryError'],
             supplier_id: ['editSupplier', 'supplierError'],
             purchase_price: ['editPurchasePrice', 'purchasePriceError'],
@@ -178,7 +179,7 @@
             document.getElementById('editId').value = `#${data.id}`;
             document.getElementById('editName').value = data.name;
             document.getElementById('editSku').value = data.sku;
-            document.getElementById('editImageUrl').value = data.image_url ?? '';
+            // Image field is file input, cannot pre-populate
             document.getElementById('editPurchasePrice').value = data.purchase_price;
             document.getElementById('editSalePrice').value = data.sale_price;
             document.getElementById('editStockMinimum').value = data.stock_minimum;

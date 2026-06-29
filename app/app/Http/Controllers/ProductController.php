@@ -78,6 +78,12 @@ class ProductController extends Controller
         $validated = $this->normalizePayloadForCurrentSchema($validated);
         $validated['stock_quantity'] = 0;
 
+        // Handle image upload
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('products', 'public');
+            $validated['image_url'] = '/storage/' . $imagePath;
+        }
+
         $product = Product::create($validated);
 
         InventoryNotificationService::create(
@@ -127,6 +133,12 @@ class ProductController extends Controller
     {
         $validated = $request->validate($this->rules($product));
         $validated = $this->normalizePayloadForCurrentSchema($validated);
+
+        // Handle image upload
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('products', 'public');
+            $validated['image_url'] = '/storage/' . $imagePath;
+        }
 
         $product->update($validated);
 
@@ -197,8 +209,8 @@ class ProductController extends Controller
             ? ['nullable', 'integer', 'exists:suppliers,id']
             : ['nullable'];
 
-        $rules['image_url'] = InventorySchema::productHasImageUrl()
-            ? ['nullable', 'url', 'max:2048']
+        $rules['image'] = InventorySchema::productHasImageUrl()
+            ? ['nullable', 'image', 'mimes:jpg,jpeg,png,gif,webp', 'max:2048']
             : ['nullable'];
 
         if (InventorySchema::productHasPurchasePrice()) {
@@ -225,6 +237,11 @@ class ProductController extends Controller
 
         if (! InventorySchema::hasSuppliersTable() || ! InventorySchema::productHasSupplierId()) {
             unset($validated['supplier_id']);
+        }
+
+        // Handle image field - convert to image_url for storage
+        if (isset($validated['image'])) {
+            unset($validated['image']);
         }
 
         if (! InventorySchema::productHasImageUrl()) {

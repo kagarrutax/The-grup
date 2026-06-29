@@ -74,7 +74,7 @@
                     </div>
                     <div class="col-md-3">
                         <label class="form-label">Cantidad</label>
-                        <input type="number" min="1" name="quantity" class="form-control form-control-modern" required>
+                        <input type="number" min="1" name="quantity" class="form-control form-control-modern" required autocomplete="off">
                     </div>
                     <div class="col-md-6">
                         <label class="form-label">Usuario</label>
@@ -87,11 +87,11 @@
                     </div>
                     <div class="col-md-6">
                         <label class="form-label">Motivo</label>
-                        <input type="text" name="reason" class="form-control form-control-modern" placeholder="Compra, ajuste, venta, devolución...">
+                        <input type="text" name="reason" class="form-control form-control-modern" placeholder="Compra, ajuste, venta, devolución..." autocomplete="off">
                     </div>
                     <div class="col-12">
                         <label class="form-label">Observaciones</label>
-                        <textarea name="observations" rows="4" class="form-control form-control-modern" placeholder="Notas adicionales del movimiento"></textarea>
+                        <textarea name="observations" rows="4" class="form-control form-control-modern" placeholder="Notas adicionales del movimiento" autocomplete="off"></textarea>
                     </div>
                     <div class="col-12">
                         <div id="movementErrors" class="alert alert-danger d-none mb-0"></div>
@@ -153,7 +153,7 @@
                     </div>
                     <div class="col-md-3">
                         <label class="form-label">Cantidad</label>
-                        <input type="number" min="1" name="quantity" id="editMovementQuantity" class="form-control form-control-modern" required>
+                        <input type="number" min="1" name="quantity" id="editMovementQuantity" class="form-control form-control-modern" required autocomplete="off">
                     </div>
                     <div class="col-md-6">
                         <label class="form-label">Usuario</label>
@@ -166,11 +166,11 @@
                     </div>
                     <div class="col-md-6">
                         <label class="form-label">Motivo</label>
-                        <input type="text" name="reason" id="editMovementReason" class="form-control form-control-modern" placeholder="Compra, ajuste, venta, devolución...">
+                        <input type="text" name="reason" id="editMovementReason" class="form-control form-control-modern" placeholder="Compra, ajuste, venta, devolución..." autocomplete="off">
                     </div>
                     <div class="col-12">
                         <label class="form-label">Observaciones</label>
-                        <textarea name="observations" rows="4" id="editMovementObservations" class="form-control form-control-modern" placeholder="Notas adicionales del movimiento"></textarea>
+                        <textarea name="observations" rows="4" id="editMovementObservations" class="form-control form-control-modern" placeholder="Notas adicionales del movimiento" autocomplete="off"></textarea>
                     </div>
                     <div class="col-12">
                         <div id="movementEditErrors" class="alert alert-danger d-none mb-0"></div>

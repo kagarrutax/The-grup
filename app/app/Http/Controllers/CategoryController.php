@@ -62,6 +62,12 @@ class CategoryController extends Controller
     {
         $validated = $request->validate($this->rules());
 
+        // Handle image upload
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('categories', 'public');
+            $validated['image_url'] = '/storage/' . $imagePath;
+        }
+
         Category::create($validated);
 
         if ($request->wantsJson()) {
@@ -86,6 +92,12 @@ class CategoryController extends Controller
     public function update(Request $request, Category $category)
     {
         $validated = $request->validate($this->rules($category));
+
+        // Handle image upload
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('categories', 'public');
+            $validated['image_url'] = '/storage/' . $imagePath;
+        }
 
         $category->update($validated);
 
@@ -124,6 +136,7 @@ class CategoryController extends Controller
         return [
             'name' => ['required', 'string', 'max:255', $uniqueName],
             'description' => ['nullable', 'string', 'max:1000'],
+            'image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,gif,webp', 'max:2048'],
         ];
     }
 }

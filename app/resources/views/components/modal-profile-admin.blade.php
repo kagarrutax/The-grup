@@ -31,7 +31,7 @@
                             </label>
                             <input type="text" name="name" value="{{ old('name', auth()->user()->name) }}" 
                                    class="form-control form-control-modern @error('name') is-invalid @enderror" 
-                                   placeholder="Tu nombre completo" required>
+                                   placeholder="Tu nombre completo" required autocomplete="name">
                             @error('name')<div class="invalid-feedback d-block">{{ $message }}</div>@enderror
                         </div>
 
@@ -41,7 +41,7 @@
                             </label>
                             <input type="email" name="email" value="{{ old('email', auth()->user()->email) }}" 
                                    class="form-control form-control-modern @error('email') is-invalid @enderror" 
-                                   placeholder="tu@email.com" required>
+                                   placeholder="tu@email.com" required autocomplete="email">
                             @error('email')<div class="invalid-feedback d-block">{{ $message }}</div>@enderror
                         </div>
 
@@ -72,7 +72,7 @@
                                 <i class="bi bi-key text-danger me-2"></i>Contraseña Actual
                             </label>
                             <input type="password" name="current_password" class="form-control form-control-modern" 
-                                   placeholder="Requerida para cambios de seguridad">
+                                   placeholder="Requerida para cambios de seguridad" autocomplete="current-password">
                             <small class="text-muted d-block mt-2">Solo si deseas cambiar contraseña</small>
                         </div>
 
@@ -81,7 +81,7 @@
                                 <i class="bi bi-key-fill text-success me-2"></i>Nueva Contraseña
                             </label>
                             <input type="password" name="password" class="form-control form-control-modern" 
-                                   placeholder="Mínimo 8 caracteres">
+                                   placeholder="Mínimo 8 caracteres" autocomplete="new-password">
                             <small class="text-muted d-block mt-2">Deja en blanco para no cambiar</small>
                         </div>
 
@@ -90,7 +90,7 @@
                                 <i class="bi bi-check-circle text-info me-2"></i>Confirmar Contraseña
                             </label>
                             <input type="password" name="password_confirmation" class="form-control form-control-modern" 
-                                   placeholder="Confirma tu nueva contraseña">
+                                   placeholder="Confirma tu nueva contraseña" autocomplete="new-password">
                             <small class="text-muted d-block mt-2">Debe coincidir con la nueva contraseña</small>
                         </div>
                     </div>

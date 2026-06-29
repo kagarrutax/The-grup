@@ -38,12 +38,17 @@
                     <form id="categoryCreateForm">
                         @csrf
                         <div class="mb-3">
+                            <label class="form-label">Imagen</label>
+                            <input type="file" name="image" class="form-control form-control-modern" accept="image/*">
+                            <small class="text-muted">Formatos: JPG, PNG, GIF, WebP</small>
+                        </div>
+                        <div class="mb-3">
                             <label class="form-label">Nombre</label>
-                            <input type="text" name="name" class="form-control form-control-modern" required>
+                            <input type="text" name="name" class="form-control form-control-modern" required autocomplete="off">
                         </div>
                         <div class="mb-0">
                             <label class="form-label">Descripción</label>
-                            <textarea name="description" rows="4" class="form-control form-control-modern"></textarea>
+                            <textarea name="description" rows="4" class="form-control form-control-modern" autocomplete="off"></textarea>
                         </div>
                         <div id="categoryCreateErrors" class="alert alert-danger d-none mt-3 mb-0"></div>
                     </form>
@@ -80,12 +85,17 @@
                         @csrf
                         @method('PATCH')
                         <div class="mb-3">
+                            <label class="form-label">Imagen</label>
+                            <input type="file" name="image" id="editCategoryImage" class="form-control form-control-modern" accept="image/*">
+                            <small class="text-muted">Dejar vacío para mantener la imagen actual</small>
+                        </div>
+                        <div class="mb-3">
                             <label class="form-label">Nombre</label>
-                            <input type="text" name="name" id="editCategoryName" class="form-control form-control-modern" required>
+                            <input type="text" name="name" id="editCategoryName" class="form-control form-control-modern" required autocomplete="off">
                         </div>
                         <div class="mb-0">
                             <label class="form-label">Descripción</label>
-                            <textarea name="description" rows="4" id="editCategoryDescription" class="form-control form-control-modern"></textarea>
+                            <textarea name="description" rows="4" id="editCategoryDescription" class="form-control form-control-modern" autocomplete="off"></textarea>
                         </div>
                         <div id="categoryEditErrors" class="alert alert-danger d-none mt-3 mb-0"></div>
                     </form>

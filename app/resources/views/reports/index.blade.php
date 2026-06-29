@@ -10,11 +10,11 @@
             <form id="reportsFilters" class="row g-3 align-items-end">
                 <div class="col-md-3">
                     <label class="form-label">Fecha inicial</label>
-                    <input type="date" name="date_from" value="{{ $filters['date_from'] }}" class="form-control form-control-modern">
+                    <input type="date" name="date_from" value="{{ $filters['date_from'] }}" class="form-control form-control-modern" autocomplete="off">
                 </div>
                 <div class="col-md-3">
                     <label class="form-label">Fecha final</label>
-                    <input type="date" name="date_to" value="{{ $filters['date_to'] }}" class="form-control form-control-modern">
+                    <input type="date" name="date_to" value="{{ $filters['date_to'] }}" class="form-control form-control-modern" autocomplete="off">
                 </div>
                 <div class="col-md-2">
                     <label class="form-label">Categoría</label>
@@ -47,8 +47,6 @@
                     <button type="button" class="btn btn-outline-secondary" id="previewReports">Vista previa</button>
                     <a href="{{ route('reports.pdf', request()->query()) }}" class="btn btn-primary" target="_blank">Generar PDF</a>
                     <a href="{{ route('reports.excel', request()->query()) }}" class="btn btn-success">Generar Excel</a>
-                    <a href="{{ route('reports.pdf', request()->query()) }}" class="btn btn-outline-primary" target="_blank">Descargar PDF</a>
-                    <a href="{{ route('reports.excel', request()->query()) }}" class="btn btn-outline-success">Descargar Excel</a>
                 </div>
             </form>
         </div>
