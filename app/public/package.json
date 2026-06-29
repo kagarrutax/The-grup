@@ -1,0 +1,19 @@
+{
+  "name": "the-grup-frontend-preview",
+  "private": true,
+  "description": "Dependencias del preview UI en app/public (Bootstrap, Chart.js, etc.)",
+  "scripts": {
+    "postinstall": "node -e \"console.log('Dependencias frontend instaladas en app/public/node_modules')\""
+  },
+  "dependencies": {
+    "@fontsource/inter": "^5.2.5",
+    "bootstrap": "^5.3.3",
+    "bootstrap-icons": "^1.11.3",
+    "chart.js": "^4.4.1",
+    "datatables.net": "^1.13.8",
+    "datatables.net-bs5": "^1.13.8",
+    "jquery": "^3.7.1",
+    "sweetalert2": "^11.14.5",
+    "toastify-js": "^1.12.0"
+  }
+}

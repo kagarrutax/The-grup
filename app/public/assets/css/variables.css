@@ -1,0 +1,48 @@
+:root {
+  --bs-primary: #2563EB;
+  --bs-primary-rgb: 37, 99, 235;
+  --bs-success: #059669;
+  --bs-warning: #D97706;
+  --bs-danger: #DC2626;
+  --bs-info: #4F46E5;
+  --bs-dark: #1E293B;
+
+  /* Superficies suaves — sin blanco puro */
+  --bs-body-bg: #E4EAF2;
+  --bs-body-color: #1E293B;
+  --bs-border-color: #C9D4E3;
+  --bs-card-bg: #F4F7FB;
+  --surface-raised: #FAFBFE;
+  --surface-inset: #EEF2F8;
+  --surface-muted: #E8EDF5;
+
+  --slate-50: #F1F5F9;
+  --slate-100: #E2E8F0;
+  --slate-200: #CBD5E1;
+  --slate-300: #94A3B8;
+  --slate-500: #64748B;
+  --slate-700: #334155;
+  --slate-900: #0F172A;
+
+  --primary-hover: #1D4ED8;
+  --sidebar-bg: #EEF2F8;
+  --sidebar-border: #D8E0EC;
+  --sidebar-active-bg: rgba(37, 99, 235, 0.12);
+  --sidebar-active-color: #2563EB;
+  --sidebar-width: 260px;
+  --navbar-height: 72px;
+  --bottom-nav-height: 64px;
+
+  --radius-card: 16px;
+  --radius-btn: 10px;
+  --radius-input: 10px;
+  --radius-modal: 16px;
+  --radius-pill: 50rem;
+
+  --shadow-card: 0 1px 2px rgba(15, 23, 42, 0.05), 0 6px 20px rgba(15, 23, 42, 0.07);
+  --shadow-card-hover: 0 4px 12px rgba(15, 23, 42, 0.08), 0 12px 32px rgba(15, 23, 42, 0.1);
+  --shadow-navbar: 0 1px 0 rgba(15, 23, 42, 0.06);
+  --shadow-inset: inset 0 1px 2px rgba(15, 23, 42, 0.04);
+
+  --transition: 250ms ease;
+}
