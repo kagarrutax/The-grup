@@ -1,0 +1,14 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Redirect build asset requests to the copied build directory.
+    RewriteRule ^build/(.*)$ build/$1 [L]
+
+    # Serve CSS assets from the Laravel public directory.
+    RewriteRule ^css/(.*)$ app/public/css/$1 [L]
+
+    # Serve existing files directly.
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^ index.php [L]
+</IfModule>

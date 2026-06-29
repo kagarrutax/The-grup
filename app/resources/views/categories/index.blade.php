@@ -1,87 +1,222 @@
 @extends('layouts.app')
 
 @section('title', 'Categorías')
+@section('page-title', 'Categorías')
+@section('page-subtitle', 'Catálogo de categorías con búsqueda rápida y edición en modales')
 
 @section('content')
+    <section class="module-toolbar mb-4">
+        <form method="GET" id="categoriesFilters" class="search-toolbar">
+            <div class="search-input-group">
+                <i class="bi bi-search"></i>
+                <input type="search" name="search" value="{{ request('search') }}" class="form-control form-control-search" placeholder="Buscar categorías por ID, nombre o descripción" autocomplete="off">
+                <button type="button" class="search-clear" data-clear-search>&times;</button>
+            </div>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#categoryCreateModal">
+                <i class="bi bi-plus-lg me-1"></i> Nueva categoría
+            </button>
+        </form>
+    </section>
 
-    {{-- Fase 2 — categories/index --}}
-    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 gap-3">
-        <div>
-            <h1 class="h3 fw-bold mb-1">Categorías</h1>
-            <p class="page-subtitle mb-0">Organización de productos por categorías</p>
-        </div>
-        <a href="{{ url('/categories/create') }}" class="btn btn-primary rounded-pill shadow-sm">
-            <i class="bi bi-plus-lg me-1"></i>Nueva categoría
-        </a>
+    <div id="categoriesTableWrapper">
+        @include('categories.partials.table', ['categories' => $categories])
     </div>
 
-    <div class="card card-app mb-4">
-        <div class="card-body p-3 p-md-4">
-            <form action="{{ url('/categories') }}" method="GET" class="row g-3 align-items-end">
-                <div class="col-12 col-md-8 col-lg-9">
-                    <label for="search" class="form-label small text-muted mb-1">Buscar</label>
-                    <div class="input-group">
-                        <span class="input-group-text bg-white border-end-0"><i class="bi bi-search text-muted"></i></span>
-                        <input type="text" class="form-control border-start-0 ps-0" id="search" name="search"
-                               placeholder="Nombre o descripción..." value="">
+    @include('components.modal-delete-confirmation')
+
+    <div class="modal fade" id="categoryCreateModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content modal-content-modern">
+                <div class="modal-header modal-header-gradient">
+                    <div>
+                        <h5 class="modal-title mb-0">Nueva categoría</h5>
+                        <small class="text-muted">Registro rápido sin salir del listado</small>
                     </div>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
-                <div class="col-12 col-md-4 col-lg-3 d-grid d-md-block">
-                    <button type="submit" class="btn btn-outline-primary rounded-pill w-100 w-md-auto"><i class="bi bi-funnel me-1"></i>Buscar</button>
+                <div class="modal-body modal-body-modern">
+                    <form id="categoryCreateForm">
+                        @csrf
+                        <div class="mb-3">
+                            <label class="form-label">Imagen</label>
+                            <input type="file" name="image" class="form-control form-control-modern" accept="image/*">
+                            <small class="text-muted">Formatos: JPG, PNG, GIF, WebP</small>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Nombre</label>
+                            <input type="text" name="name" class="form-control form-control-modern" required autocomplete="off">
+                        </div>
+                        <div class="mb-0">
+                            <label class="form-label">Descripción</label>
+                            <textarea name="description" rows="4" class="form-control form-control-modern" autocomplete="off"></textarea>
+                        </div>
+                        <div id="categoryCreateErrors" class="alert alert-danger d-none mt-3 mb-0"></div>
+                    </form>
                 </div>
-            </form>
-        </div>
-    </div>
-
-    <div class="card card-app">
-        <div class="card-body p-0">
-            <div class="table-responsive">
-                <table class="table table-striped table-hover table-bordered table-app align-middle mb-0">
-                    <thead class="table-light">
-                        <tr>
-                            <th class="ps-4">Nombre</th>
-                            <th>Descripción</th>
-                            <th class="text-center pe-4">Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="ps-4 fw-medium"><i class="bi bi-tag text-primary me-2"></i>Granos</td>
-                            <td class="text-muted">Arroz, frijoles, lentejas y cereales.</td>
-                            <td class="text-center pe-4">
-                                <div class="btn-group btn-group-sm">
-                                    <a href="{{ url('/categories/1/edit') }}" class="btn btn-outline-warning" title="Editar"><i class="bi bi-pencil"></i></a>
-                                    <button type="button" class="btn btn-outline-danger" title="Eliminar"><i class="bi bi-trash"></i></button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="ps-4 fw-medium"><i class="bi bi-tag text-primary me-2"></i>Lácteos</td>
-                            <td class="text-muted">Leche, quesos, yogur y derivados.</td>
-                            <td class="text-center pe-4">
-                                <div class="btn-group btn-group-sm">
-                                    <a href="{{ url('/categories/2/edit') }}" class="btn btn-outline-warning"><i class="bi bi-pencil"></i></a>
-                                    <button type="button" class="btn btn-outline-danger"><i class="bi bi-trash"></i></button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="ps-4 fw-medium"><i class="bi bi-tag text-primary me-2"></i>Bebidas</td>
-                            <td class="text-muted">Jugos, gaseosas y agua embotellada.</td>
-                            <td class="text-center pe-4">
-                                <div class="btn-group btn-group-sm">
-                                    <a href="{{ url('/categories/3/edit') }}" class="btn btn-outline-warning"><i class="bi bi-pencil"></i></a>
-                                    <button type="button" class="btn btn-outline-danger"><i class="bi bi-trash"></i></button>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="modal-footer modal-footer-modern">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary btn-modern" id="categoryCreateSubmit">Guardar</button>
+                </div>
             </div>
         </div>
-        <div class="card-footer bg-white border-0 py-3 px-4">
-            <small class="text-muted">3 categorías registradas</small>
+    </div>
+
+    <div class="modal fade" id="categoryViewModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content modal-content-modern">
+                <div class="modal-header modal-header-gradient">
+                    <h5 class="modal-title mb-0">Detalle de categoría</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body modal-body-modern" id="categoryViewContent"></div>
+            </div>
         </div>
     </div>
 
+    <div class="modal fade" id="categoryEditModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content modal-content-modern">
+                <div class="modal-header modal-header-gradient">
+                    <h5 class="modal-title mb-0">Editar categoría</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body modal-body-modern">
+                    <form id="categoryEditForm">
+                        @csrf
+                        @method('PATCH')
+                        <div class="mb-3">
+                            <label class="form-label">Imagen</label>
+                            <input type="file" name="image" id="editCategoryImage" class="form-control form-control-modern" accept="image/*">
+                            <small class="text-muted">Dejar vacío para mantener la imagen actual</small>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Nombre</label>
+                            <input type="text" name="name" id="editCategoryName" class="form-control form-control-modern" required autocomplete="off">
+                        </div>
+                        <div class="mb-0">
+                            <label class="form-label">Descripción</label>
+                            <textarea name="description" rows="4" id="editCategoryDescription" class="form-control form-control-modern" autocomplete="off"></textarea>
+                        </div>
+                        <div id="categoryEditErrors" class="alert alert-danger d-none mt-3 mb-0"></div>
+                    </form>
+                </div>
+                <div class="modal-footer modal-footer-modern">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary btn-modern" id="categoryEditSubmit">Guardar cambios</button>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
+
+@push('scripts')
+<script>
+    (() => {
+        const filtersForm = document.getElementById('categoriesFilters');
+        const wrapper = document.getElementById('categoriesTableWrapper');
+        const searchInput = filtersForm.querySelector('input[name="search"]');
+        let editId = null;
+        let timeoutId = null;
+
+        const toggleTypingState = () => {
+            searchInput.parentElement.classList.toggle('is-typing', searchInput.value.trim() !== '');
+        };
+
+        const refresh = async () => {
+            const response = await fetch(`{{ route('categories.index') }}?${new URLSearchParams(new FormData(filtersForm)).toString()}`, {
+                headers: { 'X-Requested-With': 'XMLHttpRequest' },
+            });
+            wrapper.innerHTML = await response.text();
+        };
+
+        window.refreshCurrentTable = refresh;
+
+        filtersForm.addEventListener('input', () => {
+            toggleTypingState();
+            clearTimeout(timeoutId);
+            timeoutId = setTimeout(refresh, 220);
+        });
+
+        filtersForm.querySelector('[data-clear-search]').addEventListener('click', () => {
+            searchInput.value = '';
+            toggleTypingState();
+            refresh();
+        });
+
+        document.getElementById('categoryCreateSubmit').addEventListener('click', async () => {
+            const form = document.getElementById('categoryCreateForm');
+            const errorBox = document.getElementById('categoryCreateErrors');
+            errorBox.classList.add('d-none');
+
+            const response = await fetch('{{ route('categories.store') }}', {
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+                    'Accept': 'application/json',
+                    'X-Requested-With': 'XMLHttpRequest',
+                },
+                body: new FormData(form),
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                errorBox.innerHTML = Object.values(data.errors || { error: ['No se pudo guardar la categoría.'] }).flat().join('<br>');
+                errorBox.classList.remove('d-none');
+                return;
+            }
+
+            bootstrap.Modal.getInstance(document.getElementById('categoryCreateModal')).hide();
+            form.reset();
+            refresh();
+        });
+
+        window.viewCategory = async (id) => {
+            const response = await fetch(`/categories/${id}/show`);
+            document.getElementById('categoryViewContent').innerHTML = await response.text();
+            new bootstrap.Modal(document.getElementById('categoryViewModal')).show();
+        };
+
+        window.editCategory = async (id) => {
+            const response = await fetch(`/categories/${id}/edit`, {
+                headers: { 'Accept': 'application/json', 'X-Requested-With': 'XMLHttpRequest' },
+            });
+            const data = await response.json();
+            editId = id;
+            document.getElementById('editCategoryName').value = data.name;
+            document.getElementById('editCategoryDescription').value = data.description ?? '';
+            document.getElementById('categoryEditErrors').classList.add('d-none');
+            new bootstrap.Modal(document.getElementById('categoryEditModal')).show();
+        };
+
+        document.getElementById('categoryEditSubmit').addEventListener('click', async () => {
+            const form = document.getElementById('categoryEditForm');
+            const errorBox = document.getElementById('categoryEditErrors');
+            errorBox.classList.add('d-none');
+
+            const response = await fetch(`/categories/${editId}`, {
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+                    'Accept': 'application/json',
+                    'X-Requested-With': 'XMLHttpRequest',
+                },
+                body: new FormData(form),
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                errorBox.innerHTML = Object.values(data.errors || { error: ['No se pudo actualizar la categoría.'] }).flat().join('<br>');
+                errorBox.classList.remove('d-none');
+                return;
+            }
+
+            bootstrap.Modal.getInstance(document.getElementById('categoryEditModal')).hide();
+            refresh();
+        });
+
+        toggleTypingState();
+    })();
+</script>
+@endpush

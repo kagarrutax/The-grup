@@ -2,111 +2,133 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
 use App\Models\Category;
+use App\Models\Supplier;
 use App\Models\Product;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\StockMovement;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
-    use WithoutModelEvents;
-
-    /**
-     * Seed the application's database.
-     */
     public function run(): void
     {
-        // 1. Crear usuario administrador
-        User::factory()->admin()->create([
+        $admin = User::factory()->admin()->create([
             'name' => 'Administrador',
             'email' => 'admin@supermercado.com',
             'password' => Hash::make('password'),
         ]);
 
-        // 2. Definir categorías y sus productos asociados
+        $operador = User::factory()->create([
+            'name' => 'Operador',
+            'email' => 'operador@supermercado.com',
+            'password' => Hash::make('password'),
+        ]);
+
         $categoriesData = [
             'Lácteos' => [
                 'description' => 'Leche, quesos, yogures y derivados lácteos.',
+                'supplier' => 'Distribuidora Láctea Central',
                 'products' => [
-                    ['name' => 'Leche Entera 1L', 'unit' => 'litro', 'price' => 24.50],
-                    ['name' => 'Yogur Natural 1kg', 'unit' => 'pieza', 'price' => 45.00],
-                    ['name' => 'Queso Cotija 250g', 'unit' => 'pieza', 'price' => 58.50],
-                    ['name' => 'Mantequilla con sal 90g', 'unit' => 'pieza', 'price' => 19.90],
-                    ['name' => 'Crema Ácida 200ml', 'unit' => 'pieza', 'price' => 15.00],
-                    ['name' => 'Queso Oaxaca 400g', 'unit' => 'pieza', 'price' => 85.00],
-                ]
-            ],
-            'Carnes' => [
-                'description' => 'Carnes rojas, pollo, pescado y embutidos.',
-                'products' => [
-                    ['name' => 'Pechuga de Pollo 1kg', 'unit' => 'kg', 'price' => 110.00],
-                    ['name' => 'Bife de Res 500g', 'unit' => 'pieza', 'price' => 145.00],
-                    ['name' => 'Filete de Pescado 1kg', 'unit' => 'kg', 'price' => 160.00],
-                    ['name' => 'Milanesa de Cerdo 1kg', 'unit' => 'kg', 'price' => 98.00],
-                    ['name' => 'Jamón de Pavo 250g', 'unit' => 'pieza', 'price' => 38.00],
-                    ['name' => 'Tocino de Cerdo 200g', 'unit' => 'pieza', 'price' => 52.00],
-                ]
+                    ['name' => 'Yogurt natural', 'sku' => 'SKU-008', 'unit' => 'unidad', 'price' => 18.50, 'stock' => 5, 'min' => 15],
+                    ['name' => 'Leche entera 1L', 'sku' => 'SKU-012', 'unit' => 'litro', 'price' => 24.50, 'stock' => 42, 'min' => 10],
+                    ['name' => 'Queso Oaxaca 400g', 'sku' => 'SKU-015', 'unit' => 'pieza', 'price' => 85.00, 'stock' => 20, 'min' => 8],
+                ],
             ],
             'Bebidas' => [
                 'description' => 'Aguas, jugos, refrescos y licores.',
+                'supplier' => 'Bebidas del Norte',
                 'products' => [
-                    ['name' => 'Coca-Cola 2L', 'unit' => 'pieza', 'price' => 35.00],
-                    ['name' => 'Jugo de Naranja 1L', 'unit' => 'pieza', 'price' => 22.00],
-                    ['name' => 'Agua Mineral 1.5L', 'unit' => 'pieza', 'price' => 16.50],
-                    ['name' => 'Cerveza Lager 6pack', 'unit' => 'paquete', 'price' => 95.00],
-                    ['name' => 'Refresco de Limón 600ml', 'unit' => 'pieza', 'price' => 15.00],
-                    ['name' => 'Té Helado Durazno 1.5L', 'unit' => 'pieza', 'price' => 28.00],
-                ]
+                    ['name' => 'Coca-Cola 2L', 'sku' => 'SKU-003', 'unit' => 'pieza', 'price' => 35.00, 'stock' => 60, 'min' => 12],
+                    ['name' => 'Jugo de naranja 1L', 'sku' => 'SKU-004', 'unit' => 'litro', 'price' => 22.00, 'stock' => 30, 'min' => 10],
+                ],
+            ],
+            'Abarrotes' => [
+                'description' => 'Arroz, frijol, aceites y granos.',
+                'supplier' => 'Abarrotes Nacionales',
+                'products' => [
+                    ['name' => 'Arroz premium 500g', 'sku' => 'SKU-001', 'unit' => 'pieza', 'price' => 28.00, 'stock' => 35, 'min' => 10],
+                    ['name' => 'Aceite girasol 1L', 'sku' => 'SKU-014', 'unit' => 'litro', 'price' => 45.00, 'stock' => 8, 'min' => 20],
+                ],
             ],
             'Limpieza' => [
                 'description' => 'Productos de aseo para el hogar.',
+                'supplier' => 'Limpieza Express',
                 'products' => [
-                    ['name' => 'Detergente en Polvo 1kg', 'unit' => 'pieza', 'price' => 42.00],
-                    ['name' => 'Limpiador Multiusos 1L', 'unit' => 'pieza', 'price' => 26.00],
-                    ['name' => 'Cloro Líquido 1L', 'unit' => 'pieza', 'price' => 18.00],
-                    ['name' => 'Jabón de Tocador 4pack', 'unit' => 'paquete', 'price' => 48.00],
-                    ['name' => 'Lavavajillas Líquido 750ml', 'unit' => 'pieza', 'price' => 32.00],
-                    ['name' => 'Limpiador de Vidrios 500ml', 'unit' => 'pieza', 'price' => 29.00],
-                ]
+                    ['name' => 'Detergente 2L', 'sku' => 'SKU-022', 'unit' => 'litro', 'price' => 42.00, 'stock' => 24, 'min' => 6],
+                    ['name' => 'Limpiador multiusos 1L', 'sku' => 'SKU-025', 'unit' => 'litro', 'price' => 26.00, 'stock' => 18, 'min' => 5],
+                ],
             ],
             'Panadería' => [
-                'description' => 'Pan dulce, pan de caja, galletas y repostería.',
+                'description' => 'Pan, galletas y repostería.',
+                'supplier' => 'Panificadora Aurora',
                 'products' => [
-                    ['name' => 'Pan de Caja Integral', 'unit' => 'pieza', 'price' => 42.00],
-                    ['name' => 'Bolillo Recién Horneado', 'unit' => 'pieza', 'price' => 2.50],
-                    ['name' => 'Baguette de Trigo', 'unit' => 'pieza', 'price' => 18.00],
-                    ['name' => 'Mantecadas 4pack', 'unit' => 'paquete', 'price' => 28.00],
-                    ['name' => 'Galletas de Avena con Chispas', 'unit' => 'pieza', 'price' => 32.00],
-                    ['name' => 'Donas de Chocolate 4pack', 'unit' => 'paquete', 'price' => 36.00],
-                ]
-            ]
+                    ['name' => 'Pan integral', 'sku' => 'SKU-023', 'unit' => 'pieza', 'price' => 32.00, 'stock' => 12, 'min' => 30],
+                ],
+            ],
         ];
 
-        // 3. Insertar categorías y productos en bucle
+        $products = collect();
+
         foreach ($categoriesData as $categoryName => $data) {
             $category = Category::create([
                 'name' => $categoryName,
                 'description' => $data['description'],
             ]);
 
+            $supplier = Supplier::create([
+                'company_name' => $data['supplier'],
+                'contact_name' => 'Equipo de compras',
+                'phone' => '555-010-'.str_pad((string) $category->id, 2, '0', STR_PAD_LEFT),
+                'email' => 'contacto'.$category->id.'@thegrup.test',
+                'address' => 'Zona comercial '.$categoryName,
+                'status' => 'activo',
+            ]);
+
             foreach ($data['products'] as $prod) {
-                // Generar un SKU único y representativo: "LAC-00001", "CAR-00002", etc.
-                $skuPrefix = strtoupper(substr($categoryName, 0, 3));
-                $sku = $skuPrefix . '-' . fake()->unique()->numerify('#####');
-
-                Product::factory()->create([
+                $products->push(Product::create([
                     'category_id' => $category->id,
+                    'supplier_id' => $supplier->id,
                     'name' => $prod['name'],
-                    'sku' => $sku,
+                    'sku' => $prod['sku'],
+                    'image_url' => null,
                     'price' => $prod['price'],
+                    'purchase_price' => $prod['price'],
+                    'sale_price' => $prod['price'] * 1.2,
+                    'stock_quantity' => $prod['stock'],
+                    'stock_minimum' => $prod['min'],
                     'unit' => $prod['unit'],
-                    'stock_quantity' => fake()->numberBetween(0, 100),
-                    'stock_minimum' => fake()->numberBetween(5, 15),
                     'status' => 'activo',
-                ]);
+                ]));
             }
-        }`r`n    }
-}
+        }
 
+        $movements = [
+            ['sku' => 'SKU-022', 'type' => StockMovement::TYPE_ENTRADA, 'qty' => 24, 'user' => $admin, 'reason' => 'Inventario inicial', 'days' => 5],
+            ['sku' => 'SKU-001', 'type' => StockMovement::TYPE_SALIDA, 'qty' => 12, 'user' => $operador, 'reason' => 'Reposición tienda', 'days' => 5],
+            ['sku' => 'SKU-014', 'type' => StockMovement::TYPE_ENTRADA, 'qty' => 20, 'user' => $admin, 'reason' => 'Compra proveedor', 'days' => 4],
+            ['sku' => 'SKU-012', 'type' => StockMovement::TYPE_SALIDA, 'qty' => 8, 'user' => $operador, 'reason' => 'Venta mostrador', 'days' => 3],
+            ['sku' => 'SKU-008', 'type' => StockMovement::TYPE_SALIDA, 'qty' => 5, 'user' => $operador, 'reason' => 'Ajuste inventario', 'days' => 2],
+            ['sku' => 'SKU-023', 'type' => StockMovement::TYPE_ENTRADA, 'qty' => 15, 'user' => $admin, 'reason' => 'Recepción almacén', 'days' => 1],
+        ];
+
+        foreach ($movements as $mov) {
+            $product = $products->firstWhere('sku', $mov['sku']);
+
+            if (! $product) {
+                continue;
+            }
+
+            StockMovement::create([
+                'product_id' => $product->id,
+                'user_id' => $mov['user']->id,
+                'type' => $mov['type'],
+                'quantity' => $mov['qty'],
+                'reason' => $mov['reason'],
+                'created_at' => now()->subDays($mov['days']),
+                'updated_at' => now()->subDays($mov['days']),
+            ]);
+        }
+    }
+}

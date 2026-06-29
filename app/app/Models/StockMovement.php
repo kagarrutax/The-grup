@@ -4,29 +4,40 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class StockMovement extends Model
 {
-    use HasFactory;`r`n    protected $fillable = [
+    /** @use HasFactory<\Database\Factories\StockMovementFactory> */
+    use HasFactory;
+
+    public const TYPE_ENTRADA = 'entrada';
+
+    public const TYPE_SALIDA = 'salida';
+
+    protected $fillable = [
         'product_id',
         'user_id',
         'type',
         'quantity',
         'reason',
+        'observations',
     ];
 
-    /**
-     * Get the product that was moved.
-     */
-    public function product()`r`n    {
+    protected function casts(): array
+    {
+        return [
+            'quantity' => 'integer',
+        ];
+    }
+
+    public function product(): BelongsTo
+    {
         return $this->belongsTo(Product::class);
     }
 
-    /**
-     * Get the user who registered the movement.
-     */
-    public function user()`r`n    {
+    public function user(): BelongsTo
+    {
         return $this->belongsTo(User::class);
     }
 }
-

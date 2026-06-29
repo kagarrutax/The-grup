@@ -7,9 +7,7 @@ use App\Models\StockMovement;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends Factory<StockMovement>
- */
+/** @extends Factory<StockMovement> */
 class StockMovementFactory extends Factory
 {
     protected $model = StockMovement::class;
@@ -19,9 +17,9 @@ class StockMovementFactory extends Factory
         return [
             'product_id' => Product::factory(),
             'user_id' => User::factory(),
-            'type' => StockMovement::TYPE_ENTRADA,
-            'quantity' => fake()->numberBetween(1, 50),
-            'reason' => fake()->optional()->sentence(),
+            'type' => fake()->randomElement([StockMovement::TYPE_ENTRADA, StockMovement::TYPE_SALIDA]),
+            'quantity' => fake()->numberBetween(1, 30),
+            'reason' => fake()->sentence(3),
         ];
     }
 }

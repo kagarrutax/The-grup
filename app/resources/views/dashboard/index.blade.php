@@ -1,161 +1,207 @@
 @extends('layouts.app')
 
 @section('title', 'Dashboard')
+@section('page-title', 'Dashboard')
+@section('page-subtitle', 'Visión operativa del inventario con métricas, alertas y actividad reciente')
 
 @section('content')
-
-    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 gap-2">
+<div class="dashboard-page">
+    <section class="dashboard-hero card-app">
         <div>
-            <h1 class="h3 fw-bold mb-1">Dashboard</h1>
-            <p class="text-muted mb-0">Resumen general del inventario</p>
+            <span class="dashboard-pill">SaaS Inventory Hub</span>
+            <h2>Controla compras, stock y movimientos desde una sola vista.</h2>
+            <p>Supervisa productos, alertas y valor del inventario con un diseño más limpio y orientado a operación diaria.</p>
         </div>
-        <div class="text-muted small">
-            <i class="bi bi-calendar3 me-1"></i>{{ date('d/m/Y') }}
+        <div class="dashboard-hero-metrics">
+            <div>
+                <strong>{{ $summaryCards[0]['value'] }}</strong>
+                <span>Productos activos</span>
+            </div>
+            <div>
+                <strong>{{ $summaryCards[4]['value'] }}</strong>
+                <span>Inventario valorizado</span>
+            </div>
         </div>
+    </section>
+
+    <div class="dashboard-summary-grid">
+        @foreach($summaryCards as $card)
+            <article class="summary-card summary-card-{{ $card['tone'] }}">
+                <div class="summary-icon">
+                    <i class="bi {{ $card['icon'] }}"></i>
+                </div>
+                <div class="summary-body">
+                    <div class="summary-topline">
+                        <span class="summary-title">{{ $card['title'] }}</span>
+                        <span class="summary-trend trend-{{ $card['trendDirection'] }}">{{ $card['trend'] }}</span>
+                    </div>
+                    <div class="summary-value">{{ $card['value'] }}</div>
+                    <div class="summary-caption">{{ $card['description'] }}</div>
+                </div>
+            </article>
+        @endforeach
     </div>
 
-    <div class="row g-3 g-md-4 mb-4">
-        <div class="col-12 col-sm-6 col-xl-3">
-            <div class="card border-0 shadow-sm rounded-3 h-100">
-                <div class="card-body d-flex align-items-center">
-                    <div class="rounded-3 bg-primary bg-opacity-10 p-3 me-3">
-                        <i class="bi bi-box-seam fs-3 text-primary"></i>
-                    </div>
-                    <div>
-                        <p class="text-muted small mb-1">Total Productos</p>
-                        <h2 class="h4 fw-bold mb-0">{{ $totalProducts ?? 0 }}</h2>
-                    </div>
+    <div class="dashboard-main-grid">
+        <section class="card-app dashboard-card dashboard-chart-card">
+            <div class="card-header dashboard-card-header">
+                <div>
+                    <h2 class="dashboard-card-title">Entradas y salidas</h2>
+                    <p class="dashboard-card-text">Comportamiento de los últimos 7 días</p>
                 </div>
+                <span class="dashboard-filter-badge">Actualización diaria</span>
             </div>
-        </div>
+            <div class="card-body chart-card-body">
+                <canvas id="movementsChart" height="120"></canvas>
+            </div>
+        </section>
 
-        <div class="col-12 col-sm-6 col-xl-3">
-            <div class="card border-0 shadow-sm rounded-3 h-100">
-                <div class="card-body d-flex align-items-center">
-                    <div class="rounded-3 bg-success bg-opacity-10 p-3 me-3">
-                        <i class="bi bi-tags fs-3 text-success"></i>
-                    </div>
-                    <div>
-                        <p class="text-muted small mb-1">Total Categorías</p>
-                        <h2 class="h4 fw-bold mb-0">{{ $totalCategories ?? 0 }}</h2>
-                    </div>
-                </div>
+        <aside class="card-app dashboard-card activity-card">
+            <div class="card-header dashboard-card-header">
+                <h2 class="dashboard-card-title">Actividad reciente</h2>
+                <a href="{{ route('stock.index') }}" class="dashboard-card-link">Ver todas</a>
             </div>
-        </div>
-
-        <div class="col-12 col-sm-6 col-xl-3">
-            <div class="card border-0 shadow-sm rounded-3 h-100">
-                <div class="card-body d-flex align-items-center">
-                    <div class="rounded-3 bg-warning bg-opacity-10 p-3 me-3">
-                        <i class="bi bi-exclamation-triangle fs-3 text-warning"></i>
+            <div class="card-body activity-card-body">
+                @forelse($recentActivity as $item)
+                    <div class="activity-item">
+                        <div class="activity-icon activity-icon-{{ $item['type'] }}">
+                            <i class="bi {{ $item['icon'] }}"></i>
+                        </div>
+                        <div class="activity-content">
+                            <div class="activity-title-row">
+                                <strong>{{ $item['product'] }}</strong>
+                                <span class="activity-meta">{{ $item['sku'] }}</span>
+                            </div>
+                            <div class="activity-meta">{{ $item['detail'] }} · {{ $item['time'] }}</div>
+                        </div>
+                        <div class="activity-badge-wrap">
+                            <span class="activity-badge {{ $item['type'] === 'entrada' ? 'badge-entrada' : 'badge-salida' }}">
+                                {{ strtoupper($item['type']) }} {{ $item['qty'] }}
+                            </span>
+                        </div>
                     </div>
-                    <div>
-                        <p class="text-muted small mb-1">Stock Bajo</p>
-                        <h2 class="h4 fw-bold mb-0">{{ $lowStockCount ?? 0 }}</h2>
-                    </div>
-                </div>
+                @empty
+                    <div class="empty-state-card">No hay actividad reciente registrada.</div>
+                @endforelse
             </div>
-        </div>
-
-        <div class="col-12 col-sm-6 col-xl-3">
-            <div class="card border-0 shadow-sm rounded-3 h-100">
-                <div class="card-body d-flex align-items-center">
-                    <div class="rounded-3 bg-danger bg-opacity-10 p-3 me-3">
-                        <i class="bi bi-x-circle fs-3 text-danger"></i>
-                    </div>
-                    <div>
-                        <p class="text-muted small mb-1">Productos Agotados</p>
-                        <h2 class="h4 fw-bold mb-0">{{ $outOfStockCount ?? 0 }}</h2>
-                    </div>
-                </div>
-            </div>
-        </div>
+        </aside>
     </div>
 
-    @if (!empty($lowStockProducts) && $lowStockProducts->isNotEmpty())
-        <div class="card shadow-sm mb-4">
-            <div class="card-header bg-white">
-                <h2 class="h5 mb-0"><i class="bi bi-exclamation-circle text-warning me-1"></i> Productos con stock bajo</h2>
+    <div class="dashboard-bottom-grid">
+        <section class="card-app dashboard-card">
+            <div class="card-header dashboard-card-header">
+                <h2 class="dashboard-card-title">Productos con poco stock</h2>
+                <a href="{{ route('products.index', ['search' => '']) }}" class="dashboard-card-link">Ver productos</a>
             </div>
-            <div class="table-responsive">
-                <table class="table table-hover mb-0">
-                    <thead class="table-light">
-                        <tr>
-                            <th>Producto</th>
-                            <th>SKU</th>
-                            <th>Categoría</th>
-                            <th class="text-end">Stock</th>
-                            <th class="text-end">Mínimo</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($lowStockProducts as $product)
-                            <tr>
-                                <td>{{ $product->name }}</td>
-                                <td><code>{{ $product->sku }}</code></td>
-                                <td>{{ $product->category->name ?? '—' }}</td>
-                                <td class="text-end text-warning fw-semibold">{{ $product->stock_quantity }}</td>
-                                <td class="text-end">{{ $product->stock_minimum }}</td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+            <div class="card-body stock-card-body">
+                @forelse($lowStock as $item)
+                    <div class="stock-row">
+                        <div class="stock-row-icon stock-row-icon-{{ $item['level'] }}">
+                            <i class="bi {{ $item['icon'] }}"></i>
+                        </div>
+                        <div class="stock-row-content">
+                            <div class="stock-bar-label">
+                                <span>#{{ $item['id'] }} · {{ $item['name'] }}</span>
+                                <span class="text-muted">{{ $item['current'] }} / {{ $item['max'] }} uds</span>
+                            </div>
+                            <div class="activity-meta mb-2">Código {{ $item['code'] }}</div>
+                            <div class="stock-bar">
+                                <div class="stock-bar-fill {{ $item['level'] }}" style="width: {{ $item['percent'] }}%"></div>
+                            </div>
+                        </div>
+                    </div>
+                @empty
+                    <div class="empty-state-card">No hay productos con stock comprometido.</div>
+                @endforelse
             </div>
+        </section>
 
-            {{-- Enlace opcional a la vista completa de inventario --}}
-            <div class="text-end mt-3">
-                <a href="{{ url('/stock') }}" class="btn btn-sm btn-outline-primary rounded-pill">
-                    Ver todos los movimientos <i class="bi bi-arrow-right ms-1"></i>
-                </a>
+        <section class="card-app dashboard-card">
+            <div class="card-header dashboard-card-header">
+                <h2 class="dashboard-card-title">Top categorías</h2>
+                <a href="{{ route('categories.index') }}" class="dashboard-card-link">Ver categorías</a>
             </div>
-
-        </div>
-    @endif
-
-    <div class="card shadow-sm">
-        <div class="card-header bg-white d-flex justify-content-between align-items-center">
-            <h2 class="h5 mb-0"><i class="bi bi-arrow-left-right me-1"></i> Últimos movimientos</h2>
-            <a href="{{ route('stock.create') }}" class="btn btn-sm btn-primary">Registrar movimiento</a>
-        </div>
-
-        @if (empty($recentMovements) || $recentMovements->isEmpty())
-            <div class="card-body text-muted">
-                No hay movimientos registrados aún.
+            <div class="card-body category-card-body">
+                @forelse($topCategories as $cat)
+                    <div class="category-row">
+                        <div class="category-info">
+                            <div class="category-icon">
+                                <i class="bi {{ $cat['icon'] }}"></i>
+                            </div>
+                            <div>
+                                <strong>{{ $cat['name'] }}</strong>
+                                <div class="activity-meta">{{ $cat['count'] }} productos</div>
+                            </div>
+                        </div>
+                        <span class="category-count">{{ number_format($cat['stock_total']) }} uds</span>
+                    </div>
+                @empty
+                    <div class="empty-state-card">Aún no hay categorías con datos suficientes.</div>
+                @endforelse
             </div>
-        @else
-            <div class="table-responsive">
-                <table class="table table-hover mb-0">
-                    <thead class="table-light">
-                        <tr>
-                            <th>Fecha</th>
-                            <th>Producto</th>
-                            <th>Usuario</th>
-                            <th>Tipo</th>
-                            <th class="text-end">Cantidad</th>
-                            <th>Motivo</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($recentMovements as $movement)
-                            <tr>
-                                <td class="text-nowrap">{{ $movement->created_at->format('d/m/Y H:i') }}</td>
-                                <td>{{ $movement->product->name }}</td>
-                                <td>{{ $movement->user->name ?? '—' }}</td>
-                                <td>
-                                    @if ($movement->type === \App\Models\StockMovement::TYPE_ENTRADA)
-                                        <span class="badge bg-success">Entrada</span>
-                                    @else
-                                        <span class="badge bg-danger">Salida</span>
-                                    @endif
-                                </td>
-                                <td class="text-end">{{ $movement->quantity }}</td>
-                                <td>{{ $movement->reason ?? '—' }}</td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-        @endif
+        </section>
     </div>
-
+</div>
 @endsection
+
+@push('scripts')
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script>
+    new Chart(document.getElementById('movementsChart'), {
+        type: 'line',
+        data: {
+            labels: @json($chartLabels),
+            datasets: [
+                {
+                    label: 'Entradas',
+                    data: @json($chartEntradas),
+                    borderColor: '#6a5cff',
+                    backgroundColor: 'rgba(106, 92, 255, 0.10)',
+                    fill: true,
+                    tension: 0.4,
+                    pointBackgroundColor: '#6a5cff',
+                    pointBorderWidth: 0,
+                    pointRadius: 4,
+                },
+                {
+                    label: 'Salidas',
+                    data: @json($chartSalidas),
+                    borderColor: '#9ca3af',
+                    backgroundColor: 'transparent',
+                    tension: 0.4,
+                    pointBackgroundColor: '#9ca3af',
+                    pointBorderWidth: 0,
+                    pointRadius: 4,
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        usePointStyle: false,
+                        boxWidth: 28,
+                        color: '#667085',
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    grid: { color: '#edf0f7' },
+                    border: { display: false },
+                    ticks: { color: '#98a2b3' }
+                },
+                x: {
+                    grid: { display: false },
+                    border: { display: false },
+                    ticks: { color: '#98a2b3' }
+                }
+            }
+        }
+    });
+</script>
+@endpush

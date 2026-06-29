@@ -1,64 +1,64 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<!doctype html>
+<html lang="es">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ config('app.name', 'The-grup') }} — @yield('title', 'Inventario')</title>
-
+    <title>@yield('title', 'Inventario') — The Grup</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/inventario.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/modals.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/table-products.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
     @stack('styles')
 </head>
-<body class="d-flex flex-column min-vh-100 bg-light">
+<body>
+<div class="app-shell">
+    @include('partials.sidebar')
 
-    {{-- Barra de navegación --}}
-    @include('partials.navbar')
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-    <main class="flex-grow-1 py-4">
-        <div class="container">
+    <div class="app-main">
+        @include('partials.topbar')
 
-            {{-- Mensajes flash --}}
-            @if (session('success'))
-                <div class="alert alert-success alert-dismissible fade show shadow-sm rounded-3" role="alert">
+        <main class="app-content">
+            @if(session('success'))
+                <div class="alert alert-success alert-dismissible fade show rounded-3 shadow-sm" role="alert">
                     <i class="bi bi-check-circle-fill me-2"></i>{{ session('success') }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                 </div>
             @endif
 
-            @if (session('error'))
-                <div class="alert alert-danger alert-dismissible fade show shadow-sm rounded-3" role="alert">
+            @if(session('error'))
+                <div class="alert alert-danger alert-dismissible fade show rounded-3 shadow-sm" role="alert">
                     <i class="bi bi-exclamation-triangle-fill me-2"></i>{{ session('error') }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                 </div>
             @endif
-
-            @if (session('status'))
-                <div class="alert alert-info alert-dismissible fade show" role="alert">
-                    {{ session('status') }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
-                </div>
-            @endif
-
-            @isset($header)
-                <div class="mb-4">
-                    {{ $header }}
-                </div>
-            @endisset
 
             @yield('content')
+        </main>
+    </div>
+</div>
 
-        </div>
-    </main>
-
-    {{-- Pie de página --}}
-    @include('partials.footer')
-
-    {{-- Bootstrap JS --}}
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    @stack('scripts')
-    @yield('scripts')
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    (function () {
+        var toggle = document.getElementById('sidebarToggle');
+        var sidebar = document.getElementById('appSidebar');
+        var overlay = document.getElementById('sidebarOverlay');
+        if (!toggle || !sidebar) return;
+        toggle.addEventListener('click', function () {
+            sidebar.classList.toggle('show');
+            overlay.classList.toggle('show');
+        });
+        overlay.addEventListener('click', function () {
+            sidebar.classList.remove('show');
+            overlay.classList.remove('show');
+        });
+    })();
+</script>
+@stack('scripts')
 </body>
 </html>

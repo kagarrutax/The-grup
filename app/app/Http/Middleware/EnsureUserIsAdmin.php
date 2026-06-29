@@ -21,7 +21,7 @@ class EnsureUserIsAdmin
 
             return redirect()
                 ->route('login')
-                ->withErrors(['email' => 'Acceso restringido a administradores.']);
+                ->with('error', 'Acceso restringido a administradores.');
         }
 
         return $next($request);

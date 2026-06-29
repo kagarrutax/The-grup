@@ -1,105 +1,63 @@
 @extends('layouts.app')
 
-@section('title', 'Editar Producto')
+@section('title', 'Editar producto')
+@section('page-title', 'Editar producto')
+@section('page-subtitle', $product->name)
 
 @section('content')
-
-    <div class="mb-4">
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb mb-2">
-                <li class="breadcrumb-item"><a href="{{ url('/products') }}" class="text-decoration-none">Productos</a></li>
-                <li class="breadcrumb-item active">Editar</li>
-            </ol>
-        </nav>
-        <h1 class="h3 fw-bold mb-1">Editar producto</h1>
-    </div>
-
-    <div class="card card-app">
-        <div class="card-body p-4">
-            {{-- Integrar con: route('products.update', $product) --}}
-            <form action="{{ url('/products/1') }}" method="POST" class="needs-validation" novalidate>
+    <div class="card-app">
+        <div class="card-body">
+            <form action="{{ route('products.update', $product) }}" method="POST">
                 @csrf
-                @method('PUT')
-                <div class="row g-3 g-md-4">
-
-                    <div class="col-12 col-md-6">
-                        <label for="ID" class="form-label fw-medium">ID <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" id="id" name="id" value="ARZ-001" required>
+                @method('PATCH')
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label fw-medium">Nombre</label>
+                        <input type="text" name="name" value="{{ old('name', $product->name) }}" class="form-control @error('name') is-invalid @enderror" required>
+                        @error('name')<div class="invalid-feedback">{{ $message }}</div>@enderror
                     </div>
-
-                    <div class="col-12 col-md-6">
-                        <label for="name" class="form-label fw-medium">Nombre <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" id="name" name="name" value="Arroz Premium 1kg" required>
+                    <div class="col-md-6">
+                        <label class="form-label fw-medium">SKU</label>
+                        <input type="text" name="sku" value="{{ old('sku', $product->sku) }}" class="form-control @error('sku') is-invalid @enderror" required>
+                        @error('sku')<div class="invalid-feedback">{{ $message }}</div>@enderror
                     </div>
-
-                    <div class="col-12 col-md-6">
-                        <label for="category_id" class="form-label fw-medium">Categoría <span class="text-danger">*</span></label>
-                        <select class="form-select" id="category_id" name="category_id" required>
-                            <option value="1" selected>Granos</option>
-                            <option value="2">Lácteos</option>
-                            <option value="3">Bebidas</option>
+                    <div class="col-md-6">
+                        <label class="form-label fw-medium">Categoría</label>
+                        <select name="category_id" class="form-select" required>
+                            @foreach($categories as $cat)
+                                <option value="{{ $cat->id }}" @selected(old('category_id', $product->category_id) == $cat->id)>{{ $cat->name }}</option>
+                            @endforeach
                         </select>
                     </div>
-
-                    <div class="col-12 col-md-6">
-                        <label for="unit" class="form-label fw-medium">Unidad</label>
-                        <select class="form-select" id="unit" name="unit">
-                            <option value="kg" selected>Kilogramo</option>
-                            <option value="unidad">Unidad</option>
-                            <option value="lt">Litro</option>
+                    <div class="col-md-3">
+                        <label class="form-label fw-medium">Precio</label>
+                        <input type="number" step="0.01" name="price" value="{{ old('price', $product->price) }}" class="form-control" required>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label fw-medium">Stock mínimo</label>
+                        <input type="number" name="stock_minimum" value="{{ old('stock_minimum', $product->stock_minimum) }}" class="form-control" required>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label fw-medium">Unidad</label>
+                        <input type="text" name="unit" value="{{ old('unit', $product->unit) }}" class="form-control" required>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label fw-medium">Estado</label>
+                        <select name="status" class="form-select">
+                            <option value="activo" @selected(old('status', $product->status) === 'activo')>Activo</option>
+                            <option value="inactivo" @selected(old('status', $product->status) === 'inactivo')>Inactivo</option>
                         </select>
                     </div>
-
-                    <div class="col-12 col-md-6">
-                        <label for="price" class="form-label fw-medium">Precio venta</label>
-                        <div class="input-group">
-                            <span class="input-group-text">$</span>
-                            <input type="number" class="form-control" id="price" name="price" value="1.85" step="0.01" min="0" required>
-                        </div>
+                    <div class="col-md-4">
+                        <label class="form-label fw-medium">Stock actual</label>
+                        <input type="text" class="form-control" value="{{ $product->stock_quantity }}" disabled>
                     </div>
-
-                    <div class="col-12 col-md-6">
-                        <label for="stock_minimum" class="form-label fw-medium">Stock mínimo</label>
-                        <input type="number" class="form-control" id="stock_minimum" name="stock_minimum" value="15" min="0" required>
-                    </div>
-
-                    <div class="col-12 col-md-6">
-                        <label for="status" class="form-label fw-medium">Estado</label>
-                        <select class="form-select" id="status" name="status">
-                            <option value="activo" selected>Activo</option>
-                            <option value="inactivo">Inactivo</option>
-                        </select>
-                    </div>
-
-                    {{-- Solo lectura: stock actual --}}
-                    <div class="col-12 col-md-6">
-                        <label class="form-label fw-medium">Stock actual (solo lectura)</label>
-                        <input type="text" class="form-control bg-light" value="120 unidades" readonly disabled>
-                        <div class="form-text">Modificar desde <a href="{{ url('/stock/create') }}">movimientos de stock</a>.</div>
-                    </div>
-
                 </div>
-
-                <div class="d-flex flex-column flex-sm-row gap-2 mt-4 pt-3 border-top">
-                    <button type="submit" class="btn btn-primary rounded-pill px-4"><i class="bi bi-check-lg me-1"></i>Guardar</button>
-                    <a href="{{ url('/products') }}" class="btn btn-outline-secondary rounded-pill px-4"><i class="bi bi-x-lg me-1"></i>Cancelar</a>
+                <div class="d-flex gap-2 mt-4">
+                    <button type="submit" class="btn btn-primary">Actualizar</button>
+                    <a href="{{ route('products.index') }}" class="btn btn-outline-secondary">Volver</a>
                 </div>
             </form>
         </div>
     </div>
-
-@endsection
-
-@section('scripts')
-<script>
-    (function () {
-        'use strict';
-        document.querySelectorAll('.needs-validation').forEach(function (form) {
-            form.addEventListener('submit', function (e) {
-                if (!form.checkValidity()) { e.preventDefault(); e.stopPropagation(); }
-                form.classList.add('was-validated');
-            });
-        });
-    })();
-</script>
 @endsection
