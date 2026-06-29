@@ -12,6 +12,14 @@ Homestead.yaml
 npm-debug.log
 yarn-error.log
 
+# Laravel dentro de /app
+/app/vendor/
+/app/node_modules/
+/app/storage/logs/*.log
+/app/storage/framework/sessions/*
+/app/storage/framework/views/*
+/app/bootstrap/cache/*.php
+
 # IDE y sistema
 .idea/
 .vscode/

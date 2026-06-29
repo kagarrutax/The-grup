@@ -1,10 +1,10 @@
-﻿# app/ — Sistema de inventario supermercado (Laravel 11)
+# app/ — Sistema de inventario supermercado (Laravel 12)
 
 Aplicación MVC Laravel para gestión de inventario: categorías, productos, movimientos de stock y dashboard.
 
 ## Stack
 
-**Laravel 11** · **MySQL** · **Blade** · **Bootstrap 5** · **Laravel Breeze**
+**Laravel 12** · **MySQL** · **Blade** · **Bootstrap 5** · **Laravel Breeze**
 
 ## Mapa de carpetas
 

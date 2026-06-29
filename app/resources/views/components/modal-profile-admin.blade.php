@@ -46,59 +46,59 @@
                         </div>
 
                         <div class="col-md-6">
-                            <label class="form-label fw-medium\">
-                                <i class=\"bi bi-shield-lock text-primary me-2\"></i>Rol
+                            <label class="form-label fw-medium">
+                                <i class="bi bi-shield-lock text-primary me-2"></i>Rol
                             </label>
-                            <div class=\"input-group\">
-                                <span class=\"input-group-text bg-light\">
-                                    <i class=\"bi bi-star-fill text-warning\"></i>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light">
+                                    <i class="bi bi-star-fill text-warning"></i>
                                 </span>
-                                <input type=\"text\" class=\"form-control form-control-modern\" value=\"{{ ucfirst(auth()->user()->role) }}\" disabled>
+                                <input type="text" class="form-control form-control-modern" value="{{ ucfirst(auth()->user()->role) }}" disabled>
                             </div>
                         </div>
                     </div>
 
                     <!-- Sección: Seguridad -->
-                    <div class=\"section-header mb-4 mt-5 pt-3 border-top\">
-                        <h6 class=\"mb-3\">
-                            <i class=\"bi bi-lock-fill text-danger me-2\"></i>Seguridad
+                    <div class="section-header mb-4 mt-5 pt-3 border-top">
+                        <h6 class="mb-3">
+                            <i class="bi bi-lock-fill text-danger me-2"></i>Seguridad
                         </h6>
-                        <small class=\"text-muted\">Todos los campos son opcionales. Deja en blanco para no cambiar.</small>
+                        <small class="text-muted">Todos los campos son opcionales. Deja en blanco para no cambiar.</small>
                     </div>
 
-                    <div class=\"row g-3\">
-                        <div class=\"col-md-6\">
-                            <label class=\"form-label fw-medium\">
-                                <i class=\"bi bi-key text-danger me-2\"></i>Contraseña Actual
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label fw-medium">
+                                <i class="bi bi-key text-danger me-2"></i>Contraseña Actual
                             </label>
-                            <input type=\"password\" name=\"current_password\" class=\"form-control form-control-modern\" 
-                                   placeholder=\"Requerida para cambios de seguridad\">
-                            <small class=\"text-muted d-block mt-2\">Solo si deseas cambiar contraseña</small>
+                            <input type="password" name="current_password" class="form-control form-control-modern" 
+                                   placeholder="Requerida para cambios de seguridad">
+                            <small class="text-muted d-block mt-2">Solo si deseas cambiar contraseña</small>
                         </div>
 
-                        <div class=\"col-md-6\">
-                            <label class=\"form-label fw-medium\">
-                                <i class=\"bi bi-key-fill text-success me-2\"></i>Nueva Contraseña
+                        <div class="col-md-6">
+                            <label class="form-label fw-medium">
+                                <i class="bi bi-key-fill text-success me-2"></i>Nueva Contraseña
                             </label>
-                            <input type=\"password\" name=\"password\" class=\"form-control form-control-modern\" 
-                                   placeholder=\"Mínimo 8 caracteres\">
-                            <small class=\"text-muted d-block mt-2\">Deja en blanco para no cambiar</small>
+                            <input type="password" name="password" class="form-control form-control-modern" 
+                                   placeholder="Mínimo 8 caracteres">
+                            <small class="text-muted d-block mt-2">Deja en blanco para no cambiar</small>
                         </div>
 
-                        <div class=\"col-md-6\">
-                            <label class=\"form-label fw-medium\">
-                                <i class=\"bi bi-check-circle text-info me-2\"></i>Confirmar Contraseña
+                        <div class="col-md-6">
+                            <label class="form-label fw-medium">
+                                <i class="bi bi-check-circle text-info me-2"></i>Confirmar Contraseña
                             </label>
-                            <input type=\"password\" name=\"password_confirmation\" class=\"form-control form-control-modern\" 
-                                   placeholder=\"Confirma tu nueva contraseña\">
-                            <small class=\"text-muted d-block mt-2\">Debe coincidir con la nueva contraseña</small>
+                            <input type="password" name="password_confirmation" class="form-control form-control-modern" 
+                                   placeholder="Confirma tu nueva contraseña">
+                            <small class="text-muted d-block mt-2">Debe coincidir con la nueva contraseña</small>
                         </div>
                     </div>
 
                     <!-- Requisitos de contraseña -->
-                    <div id=\"passwordRequirements\" class=\"alert alert-info alert-dismissible fade show mt-4\" style=\"display:none;\">
+                    <div id="passwordRequirements" class="alert alert-info alert-dismissible fade show mt-4" style="display:none;">
                         <strong>Requisitos de contraseña:</strong>
-                        <ul class=\"mb-0 mt-2 small\">
+                        <ul class="mb-0 mt-2 small">
                             <li>Mínimo 8 caracteres</li>
                             <li>Al menos una mayúscula</li>
                             <li>Al menos un número</li>
@@ -107,12 +107,12 @@
                     </div>
                 </form>
             </div>
-            <div class=\"modal-footer modal-footer-modern\">
-                <button type=\"button\" class=\"btn btn-light\" data-bs-dismiss=\"modal\">
-                    <i class=\"bi bi-x-lg me-2\"></i>Cancelar
+            <div class="modal-footer modal-footer-modern">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">
+                    <i class="bi bi-x-lg me-2"></i>Cancelar
                 </button>
-                <button type=\"button\" class=\"btn btn-primary btn-modern\" onclick=\"document.getElementById('profileForm').submit()\">
-                    <i class=\"bi bi-check-circle me-2\"></i>Guardar Cambios
+                <button type="button" class="btn btn-primary btn-modern" onclick="document.getElementById('profileForm').submit()">
+                    <i class="bi bi-check-circle me-2"></i>Guardar Cambios
                 </button>
             </div>
         </div>
@@ -126,7 +126,7 @@
 
     // Mostrar requisitos cuando hay entrada en campo de contraseña
     document.addEventListener('DOMContentLoaded', function() {
-        const passwordField = document.querySelector('input[name=\"password\"]');
+        const passwordField = document.querySelector('input[name="password"]');
         const requirementsAlert = document.getElementById('passwordRequirements');
         
         if (passwordField) {

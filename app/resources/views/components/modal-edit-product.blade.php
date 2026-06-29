@@ -89,59 +89,134 @@
 
 <script>
     let currentProductId = null;
+    const jsonHeaders = {
+        'Accept': 'application/json',
+        'X-Requested-With': 'XMLHttpRequest',
+    };
 
-    function editProduct(productId) {
-        currentProductId = productId;
-        fetch(`/products/${productId}/edit`)
-            .then(response => response.json())
+    function parseJsonResponse(response) {
+        return response.json()
+            .catch(() => ({}))
             .then(data => {
-                document.getElementById('editName').value = data.name;
-                document.getElementById('editSku').value = data.sku;
-                document.getElementById('editPrice').value = data.price;
-                document.getElementById('editStockMinimum').value = data.stock_minimum;
-                document.getElementById('editUnit').value = data.unit;
-                document.getElementById('editStatus').value = data.status;
-                document.getElementById('editCategory').value = data.category_id;
-                
-                // Cargar categorías
-                loadCategoriesForEdit();
-                
-                new bootstrap.Modal(document.getElementById('editProductModal')).show();
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('Error al cargar los datos del producto');
+                if (!response.ok) {
+                    throw data;
+                }
+
+                return data;
             });
     }
 
-    function loadCategoriesForEdit() {
-        fetch('/categories/list')
-            .then(response => response.json())
+    function clearValidationErrors() {
+        const fieldErrorMap = {
+            name: 'nameError',
+            sku: 'skuError',
+            category_id: 'categoryError',
+            price: 'priceError',
+            stock_minimum: 'stockMinError',
+            unit: 'unitError',
+            status: 'statusError',
+        };
+
+        Object.entries(fieldErrorMap).forEach(([field, errorId]) => {
+            const input = document.getElementById(`edit${field.charAt(0).toUpperCase()}${field.slice(1)}`) ?? document.querySelector(`[name="${field}"]`);
+            const errorElement = document.getElementById(errorId);
+
+            if (input) {
+                input.classList.remove('is-invalid');
+            }
+
+            if (errorElement) {
+                errorElement.textContent = '';
+            }
+        });
+    }
+
+    function applyValidationErrors(errors = {}) {
+        const fieldMap = {
+            name: ['editName', 'nameError'],
+            sku: ['editSku', 'skuError'],
+            category_id: ['editCategory', 'categoryError'],
+            price: ['editPrice', 'priceError'],
+            stock_minimum: ['editStockMinimum', 'stockMinError'],
+            unit: ['editUnit', 'unitError'],
+            status: ['editStatus', 'statusError'],
+        };
+
+        Object.entries(errors).forEach(([field, messages]) => {
+            const [inputId, errorId] = fieldMap[field] ?? [];
+            const input = inputId ? document.getElementById(inputId) : null;
+            const errorElement = errorId ? document.getElementById(errorId) : null;
+
+            if (input) {
+                input.classList.add('is-invalid');
+            }
+
+            if (errorElement) {
+                errorElement.textContent = Array.isArray(messages) ? messages[0] : messages;
+            }
+        });
+    }
+
+    async function editProduct(productId) {
+        currentProductId = productId;
+        clearValidationErrors();
+
+        try {
+            const data = await fetch(`/products/${productId}/edit`, {
+                headers: jsonHeaders,
+            }).then(parseJsonResponse);
+
+            document.getElementById('editName').value = data.name;
+            document.getElementById('editSku').value = data.sku;
+            document.getElementById('editPrice').value = data.price;
+            document.getElementById('editStockMinimum').value = data.stock_minimum;
+            document.getElementById('editUnit').value = data.unit;
+            document.getElementById('editStatus').value = data.status;
+
+            await loadCategoriesForEdit(data.category_id);
+
+            new bootstrap.Modal(document.getElementById('editProductModal')).show();
+        } catch (error) {
+            console.error('Error:', error);
+            alert(error.message || 'Error al cargar los datos del producto');
+        }
+    }
+
+    function loadCategoriesForEdit(selectedCategoryId = null) {
+        return fetch('/categories/list', {
+            headers: jsonHeaders,
+        })
+            .then(parseJsonResponse)
             .then(data => {
                 const select = document.getElementById('editCategory');
                 select.innerHTML = '<option value="">Seleccionar categoría</option>';
+
                 data.forEach(category => {
                     const option = document.createElement('option');
                     option.value = category.id;
                     option.textContent = category.name;
                     select.appendChild(option);
                 });
-                select.value = document.getElementById('editCategory').getAttribute('data-selected');
+
+                select.value = selectedCategoryId ? String(selectedCategoryId) : '';
             });
     }
 
     document.getElementById('saveProductBtn').addEventListener('click', function() {
         const form = document.getElementById('editProductForm');
         const formData = new FormData(form);
-        
+
+        clearValidationErrors();
+
         fetch(`/products/${currentProductId}`, {
-            method: 'PATCH',
+            method: 'POST',
             headers: {
                 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                ...jsonHeaders,
             },
             body: formData
         })
-        .then(response => response.json())
+        .then(parseJsonResponse)
         .then(data => {
             if (data.success) {
                 bootstrap.Modal.getInstance(document.getElementById('editProductModal')).hide();
@@ -152,7 +227,13 @@
         })
         .catch(error => {
             console.error('Error:', error);
-            alert('Error al guardar los cambios');
+
+            if (error.errors) {
+                applyValidationErrors(error.errors);
+                return;
+            }
+
+            alert(error.message || 'Error al guardar los cambios');
         });
     });
 </script>

@@ -137,26 +137,26 @@
             </div>
 
             <!-- Widget de Seguridad -->
-            <div class="card-app info-widget mt-4\">
-                <div class="card-body\">
-                    <h6 class=\"mb-3\">
-                        <i class=\"bi bi-shield-check text-success me-2\"></i>Estado de Seguridad
+            <div class="card-app info-widget mt-4">
+                <div class="card-body">
+                    <h6 class="mb-3">
+                        <i class="bi bi-shield-check text-success me-2"></i>Estado de Seguridad
                     </h6>
 
-                    <div class=\"security-status\">
-                        <div class=\"status-item\">
-                            <span class=\"status-indicator status-active\"></span>
-                            <span class=\"text-small\">Sesión activa</span>
+                    <div class="security-status">
+                        <div class="status-item">
+                            <span class="status-indicator status-active"></span>
+                            <span class="text-small">Sesión activa</span>
                         </div>
 
-                        <div class=\"status-item\">
-                            <span class=\"status-indicator status-active\"></span>
-                            <span class=\"text-small\">Administrador verificado</span>
+                        <div class="status-item">
+                            <span class="status-indicator status-active"></span>
+                            <span class="text-small">Administrador verificado</span>
                         </div>
 
-                        <div class=\"status-item\">
-                            <span class=\"status-indicator status-active\"></span>
-                            <span class=\"text-small\">Token CSRF protegido</span>
+                        <div class="status-item">
+                            <span class="status-indicator status-active"></span>
+                            <span class="text-small">Token CSRF protegido</span>
                         </div>
                     </div>
                 </div>
