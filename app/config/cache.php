@@ -28,7 +28,8 @@ return [
     |
     | Supported drivers: "array", "database", "file", "memcached",
     |                    "redis", "dynamodb", "octane",
-    |                    "failover", "null"`r`n    |
+    |                    "failover", "null"
+    |
     */
 
     'stores' => [
@@ -97,7 +98,7 @@ return [
                 'array',
             ],
         ],
-`r`n    ],
+    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -110,6 +111,6 @@ return [
     |
     */
 
-    'prefix' => env('CACHE_PREFIX', Str::slug((string) env('APP_NAME', 'laravel')).'-cache-'),`r`n
+    'prefix' => env('CACHE_PREFIX', Str::slug((string) env('APP_NAME', 'laravel')).'-cache-'),
 ];
 

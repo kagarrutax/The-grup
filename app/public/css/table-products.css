@@ -246,3 +246,30 @@
         font-size: 0.85rem;
     }
 }
+
+/* ============================================ */
+/* Product Thumbnail */
+/* ============================================ */
+
+.product-thumb {
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    background-color: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border: 1px solid #e2e8f0;
+}
+
+.product-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.product-thumb span {
+    color: #94a3b8;
+    font-size: 1.25rem;
+}
