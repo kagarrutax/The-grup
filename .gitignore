@@ -33,3 +33,6 @@ docs/guia-roles-equipo.pdf
 # Python (script generador)
 __pycache__/
 *.pyc
+
+# Utilidades temporales locales
+/dev-tools/
