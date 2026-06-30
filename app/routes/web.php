@@ -67,4 +67,14 @@ Route::middleware('web')->group(function () {
         Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     });
+
+    // Fallback redirects for legacy mock files
+    Route::redirect('/dashboard.php', '/dashboard');
+    Route::redirect('/productos.php', '/products');
+    Route::redirect('/categorias.php', '/categories');
+    Route::redirect('/movimientos.php', '/stock');
+    Route::redirect('/proveedores.php', '/suppliers');
+    Route::redirect('/reportes.php', '/reports');
+    Route::redirect('/usuarios.php', '/profile');
+    Route::redirect('/login.php', '/login');
 });

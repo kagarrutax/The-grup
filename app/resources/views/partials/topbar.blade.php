@@ -7,40 +7,41 @@
         ->implode('');
 @endphp
 
-<header class="app-topbar">
-    <div class="d-flex align-items-center gap-3">
-        <button class="sidebar-toggle" id="sidebarToggle" type="button" aria-label="Menú">
-            <i class="bi bi-list fs-5"></i>
-        </button>
-        <div>
-            <h1 class="page-title">@yield('page-title', 'Dashboard')</h1>
-            @hasSection('page-subtitle')
-                <p class="page-subtitle">@yield('page-subtitle')</p>
-            @endif
-        </div>
+<header class="app-navbar">
+    <button class="btn-icon d-lg-none" type="button" id="sidebarToggle" aria-label="Menú">
+        <i class="bi bi-list fs-5"></i>
+    </button>
+
+    <div class="navbar-page-title">
+        <h1>@yield('page-title', 'Dashboard')</h1>
+        @hasSection('page-subtitle')
+            <p>@yield('page-subtitle')</p>
+        @endif
     </div>
 
-    <div class="topbar-actions">
-        <div class="topbar-date topbar-date-button" aria-hidden="true">
+    <div class="navbar-tools">
+        <div class="date-range-picker d-none d-md-flex">
             <i class="bi bi-calendar3"></i>
-            <span>{{ now()->translatedFormat('d \d\e F, Y') }}</span>
+            <span>{{ now()->subMonths(6)->translatedFormat('M Y') }} — {{ now()->translatedFormat('M Y') }}</span>
+            <i class="bi bi-chevron-down small"></i>
         </div>
-        <button class="topbar-btn topbar-btn-notification" type="button" aria-label="Notificaciones" id="notificationsToggle">
+        
+        <button class="btn-icon topbar-btn-notification" type="button" aria-label="Notificaciones" id="notificationsToggle" style="position: relative;">
             <i class="bi bi-bell"></i>
             <span class="topbar-dot" id="notificationCount">0</span>
         </button>
         
         <div class="dropdown">
-            <button class="user-avatar dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" title="{{ $user?->name ?? 'Usuario' }}" aria-label="Cuenta de usuario">
+            <div class="avatar dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" title="{{ $user?->name ?? 'Usuario' }}" role="button" tabindex="0">
                 {{ $initials ?: 'AD' }}
-            </button>
-            <ul class="dropdown-menu dropdown-menu-end">
-                <li><span class="dropdown-header">{{ $user?->name ?? 'Usuario' }}</span></li>
+            </div>
+            <ul class="dropdown-menu dropdown-menu-end shadow-sm">
+                <li><span class="dropdown-header fw-bold text-dark">{{ $user?->name ?? 'Usuario' }}</span></li>
                 <li><span class="dropdown-item-text small text-muted">{{ $user?->email ?? 'user@example.com' }}</span></li>
                 <li><hr class="dropdown-divider"></li>
                 <li>
                     <a class="dropdown-item" href="{{ route('profile.edit') }}">
-                        <i class="bi bi-person-circle me-2"></i>Perfil y configuración
+                        <i class="bi bi-person-circle me-2 text-muted"></i>Perfil y configuración
                     </a>
                 </li>
                 <li>
@@ -61,7 +62,7 @@
         </div>
         <div class="d-flex gap-2">
             <button type="button" class="btn btn-sm btn-light" id="markAllNotificationsRead">Marcar todas</button>
-            <a href="{{ route('notifications.page') }}" class="btn btn-sm btn-primary">Ver todas</a>
+            <a href="{{ route('notifications.page') ?? '#' }}" class="btn btn-sm btn-primary">Ver todas</a>
         </div>
     </div>
     <div class="notifications-panel-body" id="notificationsList">
@@ -69,7 +70,7 @@
     </div>
 </div>
 
-<form id="logoutForm" action="{{ route('logout') }}" method="POST" style="display: none;">
+<form id="logoutForm" action="{{ route('logout') ?? '#' }}" method="POST" style="display: none;">
     @csrf
 </form>
 
@@ -83,9 +84,13 @@
     async function loadNotifications() {
         const list = document.getElementById('notificationsList');
         const count = document.getElementById('notificationCount');
+        
+        // Return if route is not defined
+        const url = '{{ route('notifications.index') ?? '' }}';
+        if (!url) return;
 
         try {
-            const response = await fetch('{{ route('notifications.index') }}', {
+            const response = await fetch(url, {
                 headers: {
                     'Accept': 'application/json',
                     'X-Requested-With': 'XMLHttpRequest',
@@ -101,7 +106,7 @@
             const unreadCount = Number(data.count || 0);
 
             count.textContent = unreadCount;
-            count.style.display = unreadCount > 0 ? 'inline-flex' : 'none';
+            count.style.display = unreadCount > 0 ? 'flex' : 'none';
 
             if (!items.length) {
                 list.innerHTML = '<div class="notifications-empty">No hay notificaciones nuevas.</div>';
@@ -145,10 +150,13 @@
     });
 
     document.getElementById('markAllNotificationsRead')?.addEventListener('click', async function () {
-        await fetch('{{ route('notifications.markAllRead') }}', {
+        const url = '{{ route('notifications.markAllRead') ?? '' }}';
+        if (!url) return;
+        
+        await fetch(url, {
             method: 'POST',
             headers: {
-                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content'),
                 'Accept': 'application/json',
                 'X-Requested-With': 'XMLHttpRequest',
             },
@@ -167,7 +175,7 @@
         await fetch(`/notifications/${button.dataset.id}`, {
             method: 'DELETE',
             headers: {
-                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content'),
                 'Accept': 'application/json',
                 'X-Requested-With': 'XMLHttpRequest',
             },

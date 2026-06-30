@@ -5,29 +5,30 @@
 @section('page-subtitle', 'Gestión visual del catálogo con búsqueda inteligente y modales')
 
 @section('content')
-    <section class="module-toolbar mb-4">
-        <form method="GET" id="productsFilters" class="search-toolbar">
-            <div class="search-input-group">
-                <i class="bi bi-search"></i>
-                <input
-                    type="search"
-                    name="search"
-                    value="{{ $search }}"
-                    class="form-control form-control-search"
-                    placeholder="Buscar por ID, nombre, código, categoría o proveedor"
-                    autocomplete="off"
-                >
-                <button type="button" class="search-clear" data-clear-search>&times;</button>
+    <section class="mb-4">
+        <form method="GET" id="productsFilters" class="filter-bar">
+            <div class="search-bar-lg flex-grow-1">
+                <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-search"></i></span>
+                    <input
+                        type="search"
+                        name="search"
+                        value="{{ $search }}"
+                        class="form-control"
+                        placeholder="Buscar por ID, nombre, código, categoría..."
+                        autocomplete="off"
+                    >
+                </div>
             </div>
 
-            <select name="category_id" class="form-select">
+            <select name="category_id" class="form-select" style="min-width: 200px;">
                 <option value="">Todas las categorías</option>
                 @foreach($categories as $cat)
                     <option value="{{ $cat->id }}" @selected($categoryId == $cat->id)>{{ $cat->name }}</option>
                 @endforeach
             </select>
 
-            <select name="supplier_id" class="form-select">
+            <select name="supplier_id" class="form-select" style="min-width: 200px;">
                 <option value="">Todos los proveedores</option>
                 @foreach($suppliers as $supplier)
                     <option value="{{ $supplier->id }}" @selected($supplierId == $supplier->id)>{{ $supplier->company_name }}</option>
